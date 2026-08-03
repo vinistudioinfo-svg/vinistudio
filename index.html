@@ -249,25 +249,32 @@ nav.scrolled{background:rgba(250,246,240,.97);backdrop-filter:blur(12px);padding
 .step-title{font-size:.95rem;font-weight:500;color:var(--brown-dark);margin-bottom:5px}
 .step-desc{font-size:.84rem;line-height:1.7;color:var(--muted)}
 .process-visual{position:sticky;top:100px}
-<!-- .process-img-box{width:100%;border-radius:20px;min-height:480px;background:linear-gradient(160deg,#D4A88A 0%,#8B5E3C 100%);display:flex;align-items:center;justify-content:center}
-.process-img-box span{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:rgba(255,255,255,.5);font-style:italic} -->
+/* new */
 .process-img-box{
     width:100%;
-    aspect-ratio: 4 / 3;
     border-radius:20px;
     overflow:hidden;
-    position:relative;
 }
 
 .process-img-box img{
     width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center;
+    height:auto;
     display:block;
+    object-fit:contain;
 }
-.process-note{background:var(--warm);border-radius:14px;padding:20px;margin-top:18px}
-.process-note p{font-size:.83rem;line-height:1.7;color:var(--brown)}
+
+.process-note{
+    background:var(--warm);
+    border-radius:14px;
+    padding:20px;
+    margin-top:20px;
+}
+
+.process-note p{
+    font-size:.9rem;
+    line-height:1.8;
+    word-break:break-word;
+}
 
 /* FAQ */
 .faq-section{background:var(--cream);padding:90px 80px}
@@ -340,6 +347,28 @@ footer{background:var(--brown-dark);padding:60px 80px 36px}
 .reveal-right.visible{opacity:1;transform:translateX(0)}
 
 /* RESPONSIVE */
+@media (max-width:768px){
+
+.process-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+}
+
+.process-visual{
+    position:static;
+}
+
+.process-img-box img{
+    width:100%;
+    height:auto;
+}
+
+.process-note{
+    margin-top:15px;
+}
+
+}
+  
 @media (max-width:900px){
 
 .about-grid{
@@ -516,44 +545,44 @@ img{
       <div class="service-bg" style="background:linear-gradient(160deg,#D4A88A 0%,#6B3A1F 100%);position:absolute;inset:0" src="<a href="https://ibb.co/fzsk0gW8"><img src="https://i.ibb.co/B59yspJ4/DSC-4991-copy.jpg" alt="DSC-4991-copy" border="0"></a>"></div>
       <div class="service-overlay"></div>
       <div class="service-content">
-        <span class="service-icon">👶</span>
+        <!-- <span class="service-icon">👶</span> -->
         <span class="service-name">Newborn</span>
         <span class="service-detail">5–25 Days Old &amp; Infant 1–11 Months</span>
         <div class="service-desc">Safe posing, premium wraps, props &amp; outfits provided. The golden window captured forever.</div>
-        <span class="service-tag">₹6,000 onwards</span>
+        <!-- <span class="service-tag">₹6,000 onwards</span> -->
       </div>
     </div>
     <div class="service-card reveal">
       <div class="service-bg" style="background:linear-gradient(160deg,#C4956A 0%,#5A3020 100%);position:absolute;inset:0" src="<a href="https://ibb.co/rfqbF1qf"><img src="https://i.ibb.co/PzJTFfJz/NIK-3083-copy-2.jpg" alt="NIK-3083-copy-2" border="0"></a>"></div>
       <div class="service-overlay"></div>
       <div class="service-content">
-        <span class="service-icon">🤰</span>
+        <!-- <span class="service-icon">🤰</span> -->
         <span class="service-name">Maternity</span>
         <span class="service-detail">28–34 Weeks · In Studio &amp; Outdoor</span>
         <div class="service-desc">Celebrating your glow, strength and the beautiful journey of becoming a mother.</div>
-        <span class="service-tag">₹6,000 onwards</span>
+        <!-- <span class="service-tag">₹6,000 onwards</span> -->
       </div>
     </div>
     <div class="service-card reveal">
       <div class="service-bg" style="background:linear-gradient(160deg,#B8855A 0%,#4A2510 100%);position:absolute;inset:0" src="<a href="https://ibb.co/93wmFnW3"><img src="https://i.ibb.co/bRHjS1XR/DSC00548-copy-2.jpg" alt="DSC00548-copy-2" border="0"></a>"></div>
       <div class="service-overlay"></div>
       <div class="service-content">
-        <span class="service-icon">🎂</span>
+        <!-- <span class="service-icon">🎂</span> -->
         <span class="service-name">Kids</span>
         <span class="service-detail">1 Year to 5 Years · Cake Smash &amp; Toddler</span>
         <div class="service-desc">Cake smash, milestones, toddler sessions — every giggle immortalized beautifully.</div>
-        <span class="service-tag">₹7,000 onwards</span>
+        <!-- <span class="service-tag">₹7,000 onwards</span> -->
       </div>
     </div>
     <div class="service-card reveal">
       <div class="service-bg" style="background:linear-gradient(160deg,#E2C49A 0%,#7A5030 100%);position:absolute;inset:0" src="<a href="https://ibb.co/CSmkCVq"><img src="https://i.ibb.co/WRGb8BQ/DSC-0280-copy.jpg" alt="DSC-0280-copy" border="0"></a>"></div>
       <div class="service-overlay"></div>
       <div class="service-content">
-        <span class="service-icon">👨‍👩‍👧</span>
+        <!-- <span class="service-icon">👨‍👩‍👧</span> -->
         <span class="service-name">Family</span>
         <span class="service-detail">All Ages · Studio &amp; Outdoor</span>
         <div class="service-desc">Real moments, real emotions — capturing the warmth and joy of your growing family.</div>
-        <span class="service-tag">Add-on Available</span>
+        <!-- <span class="service-tag">Add-on Available</span> -->
       </div>
     </div>
   </div>
@@ -597,7 +626,7 @@ img{
         </div>
       </div>
       <div class="pkg-card featured reveal">
-        <div class="pkg-badge">Most Popular</div>
+        <!-- <div class="pkg-badge">Most Popular</div> -->
         <div class="pkg-header">
           <span class="pkg-icon">🥇</span>
           <div class="pkg-tier">Gold</div>
@@ -618,6 +647,7 @@ img{
         </div>
       </div>
       <div class="pkg-card reveal">
+        <div class="pkg-badge">Best Value</div>
         <div class="pkg-header">
           <span class="pkg-icon">👑</span>
           <div class="pkg-tier">Platinum</div>
@@ -665,7 +695,7 @@ img{
         </div>
       </div>
       <div class="pkg-card featured reveal">
-        <div class="pkg-badge">Most Popular</div>
+        <!-- <div class="pkg-badge">Most Popular</div> -->
         <div class="pkg-header">
           <span class="pkg-icon">🥇</span>
           <div class="pkg-tier">Gold</div>
@@ -689,6 +719,7 @@ img{
         </div>
       </div>
       <div class="pkg-card reveal">
+        <div class="pkg-badge">Best Value</div>
         <div class="pkg-header">
           <span class="pkg-icon">👑</span>
           <div class="pkg-tier">Platinum</div>
@@ -744,7 +775,7 @@ img{
         </div>
       </div>
       <div class="pkg-card featured reveal">
-        <div class="pkg-badge">Most Popular</div>
+        <!-- <div class="pkg-badge">Most Popular</div> -->
         <div class="pkg-header">
           <span class="pkg-icon">🥇</span>
           <div class="pkg-tier">Gold</div>
@@ -766,6 +797,7 @@ img{
         </div>
       </div>
       <div class="pkg-card reveal">
+        <div class="pkg-badge">Best Value</div>
         <div class="pkg-header">
           <span class="pkg-icon">👑</span>
           <div class="pkg-tier">Platinum</div>
@@ -878,6 +910,7 @@ img{
 <!-- TESTIMONIALS -->
 <section class="testi-section">
   <h2 class="testi-title reveal">What <em>Families</em> Say About Us</h2>
+  
   <div class="testi-grid">
     <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">"Vidya captured our newborn's first days so beautifully. Every photo is a treasure we will keep forever. She made us feel so comfortable and our baby was always safe."</p><div class="testi-author"><div class="testi-avatar">P</div><div><div class="testi-name">Priya Sharma</div><div class="testi-type">Newborn Session · Pune</div></div></div></div>
     <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">"My maternity shoot was a dream! Vidya has such a calm energy. She guided every pose beautifully. The photos are beyond what I imagined. Highly recommend ViNi Studio!"</p><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Anjali Patil</div><div class="testi-type">Maternity Session · Dhule</div></div></div></div>
