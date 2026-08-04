@@ -191,6 +191,10 @@ nav.scrolled{background:rgba(250,246,240,.97);backdrop-filter:blur(12px);padding
 .service-detail{font-size:.75rem;color:rgba(255,255,255,.75);margin-bottom:8px;display:block}
 .service-desc{font-size:.78rem;color:rgba(255,255,255,.8);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .4s ease}
 .service-card:hover .service-desc{max-height:120px}
+  .service-card{
+    text-decoration:none;
+    color:inherit;
+}
 .service-tag{display:inline-block;background:rgba(255,255,255,.18);color:var(--white);font-size:.68rem;padding:4px 12px;border-radius:20px;margin-top:8px;letter-spacing:1px;text-transform:uppercase;backdrop-filter:blur(4px)}
 
 /* PACKAGES TABS */
@@ -568,18 +572,34 @@ img{
     <div class="section-label center">We Specialize In</div>
     <h2 class="section-title" style="margin-bottom:0">Our Photography<br/><em>Services</em></h2>
   </div>
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-bg" style="background:linear-gradient(160deg,#D4A88A 0%,#6B3A1F 100%);position:absolute;inset:0" src="<a href="https://ibb.co/fzsk0gW8"><img src="https://i.ibb.co/B59yspJ4/DSC-4991-copy.jpg" alt="DSC-4991-copy" border="0"></a>"></div>
-      <div class="service-overlay"></div>
-      <div class="service-content">
-        <!-- <span class="service-icon">👶</span> -->
-        <span class="service-name">Newborn</span>
-        <span class="service-detail">5–25 Days Old &amp; Infant 1–11 Months</span>
-        <div class="service-desc">Safe posing, premium wraps, props &amp; outfits provided. The golden window captured forever.</div>
-        <!-- <span class="service-tag">₹6,000 onwards</span> -->
+
+<a href="portfolio/newborn.html" class="service-card reveal">
+
+  <div class="service-bg"
+       style="background-image:url('https://i.ibb.co/B59yspJ4/DSC-4991-copy.jpg');
+              background-size:cover;
+              background-position:center;
+              position:absolute;
+              inset:0;">
+  </div>
+
+  <div class="service-overlay"></div>
+
+  <div class="service-content">
+      <span class="service-name">Newborn</span>
+
+      <span class="service-detail">
+        5–25 Days Old &amp; Infant 1–11 Months
+      </span>
+
+      <div class="service-desc">
+        Safe posing, premium wraps, props &amp; outfits provided.
+        The golden window captured forever.
       </div>
-    </div>
+  </div>
+
+</a>
+  
     <div class="service-card reveal">
       <div class="service-bg" style="background:linear-gradient(160deg,#C4956A 0%,#5A3020 100%);position:absolute;inset:0" src="<a href="https://ibb.co/rfqbF1qf"><img src="https://i.ibb.co/PzJTFfJz/NIK-3083-copy-2.jpg" alt="NIK-3083-copy-2" border="0"></a>"></div>
       <div class="service-overlay"></div>
