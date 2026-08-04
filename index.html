@@ -437,6 +437,28 @@ img{
     height:auto;
     display:block;
 }
+
+/* Google Map */
+.map-section{
+    width:100%;
+    margin-top:40px;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
+
+.map-section iframe{
+    width:100%;
+    height:400px;
+    border:0;
+    display:block;
+}
+
+@media (max-width:768px){
+    .map-section iframe{
+        height:300px;
+    }
+}
 </style>
 </head>
 <body>
@@ -972,6 +994,22 @@ img{
       
       <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell us about your vision, theme ideas, or any questions..."></textarea></div>
       <button class="form-btn" onclick="handleSubmit(this)">Send Enquiry ✨</button>
+    <div class="section-label center">Visit Our Studio</div>
+      <h3 style="text-align:center;margin-bottom:20px;">
+        Find <em>ViNi Studio</em> on Google Maps
+      </h3>
+      <!-- Google Map -->
+    <div class="map-section reveal" style="margin-top:40px;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d329.3958147109107!2d74.77248324339665!3d20.92485938641635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdec5c050643153%3A0x65103393065d5cc1!2sViNi%20Studio!5e0!3m2!1sen!2sin!4v1785815867387!5m2!1sen!2sin"
+        width="100%"
+        height="400"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin">
+      </iframe>
+    </div>
     </div>
   </div>
 </section>
