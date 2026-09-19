@@ -72,9 +72,7 @@ $('login').onclick=async()=>{
  const {data,error}=await client.auth.signInWithPassword({email,password});
  $('login').disabled=false;$('login').textContent='Login';
  if(error){msg($('loginMsg'),error.message);return}
- user=data.user;await 
-checkSession();
-};
+ user=data.user;await checkSession();
 };
 $('logout').onclick=async()=>{await client.auth.signOut();location.reload()};
 
