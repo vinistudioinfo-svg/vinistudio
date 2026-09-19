@@ -569,6 +569,19 @@ img{
   </div>
 </div>
 
+<script>
+(function(){
+  function forceOpenGiftPopup(){
+    const modal=document.getElementById('giftPopup');
+    if(!modal) return;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  setTimeout(forceOpenGiftPopup,2200);
+})();
+</script>
+
 <!-- NAV -->
 <nav id="navbar">
   <a href="#home" class="nav-brand">
@@ -1372,20 +1385,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGiftPopup()});
 
 // Loader
 window.addEventListener('load',()=>{
-  setTimeout(()=>{document.getElementById('loader').classList.add('hide')},2400);
-  setTimeout(()=>{
-    const modal=document.getElementById('giftPopup');
-    if(!modal) return;
-    try{
-      const seenKey='viniGiftPopupSeen_v2';
-      if(!sessionStorage.getItem(seenKey)){
-        sessionStorage.setItem(seenKey,'1');
-        openGiftPopup();
-      }
-    }catch(e){
-      openGiftPopup();
-    }
-  },3000);
+  setTimeout(()=>{document.getElementById('loader').classList.add('hide')},1800);
 });
 
 // Nav scroll
