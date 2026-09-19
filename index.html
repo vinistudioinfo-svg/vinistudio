@@ -118,6 +118,40 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .gift-spark.s3{width:7px;height:7px;right:25px;top:105px}.gift-spark.s4{width:4px;height:4px;left:111px;top:24px}
 .gift-spark.s5{width:6px;height:6px;left:231px;top:226px}.gift-spark.s6{width:4px;height:4px;left:24px;top:75px}
 
+/* Reference-style burst + flowing film motion. Popup-only animation. */
+.gift-popup.open .gift-visual{animation:giftBlastIn .9s cubic-bezier(.18,.78,.2,1) both}
+.gift-popup.open .gift-roll{animation:filmFlow 3.8s ease-in-out .55s infinite}
+.gift-popup.open .gift-camera{animation:cameraPulse 2.8s ease-in-out .6s infinite}
+.gift-popup.open .gift-float.f1{animation:floatPhoto1 3.6s ease-in-out .2s infinite}
+.gift-popup.open .gift-float.f2{animation:floatPhoto2 4s ease-in-out .4s infinite}
+.gift-popup.open .gift-float.f3{animation:floatPhoto3 3.4s ease-in-out .7s infinite}
+.gift-popup.open .gift-float.f4{animation:floatPhoto4 3.8s ease-in-out .5s infinite}
+.gift-popup.open .gift-spark{animation:sparkPulse 1.7s ease-in-out infinite}
+@keyframes giftBlastIn{
+  0%{opacity:0;transform:translateX(-50%) translateY(35px) scale(.78)}
+  55%{opacity:1;transform:translateX(-50%) translateY(-8px) scale(1.04)}
+  100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+}
+@keyframes filmFlow{
+  0%,100%{transform:rotate(-5deg) translate3d(-4px,0,0)}
+  25%{transform:rotate(-2deg) translate3d(7px,-5px,0)}
+  50%{transform:rotate(-7deg) translate3d(14px,2px,0)}
+  75%{transform:rotate(-3deg) translate3d(5px,-4px,0)}
+}
+@keyframes cameraPulse{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-4px) scale(1.015)}
+}
+@keyframes floatPhoto1{50%{transform:translate(8px,-12px) rotate(-17deg)}}
+@keyframes floatPhoto2{50%{transform:translate(10px,9px) rotate(18deg)}}
+@keyframes floatPhoto3{50%{transform:translate(-7px,-9px) rotate(10deg)}}
+@keyframes floatPhoto4{50%{transform:translate(-10px,8px) rotate(16deg)}}
+@keyframes sparkPulse{0%,100%{opacity:.45;transform:scale(.75)}50%{opacity:1;transform:scale(1.35)}}
+@media(prefers-reduced-motion:reduce){
+  .gift-popup.open .gift-visual,.gift-popup.open .gift-roll,.gift-popup.open .gift-camera,
+  .gift-popup.open .gift-float,.gift-popup.open .gift-spark{animation:none!important}
+}
+
 .gift-close{position:absolute;top:12px;right:14px;border:0;background:none;color:var(--brown-dark);font-size:1.5rem;line-height:1;cursor:pointer;padding:6px;z-index:8}
 .gift-kicker{font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-mid);margin-bottom:7px}
 .gift-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4.5vw,2.25rem);font-weight:300;line-height:1.08;color:var(--brown-dark);margin-bottom:8px}
