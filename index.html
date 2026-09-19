@@ -116,10 +116,10 @@ nav.scrolled{background:rgba(250,246,240,.97);backdrop-filter:blur(12px);padding
 .stat span{font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);display:block;margin-top:4px}
 .hero-right{position:relative;overflow:hidden}
 .hero-img-wrap{position:absolute;inset:0;background:linear-gradient(135deg,#C9A880 0%,#A67855 40%,#7A4F35 100%);overflow:hidden}
-.hero-slide{position:absolute;inset:-3%;opacity:0;background-position:center;background-size:cover;background-repeat:no-repeat;transform:scale(1.04);transition:opacity 1.2s ease;animation:heroKenBurns 6s ease-in-out infinite}
+.hero-slide{position:absolute;inset:-3%;opacity:0;background-position:center center;background-size:cover;background-repeat:no-repeat;transform:scale(1.04);transition:opacity 1.2s ease;animation:heroKenBurns 6s ease-in-out infinite}
 .hero-slide.active{opacity:1}
 @keyframes heroKenBurns{0%{transform:scale(1.04) translate3d(0,0,0)}50%{transform:scale(1.10) translate3d(-1%,0,0)}100%{transform:scale(1.04) translate3d(0,0,0)}}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,#E8D7C5 0%,rgba(232,215,197,.88) 8%,rgba(232,215,197,.48) 18%,rgba(232,215,197,.16) 29%,transparent 39%)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,#E8D7C5 0%,#E8D7C5 16%,rgba(232,215,197,.96) 25%,rgba(232,215,197,.72) 33%,rgba(232,215,197,.38) 41%,rgba(232,215,197,.12) 47%,transparent 53%)}
 .floating-badge{position:absolute;bottom:60px;left:20px;background:var(--white);border-radius:18px;padding:18px 22px;box-shadow:0 16px 50px rgba(74,46,26,.2);z-index:3;animation:float 6s ease-in-out infinite;max-width:220px}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .badge-text{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--brown-dark);font-style:italic;line-height:1.4}
