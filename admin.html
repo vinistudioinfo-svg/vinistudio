@@ -10,6 +10,8 @@
 :root{--cream:#FAF6F0;--warm:#F2EAE0;--brown:#7A4F35;--brown-mid:#A67855;--brown-light:#C9A880;--brown-dark:#4A2E1A;--text:#2C1A0E;--muted:#8B6B52;--white:#fff;--danger:#a63d2f}
 *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--text);font-family:'DM Sans',sans-serif}header{padding:22px 5vw;background:var(--brown-dark);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:15px}.brand{font:2rem 'Cormorant Garamond',serif}.logout{border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;border-radius:25px;padding:9px 16px;cursor:pointer}
 main{max-width:1200px;margin:auto;padding:35px 5vw 80px}.panel{background:#fff;border-radius:18px;padding:24px;margin-bottom:22px;box-shadow:0 8px 30px rgba(74,46,26,.07)}h1,h2{font-family:'Cormorant Garamond',serif;color:var(--brown-dark);font-weight:400}h1{font-size:2.5rem;margin:0 0 5px}h2{font-size:1.8rem;margin:0 0 18px}.muted{color:var(--muted);font-size:.84rem;line-height:1.6}.login{max-width:430px;margin:12vh auto}.field{margin:14px 0}.field label{display:block;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}.field input,.field select{width:100%;padding:12px 13px;border:1px solid #dfd2c6;border-radius:10px;background:#fff;font:inherit;outline:none}.btn{border:0;background:var(--brown);color:#fff;padding:12px 18px;border-radius:10px;cursor:pointer;font-weight:500}.btn:hover{background:var(--brown-dark)}.btn.danger{background:var(--danger)}.btn.secondary{background:var(--warm);color:var(--brown)}.row{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.row>*{flex:1;min-width:180px}.filebox{border:1.5px dashed var(--brown-light);border-radius:14px;padding:20px}.progress{margin-top:12px;color:var(--muted);font-size:.82rem}.notice{padding:12px 14px;border-radius:10px;background:var(--warm);margin-top:14px;font-size:.82rem}.gallery-list{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.item{border:1px solid #eadfd5;border-radius:12px;overflow:hidden;background:#fff}.item img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}.item-info{padding:10px}.item-info small{display:block;color:var(--muted);margin-bottom:9px;word-break:break-all}.actions{display:flex;gap:6px;flex-wrap:wrap}.actions .btn{padding:7px 9px;font-size:.72rem}.hidden{display:none!important}.category-title{display:flex;justify-content:space-between;align-items:center;margin:26px 0 12px}.category-title h3{margin:0;color:var(--brown);font-size:1rem;font-weight:500}
+.card-cover-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.cover-item{border:1px solid #eadfd5;border-radius:12px;overflow:hidden;background:#fff}.cover-preview{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--warm)}.cover-info{padding:12px}.cover-name{font-weight:500;color:var(--brown);margin-bottom:8px}.cover-actions{display:flex;gap:7px;flex-wrap:wrap}.cover-actions .btn{padding:7px 10px;font-size:.72rem}
+@media(max-width:850px){.gallery-list{grid-template-columns:repeat(3,1fr)}.card-cover-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){header{padding:18px 5vw}.brand{font-size:1.6rem}main{padding:24px 4vw 60px}.panel{padding:18px}.gallery-list{grid-template-columns:repeat(2,1fr)}.row>*{min-width:100%}.login{margin:7vh auto}.card-cover-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:850px){.gallery-list{grid-template-columns:repeat(3,1fr)}}@media(max-width:600px){header{padding:18px 5vw}.brand{font-size:1.6rem}main{padding:24px 4vw 60px}.panel{padding:18px}.gallery-list{grid-template-columns:repeat(2,1fr)}.row>*{min-width:100%}.login{margin:7vh auto}}
 </style>
 </head>
@@ -36,6 +38,13 @@ main{max-width:1200px;margin:auto;padding:35px 5vw 80px}.panel{background:#fff;b
 </div>
 
 <div class="panel">
+<h2>Service Card Photos</h2>
+<p class="muted">These are the 4 cover photos shown on the main website service cards. Uploading a new photo replaces the current card cover. Original quality is preserved.</p>
+<div id="coverList" class="card-cover-grid"></div>
+<div id="coverMsg" class="progress"></div>
+</div>
+
+<div class="panel">
 <h2>Current Photos</h2><div id="list"></div>
 </div>
 </section>
@@ -53,7 +62,7 @@ let user=null;
 function msg(el,text){el.textContent=text;el.classList.remove('hidden')}
 async function checkSession(){
  const {data}=await client.auth.getUser();user=data.user||null;
- if(user&&user.id===ADMIN_ID){$('loginPanel').classList.add('hidden');$('app').classList.remove('hidden');$('logout').classList.remove('hidden');await loadAll()}
+ if(user&&user.id===ADMIN_ID){$('loginPanel').classList.add('hidden');$('app').classList.remove('hidden');$('logout').classList.remove('hidden');await loadAll();await loadCovers()}
  else if(user){await client.auth.signOut();msg($('loginMsg'),'This account is not authorized for gallery administration.')}
 }
 $('login').onclick=async()=>{
@@ -63,7 +72,70 @@ $('login').onclick=async()=>{
  const {data,error}=await client.auth.signInWithPassword({email,password});
  $('login').disabled=false;$('login').textContent='Login';
  if(error){msg($('loginMsg'),error.message);return}
- user=data.user;await checkSession();
+ user=data.user;await 
+// SERVICE CARD COVERS
+const coverNames={newborn:'Newborn',maternity:'Maternity',kids:'Kids',family:'Family'};
+
+async function loadCovers(){
+  const {data,error}=await client.from('service_card_covers').select('*').order('category');
+  if(error){$('coverList').innerHTML='<div class="notice">'+error.message+'</div>';return}
+  const byCat={};(data||[]).forEach(x=>byCat[x.category]=x);
+  $('coverList').innerHTML=Object.keys(coverNames).map(cat=>{
+    const p=byCat[cat];
+    const image=p&&p.image_path?url(p.image_path):'';
+    return '<div class="cover-item">'+
+      (image?'<img class="cover-preview" src="'+image+'" alt="'+coverNames[cat]+' card cover">':'<div class="cover-preview"></div>')+
+      '<div class="cover-info"><div class="cover-name">'+coverNames[cat]+'</div>'+
+      '<div class="cover-actions">'+
+      '<label class="btn" style="cursor:pointer">Add / Replace<input hidden type="file" accept="image/*" onchange="replaceCover(\''+cat+'\',this.files[0])"></label>'+
+      (p?'<button class="btn danger" onclick="deleteCover(\''+cat+'\')">Delete</button>':'')+
+      '</div></div></div>';
+  }).join('');
+}
+
+async function replaceCover(category,file){
+  if(!file)return;
+  msg($('coverMsg'),'Uploading '+coverNames[category]+' cover…');
+  const existingQ=await client.from('service_card_covers').select('*').eq('category',category).maybeSingle();
+  if(existingQ.error){msg($('coverMsg'),existingQ.error.message);return}
+  const oldPath=existingQ.data?.image_path||null;
+  const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+  const path='card-covers/'+category+'-'+crypto.randomUUID()+'-'+safe;
+  const up=await client.storage.from('gallery').upload(path,file,{contentType:file.type||'application/octet-stream',upsert:false});
+  if(up.error){msg($('coverMsg'),'Upload error: '+up.error.message);return}
+  let dbError=null;
+  if(existingQ.data){
+    const u=await client.from('service_card_covers').update({image_path:path,updated_at:new Date().toISOString()}).eq('category',category);
+    dbError=u.error;
+  }else{
+    const ins=await client.from('service_card_covers').insert({category,image_path:path});
+    dbError=ins.error;
+  }
+  if(dbError){
+    await client.storage.from('gallery').remove([path]);
+    msg($('coverMsg'),'Could not save cover: '+dbError.message);return;
+  }
+  if(oldPath) await client.storage.from('gallery').remove([oldPath]);
+  msg($('coverMsg'),coverNames[category]+' cover updated successfully.');
+  await loadCovers();
+}
+
+async function deleteCover(category){
+  if(!confirm('Delete the '+coverNames[category]+' card photo? The card will return to its default background.'))return;
+  const q=await client.from('service_card_covers').select('*').eq('category',category).maybeSingle();
+  if(q.error){alert(q.error.message);return}
+  if(!q.data){await loadCovers();return}
+  if(q.data.image_path){
+    const s=await client.storage.from('gallery').remove([q.data.image_path]);
+    if(s.error){alert(s.error.message);return}
+  }
+  const d=await client.from('service_card_covers').delete().eq('category',category);
+  if(d.error){alert(d.error.message);return}
+  msg($('coverMsg'),coverNames[category]+' cover deleted.');
+  await loadCovers();
+}
+
+checkSession();
 };
 $('logout').onclick=async()=>{await client.auth.signOut();location.reload()};
 
