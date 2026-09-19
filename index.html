@@ -516,6 +516,59 @@ img{
   <div class="loader-bar"><div class="loader-fill"></div></div>
 </div>
 
+<!-- VISITOR GIFT / LEAD POPUP -->
+<div class="gift-popup" id="giftPopup" aria-hidden="true">
+  <div class="gift-card" role="dialog" aria-modal="true" aria-labelledby="giftPopupTitle">
+    <button class="gift-close" id="giftClose" type="button" aria-label="Close">×</button>
+
+    <div id="giftFormView">
+      <div class="gift-kicker">A Little ViNi Studio Surprise</div>
+      <h2 class="gift-title" id="giftPopupTitle">Win a <em>Gift Photoshoot</em></h2>
+      <p class="gift-copy">
+        Every month, one lucky entry receives a complimentary ViNi Studio photoshoot.
+        Enter your details to get your monthly lucky entry number.
+      </p>
+
+      <div class="gift-highlight">
+        One entry per person each month. Your lucky entry number will be shown after submission.
+      </div>
+
+      <form class="gift-form" id="giftForm">
+        <input class="gift-input" id="giftName" type="text" placeholder="Your Name" autocomplete="name" required />
+        <input class="gift-input" id="giftPhone" type="tel" placeholder="WhatsApp Number" autocomplete="tel" required />
+
+        <select class="gift-select" id="giftPurpose" required>
+          <option value="">What are you looking for?</option>
+          <option value="Newborn Photoshoot">Newborn Photoshoot</option>
+          <option value="Maternity Photoshoot">Maternity Photoshoot</option>
+          <option value="Kids Photoshoot">Kids Photoshoot</option>
+          <option value="Family Photoshoot">Family Photoshoot</option>
+          <option value="Just exploring ViNi Studio">Just exploring ViNi Studio</option>
+        </select>
+
+        <label class="gift-consent">
+          <input id="giftWhatsappOptIn" type="checkbox" />
+          <span>I agree to receive ViNi Studio offers, updates and monthly giveaway information on WhatsApp.</span>
+        </label>
+
+        <div class="gift-status" id="giftStatus" aria-live="polite"></div>
+
+        <button class="gift-submit" id="giftSubmit" type="submit">Get My Lucky Entry Number</button>
+      </form>
+    </div>
+
+    <div class="gift-success" id="giftSuccess">
+      <div class="gift-kicker">Entry Confirmed</div>
+      <h2 class="gift-title">Your <em>Lucky Entry</em></h2>
+      <div class="gift-entry" id="giftEntryNo"></div>
+      <p class="gift-small">
+        Keep this entry number safe. One entry is considered for each person in the monthly giveaway.
+      </p>
+      <a href="#home" class="gift-continue" id="giftContinue">Continue to Website</a>
+    </div>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav id="navbar">
   <a href="#home" class="nav-brand">
@@ -1293,7 +1346,8 @@ async function saveVisitorLead(){
     purpose,
     whatsapp_opt_in:whatsappOptIn,
     campaign_month:campaignMonth,
-    source_page:location.pathname||'/'
+    source_page:location.pathname||'/',
+    consent_at:whatsappOptIn ? new Date().toISOString() : null
   });
   if(error){status.textContent='We could not save your entry right now. Please try again.';console.error(error);return null}
   return entryNo;
@@ -1320,12 +1374,17 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGiftPopup()});
 window.addEventListener('load',()=>{
   setTimeout(()=>{document.getElementById('loader').classList.add('hide')},2400);
   setTimeout(()=>{
+    const modal=document.getElementById('giftPopup');
+    if(!modal) return;
     try{
-      if(!sessionStorage.getItem('viniGiftPopupSeen')){
-        sessionStorage.setItem('viniGiftPopupSeen','1');
+      const seenKey='viniGiftPopupSeen_v2';
+      if(!sessionStorage.getItem(seenKey)){
+        sessionStorage.setItem(seenKey,'1');
         openGiftPopup();
       }
-    }catch(e){openGiftPopup()}
+    }catch(e){
+      openGiftPopup();
+    }
   },3000);
 });
 
