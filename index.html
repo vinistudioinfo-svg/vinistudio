@@ -126,7 +126,7 @@ nav.scrolled{background:rgba(250,246,240,.97);backdrop-filter:blur(12px);padding
 .badge-sub{font-size:.72rem;color:var(--muted);margin-top:4px;letter-spacing:1px}
 
 /* MARQUEE */
-.marquee-wrap{position:fixed;left:0;right:0;bottom:0;background:var(--brown-dark);padding:10px 0;overflow:hidden;z-index:8500;pointer-events:none}
+.marquee-wrap{position:fixed !important;left:0 !important;right:0 !important;bottom:0 !important;width:100vw !important;background:var(--brown-dark);padding:10px 0;overflow:hidden;z-index:8999 !important;pointer-events:none;display:block}
 .marquee-track{display:flex;gap:50px;white-space:nowrap;animation:marquee 22s linear infinite;width:max-content}
 .marquee-item{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--brown-light);font-style:italic;display:inline-flex;align-items:center;gap:18px;flex-shrink:0}
 .marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--brown-mid);flex-shrink:0;display:inline-block}
