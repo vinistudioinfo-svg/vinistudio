@@ -74,13 +74,16 @@ html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
 
 /* LOADER */
-#loader{position:fixed;inset:0;background:var(--brown-dark);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s ease}
+#loader{position:fixed;inset:0;background:var(--brown-dark);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:opacity .8s ease}
+#loader::before{content:"";position:absolute;inset:-18px;background-image:linear-gradient(rgba(74,46,26,.45),rgba(74,46,26,.45)),url("https://i.ibb.co/G4Xv0HnX/PROFILE.jpg");background-size:cover;background-position:center 30%;filter:blur(4px);transform:scale(1.05)}
+#loader::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(250,246,240,.10),rgba(44,26,14,.38))}
 #loader.hide{opacity:0;pointer-events:none}
+.loader-content{position:relative;z-index:2;text-align:center;padding:34px 44px;background:rgba(44,26,14,.28);border:1px solid rgba(250,246,240,.35);backdrop-filter:blur(5px);border-radius:20px}
 .loader-logo{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--cream);font-weight:300;letter-spacing:4px;animation:fadeUp 1s ease both}
-.loader-sub{font-size:.75rem;color:var(--brown-light);letter-spacing:3px;text-transform:uppercase;margin-top:6px;animation:fadeUp 1s ease .2s both}
-.loader-tag{font-size:.85rem;color:var(--brown-light);letter-spacing:5px;text-transform:uppercase;margin-top:10px;animation:fadeUp 1s ease .3s both}
-.loader-bar{width:180px;height:2px;background:rgba(255,255,255,.15);margin-top:40px;border-radius:2px;overflow:hidden}
-.loader-fill{height:100%;width:0;background:var(--brown-light);animation:loadFill 2s ease forwards}
+.loader-sub{font-size:.75rem;color:var(--cream);letter-spacing:3px;text-transform:uppercase;margin-top:6px;animation:fadeUp 1s ease .2s both}
+.loader-tag{font-size:.85rem;color:#F2EAE0;letter-spacing:4px;text-transform:uppercase;margin-top:10px;animation:fadeUp 1s ease .3s both}
+.loader-bar{width:180px;height:2px;background:rgba(255,255,255,.3);margin:40px auto 0;border-radius:2px;overflow:hidden}
+.loader-fill{height:100%;width:0;background:var(--cream);animation:loadFill 2s ease forwards}
 @keyframes loadFill{to{width:100%}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
@@ -465,10 +468,12 @@ img{
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-logo">ViNi Studio</div>
-  <div class="loader-sub">A Venture by Nikhil Creation</div>
-  <div class="loader-tag">Pillu Kicks To Forever Clicks</div>
-  <div class="loader-bar"><div class="loader-fill"></div></div>
+  <div class="loader-content">
+    <div class="loader-logo">ViNi Studio</div>
+    <div class="loader-sub">A Venture by Nikhil Creation</div>
+    <div class="loader-tag">Pillu Kicks To Forever Clicks</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
 </div>
 
 <!-- NAV -->
