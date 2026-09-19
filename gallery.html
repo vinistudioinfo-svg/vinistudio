@@ -8,24 +8,34 @@
 <link rel="icon" type="image/png" sizes="32x32" href="fevicon-32x32.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--cream:#FAF6F0;--warm:#F2EAE0;--brown:#7A4F35;--brown-mid:#A67855;--brown-light:#C9A880;--brown-dark:#4A2E1A;--text:#2C1A0E;--muted:#8B6B52;--white:#fff}
-*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--text);font-family:'DM Sans',sans-serif}
-header{padding:28px 6vw 18px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:sticky;top:0;background:rgba(250,246,240,.96);backdrop-filter:blur(12px);z-index:5;border-bottom:1px solid rgba(122,79,53,.08)}
-.brand{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brown-dark);text-decoration:none}.back{color:var(--brown);text-decoration:none;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
-main{padding:55px 6vw 90px;max-width:1400px;margin:auto}.eyebrow{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--brown-mid)}h1{font:300 clamp(2.5rem,5vw,4.5rem)/1.05 'Cormorant Garamond',serif;color:var(--brown-dark);margin:10px 0 12px}h1 em{color:var(--brown)}.sub{color:var(--muted);max-width:620px;line-height:1.8;font-size:.9rem}
-.status{text-align:center;color:var(--muted);padding:70px 10px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:45px}.tile{border:0;padding:0;background:none;cursor:pointer;border-radius:14px;overflow:hidden;aspect-ratio:4/5;position:relative}.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}.tile:hover img{transform:scale(1.04)}
-.empty{padding:70px 20px;text-align:center;color:var(--muted);border:1px dashed var(--brown-light);border-radius:18px;margin-top:40px}
-.lightbox{display:none;position:fixed;inset:0;background:rgba(20,12,7,.94);z-index:20;align-items:center;justify-content:center;padding:24px}.lightbox.open{display:flex}.lightbox img{max-width:96vw;max-height:90vh;width:auto;height:auto;object-fit:contain}.close{position:absolute;right:22px;top:16px;background:none;border:0;color:#fff;font-size:2rem;cursor:pointer}.lbnav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:50%;width:48px;height:48px;font-size:1.4rem;cursor:pointer}.prev{left:18px}.next{right:18px}.count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#fff;font-size:.78rem;letter-spacing:1px}
-@media(max-width:800px){header{padding:20px 5vw}.brand{font-size:1.6rem}main{padding:38px 5vw 70px}.grid{grid-template-columns:repeat(2,1fr);gap:10px}.tile{border-radius:10px}.lbnav{width:42px;height:42px}.prev{left:8px}.next{right:8px}}
-@media(max-width:480px){.grid{grid-template-columns:1fr 1fr}}
+:root{--cream:#FAF6F0;--brown:#7A4F35;--brown-dark:#4A2E1A;--muted:#8B6B52;--white:#fff}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#111}
+body{color:var(--brown-dark);font-family:'DM Sans',sans-serif}
+header{height:72px;padding:0 4.8vw;display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--cream);border-bottom:1px solid rgba(122,79,53,.1);position:sticky;top:0;z-index:5}
+.brand{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--brown-dark);text-decoration:none;letter-spacing:.5px}
+.back{color:var(--brown);text-decoration:none;font-size:.75rem;letter-spacing:1px;text-transform:uppercase}
+main{padding:0 7px 50px;max-width:1500px;margin:auto;background:#111}
+.status{text-align:center;color:var(--cream);padding:80px 10px;font-size:.9rem}
+.grid{column-count:3;column-gap:10px;margin:0}
+.tile{width:100%;display:block;border:0;padding:0;margin:0 0 10px;background:none;cursor:pointer;border-radius:0;overflow:hidden;break-inside:avoid}
+.tile img{width:100%;height:auto;display:block;transition:transform .45s ease}
+.tile:hover img{transform:scale(1.02)}
+.empty{padding:70px 20px;text-align:center;color:var(--muted);border:1px dashed var(--brown);border-radius:18px;background:var(--cream);margin:40px 20px}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(15,10,7,.96);z-index:20;align-items:center;justify-content:center;padding:24px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:96vw;max-height:90vh;width:auto;height:auto;object-fit:contain}
+.close{position:absolute;right:22px;top:16px;background:none;border:0;color:#fff;font-size:2rem;cursor:pointer}
+.lbnav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:50%;width:48px;height:48px;font-size:1.4rem;cursor:pointer}
+.prev{left:18px}.next{right:18px}
+.count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#fff;font-size:.78rem;letter-spacing:1px}
+@media(max-width:900px){.grid{column-count:2}header{padding:0 5vw}}
+@media(max-width:560px){header{height:64px}.brand{font-size:1.65rem}.back{font-size:.68rem}.grid{column-gap:6px}.tile{margin-bottom:6px}.lightbox{padding:14px}.lbnav{width:42px;height:42px}.prev{left:8px}.next{right:8px}}
 </style>
 </head>
 <body>
 <header><a class="brand" href="index.html">ViNi Studio</a><a class="back" href="index.html#services">← Back to Services</a></header>
 <main>
-<div class="eyebrow">ViNi Studio · Portfolio</div>
-<h1 id="title">Our <em>Gallery</em></h1>
-<p class="sub" id="subtitle">Moments captured with care — from tiny newborn details to beautiful family memories.</p>
 <div id="status" class="status">Loading gallery…</div>
 <div id="grid" class="grid" style="display:none"></div>
 <div id="empty" class="empty" style="display:none">No photos have been added to this gallery yet.</div>
@@ -42,8 +52,7 @@ const params=new URLSearchParams(location.search);
 const category=(params.get('category')||'newborn').toLowerCase();
 const names={newborn:'Newborn',maternity:'Maternity',kids:'Kids',family:'Family'};
 const title=names[category]||'Gallery';
-document.getElementById('title').innerHTML=title+' <em>Gallery</em>';
-document.getElementById('subtitle').textContent='A collection of ViNi Studio '+title.toLowerCase()+' moments — viewed in high resolution.';
+document.title='ViNi Studio — '+title+' Gallery';
 let photos=[],index=0;
 function publicUrl(path){return client.storage.from('gallery').getPublicUrl(path).data.publicUrl}
 function render(){
