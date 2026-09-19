@@ -90,23 +90,25 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .gift-card{width:min(380px,100%);background:var(--cream);border:1px solid rgba(122,79,53,.14);border-radius:18px;box-shadow:0 24px 60px rgba(50,30,18,.32);padding:28px 24px 22px;position:relative;overflow:visible;margin:0;z-index:2}
 .gift-card::before{display:none}
 
-/* Premium camera + newborn film-roll burst above the popup.
-   It is decorative only and does not change the popup card size. */
-.gift-visual{position:absolute;left:50%;top:calc(50% - 370px);width:190px;height:205px;transform:translateX(-50%);z-index:1;pointer-events:none}
-.gift-camera{position:absolute;left:50%;bottom:0;width:104px;height:58px;transform:translateX(-50%);border-radius:11px 11px 14px 14px;background:linear-gradient(145deg,#8d5b3b,#5a351f);box-shadow:0 14px 28px rgba(45,25,13,.28),inset 0 1px 0 rgba(255,255,255,.28)}
-.gift-camera::before{content:'';position:absolute;left:15px;top:-10px;width:38px;height:17px;border-radius:7px 7px 2px 2px;background:linear-gradient(145deg,#a87550,#6a4027);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
-.gift-camera::after{content:'';position:absolute;left:39px;top:15px;width:31px;height:31px;border-radius:50%;border:5px solid #f1dfc8;background:radial-gradient(circle at 38% 35%,#8c6a52 0 9%,#24170f 10% 65%,#a8784f 66% 100%);box-shadow:0 0 0 2px rgba(255,255,255,.16)}
-.gift-roll{position:absolute;left:50%;bottom:43px;width:92px;height:148px;transform:translateX(-50%);filter:drop-shadow(0 8px 10px rgba(50,28,14,.18))}
-.gift-frame{position:absolute;width:58px;height:39px;border:3px solid #f3dfc4;border-radius:3px;background:#8b5b3c center/cover no-repeat;box-shadow:0 4px 9px rgba(40,20,10,.22)}
-.gift-frame:nth-child(1){left:17px;bottom:94px;transform:rotate(-9deg)}
-.gift-frame:nth-child(2){left:20px;bottom:62px;transform:rotate(5deg)}
-.gift-frame:nth-child(3){left:13px;bottom:29px;transform:rotate(-7deg)}
-.gift-frame:nth-child(4){left:25px;bottom:-3px;transform:rotate(8deg)}
-.gift-spark{position:absolute;border-radius:50%;background:#d8ad70;box-shadow:0 0 12px rgba(216,173,112,.65)}
-.gift-spark.s1{width:5px;height:5px;left:17px;top:34px}
-.gift-spark.s2{width:4px;height:4px;right:18px;top:59px}
-.gift-spark.s3{width:6px;height:6px;right:8px;top:102px}
-.gift-spark.s4{width:3px;height:3px;left:5px;top:118px}
+/* Premium camera + film-roll burst above the popup.
+   Decorative only: the popup card, form and the rest of the website stay untouched. */
+.gift-visual{position:absolute;left:50%;top:calc(50% - 565px);width:320px;height:235px;transform:translateX(-50%);z-index:3;pointer-events:none}
+.gift-camera{position:absolute;left:10px;bottom:35px;width:112px;height:70px;border-radius:12px 12px 17px 17px;background:linear-gradient(145deg,#efe1cf 0%,#c9aa8b 55%,#8c654a 100%);border:2px solid rgba(74,46,26,.55);box-shadow:0 16px 28px rgba(35,19,10,.34),inset 0 1px 0 rgba(255,255,255,.7)}
+.gift-camera::before{content:'';position:absolute;left:16px;top:-13px;width:42px;height:20px;border-radius:7px 7px 2px 2px;background:linear-gradient(145deg,#f3e8da,#b98e6d);border:2px solid rgba(74,46,26,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}
+.gift-camera::after{content:'';position:absolute;left:48px;top:15px;width:42px;height:42px;border-radius:50%;border:6px solid #f7eadb;background:radial-gradient(circle at 36% 32%,#f6c985 0 7%,#7b4b30 8% 34%,#1f130b 35% 68%,#b78359 69% 100%);box-shadow:0 0 0 2px rgba(74,46,26,.45),0 0 22px rgba(216,173,112,.75)}
+.gift-roll{position:absolute;left:74px;top:62px;width:245px;height:108px;transform:rotate(-4deg);filter:drop-shadow(0 10px 12px rgba(35,19,10,.28))}
+.gift-roll::before{content:'';position:absolute;inset:0;border:7px solid #24160d;border-radius:8px;background:linear-gradient(180deg,#3a2417,#1f130b);box-shadow:0 0 0 2px rgba(243,223,196,.35),inset 0 0 0 2px rgba(216,173,112,.22)}
+.gift-roll::after{content:'';position:absolute;left:0;right:0;top:0;height:12px;background:repeating-linear-gradient(90deg,transparent 0 9px,#e8d1b7 9px 15px,transparent 15px 24px);opacity:.9;filter:drop-shadow(0 76px 0 #e8d1b7)}
+.gift-frame{position:absolute;z-index:2;width:48px;height:66px;top:20px;border:3px solid #f3dfc4;border-radius:3px;background:#8b5b3c center/cover no-repeat;box-shadow:0 4px 10px rgba(40,20,10,.28)}
+.gift-frame:nth-child(1){left:14px;transform:rotate(-5deg)}
+.gift-frame:nth-child(2){left:70px;top:16px;transform:rotate(3deg)}
+.gift-frame:nth-child(3){left:126px;top:21px;transform:rotate(-2deg)}
+.gift-frame:nth-child(4){left:182px;top:17px;transform:rotate(5deg)}
+.gift-spark{position:absolute;border-radius:50%;background:#d8ad70;box-shadow:0 0 14px rgba(216,173,112,.78)}
+.gift-spark.s1{width:7px;height:7px;left:54px;top:24px}
+.gift-spark.s2{width:5px;height:5px;left:153px;top:17px}
+.gift-spark.s3{width:8px;height:8px;right:12px;top:55px}
+.gift-spark.s4{width:4px;height:4px;left:118px;top:198px}
 
 .gift-close{position:absolute;top:12px;right:14px;border:0;background:none;color:var(--brown-dark);font-size:1.5rem;line-height:1;cursor:pointer;padding:6px;z-index:8}
 .gift-kicker{font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-mid);margin-bottom:7px}
@@ -137,11 +139,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 @media(max-width:600px){
   .gift-popup{padding:10px}
   .gift-card{width:min(340px,100%);padding:24px 18px 18px;margin:0}
-  .gift-visual{top:calc(50% - 340px);width:160px;height:175px}
-  .gift-camera{width:90px;height:50px}
-  .gift-camera::after{left:34px;top:13px;width:27px;height:27px;border-width:4px}
-  .gift-camera::before{left:13px;width:34px;height:15px}
-  .gift-roll{bottom:37px;transform:translateX(-50%) scale(.86);transform-origin:bottom center}
+  .gift-visual{top:calc(50% - 515px);width:300px;height:215px}
+  .gift-camera{left:4px;bottom:30px;width:96px;height:61px}
+  .gift-camera::after{left:40px;top:13px;width:36px;height:36px;border-width:5px}
+  .gift-camera::before{left:13px;top:-12px;width:36px;height:18px}
+  .gift-roll{left:66px;top:59px;width:225px;height:98px;transform:rotate(-4deg)}
+  .gift-frame{width:43px;height:59px;top:18px}
+  .gift-frame:nth-child(1){left:12px}
+  .gift-frame:nth-child(2){left:63px;top:14px}
+  .gift-frame:nth-child(3){left:114px;top:19px}
+  .gift-frame:nth-child(4){left:165px;top:15px}
   .gift-title{font-size:1.9rem}
   .gift-copy{font-size:.72rem}
   .gift-highlight{font-size:.68rem}
