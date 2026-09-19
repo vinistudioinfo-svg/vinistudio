@@ -18,10 +18,10 @@ header{height:72px;padding:0 4.8vw;display:flex;align-items:center;justify-conte
 main{padding:0 7px 50px;max-width:1500px;margin:auto;background:#111}
 .status{text-align:center;color:var(--cream);padding:80px 10px;font-size:.9rem}
 .grid{display:flex;flex-direction:column;gap:10px;margin:0}
-.gallery-row{display:flex;gap:10px;width:100%;align-items:stretch}
-.tile{border:0;padding:0;margin:0;background:none;cursor:pointer;border-radius:0;overflow:hidden;flex:1 1 0;min-width:0}
-.tile img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .45s ease}
-.tile:hover img{transform:scale(1.02)}
+.gallery-row{display:flex;gap:10px;width:100%;align-items:flex-start}
+.tile{border:0;padding:0;margin:0;background:none;cursor:pointer;border-radius:0;overflow:hidden;flex:0 0 auto;line-height:0}
+.tile img{width:100%;height:auto;display:block;object-fit:contain;transition:transform .45s ease}
+.tile:hover img{transform:scale(1.015)}
 .empty{padding:70px 20px;text-align:center;color:var(--muted);border:1px dashed var(--brown);border-radius:18px;background:var(--cream);margin:40px 20px}
 .lightbox{display:none;position:fixed;inset:0;background:rgba(15,10,7,.96);z-index:20;align-items:center;justify-content:center;padding:24px}
 .lightbox.open{display:flex}
@@ -31,7 +31,7 @@ main{padding:0 7px 50px;max-width:1500px;margin:auto;background:#111}
 .prev{left:18px}.next{right:18px}
 .count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#fff;font-size:.78rem;letter-spacing:1px}
 @media(max-width:900px){header{padding:0 5vw}.gallery-row{gap:8px}}
-@media(max-width:560px){.grid{gap:6px}.gallery-row{gap:6px}.tile img{min-height:0}}
+@media(max-width:560px){.grid{gap:6px}.gallery-row{gap:6px}.tile img{min-height:0;height:auto}}
 @media(max-width:560px){header{height:64px}.brand{font-size:1.65rem}.back{font-size:.68rem}.grid{column-gap:6px}.tile{margin-bottom:6px}.lightbox{padding:14px}.lbnav{width:42px;height:42px}.prev{left:8px}.next{right:8px}}
 </style>
 </head>
@@ -67,6 +67,7 @@ async function render(){
  const gap=10;
  const targetRowHeight=300;
  const maxRowItems=4;
+ const availableWidth=grid.clientWidth||1200;
  let rowItems=[],rowRatioSum=0;
  const rows=[];
  const ratioCache=await Promise.all(photos.map(p=>new Promise(resolve=>{
@@ -80,27 +81,28 @@ async function render(){
    const r=ratioCache[i];
    rowItems.push({p,i,r});
    rowRatioSum+=r;
-   const estimated=(rowRatioSum*targetRowHeight)+((rowItems.length-1)*gap);
-   if(estimated>=1180 || rowItems.length>=maxRowItems) flush();
+   const estimated=(rowRatioSum*targetRowHeight)+(rowItems.length-1)*gap;
+   if(estimated>=availableWidth || rowItems.length>=maxRowItems) flush();
  });
  flush();
  rows.forEach((row,rowIndex)=>{
    const el=document.createElement('div');
    el.className='gallery-row';
-   const totalAvailable=Math.max(300,Math.min(grid.clientWidth||1200,1500));
    const totalGaps=gap*(row.items.length-1);
-   const rowHeight=Math.max(170,Math.min(330,(totalAvailable-totalGaps)/row.sum));
+   const rowHeight=Math.max(170,Math.min(330,(availableWidth-totalGaps)/row.sum));
    row.items.forEach(item=>{
      const b=document.createElement('button');
      b.className='tile';
      b.dataset.i=item.i;
+     b.style.width=(item.r*rowHeight)+'px';
+     b.style.height=rowHeight+'px';
      const img=document.createElement('img');
      img.loading=rowIndex<2?'eager':'lazy';
      img.src=publicUrl(item.p.image_path);
      img.alt=title+' photography by ViNi Studio';
+     img.width=Math.round(item.r*rowHeight);
+     img.height=Math.round(rowHeight);
      b.appendChild(img);
-     b.style.flex=item.r+' 1 0';
-     b.style.height=rowHeight+'px';
      el.appendChild(b);
      b.addEventListener('click',()=>openBox(item.i));
    });
