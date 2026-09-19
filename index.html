@@ -87,18 +87,28 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 /* VISITOR GIFT / LEAD POPUP */
 .gift-popup{position:fixed;inset:0;background:rgba(25,14,8,.62);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:14px;z-index:9100;overflow:auto}
 .gift-popup.open{display:flex}
-.gift-card{width:min(380px,100%);background:var(--cream);border:1px solid rgba(122,79,53,.14);border-radius:18px;box-shadow:0 24px 60px rgba(50,30,18,.32);padding:28px 24px 22px;position:relative;overflow:visible;margin:0}
+.gift-card{width:min(380px,100%);background:var(--cream);border:1px solid rgba(122,79,53,.14);border-radius:18px;box-shadow:0 24px 60px rgba(50,30,18,.32);padding:28px 24px 22px;position:relative;overflow:visible;margin:0;z-index:2}
 .gift-card::before{display:none}
 
+/* Premium camera + newborn film-roll burst above the popup.
+   It is decorative only and does not change the popup card size. */
+.gift-visual{position:absolute;left:50%;top:calc(50% - 238px);width:190px;height:205px;transform:translateX(-50%);z-index:1;pointer-events:none}
+.gift-camera{position:absolute;left:50%;bottom:0;width:104px;height:58px;transform:translateX(-50%);border-radius:11px 11px 14px 14px;background:linear-gradient(145deg,#8d5b3b,#5a351f);box-shadow:0 14px 28px rgba(45,25,13,.28),inset 0 1px 0 rgba(255,255,255,.28)}
+.gift-camera::before{content:'';position:absolute;left:15px;top:-10px;width:38px;height:17px;border-radius:7px 7px 2px 2px;background:linear-gradient(145deg,#a87550,#6a4027);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.gift-camera::after{content:'';position:absolute;left:39px;top:15px;width:31px;height:31px;border-radius:50%;border:5px solid #f1dfc8;background:radial-gradient(circle at 38% 35%,#8c6a52 0 9%,#24170f 10% 65%,#a8784f 66% 100%);box-shadow:0 0 0 2px rgba(255,255,255,.16)}
+.gift-roll{position:absolute;left:50%;bottom:43px;width:92px;height:148px;transform:translateX(-50%);filter:drop-shadow(0 8px 10px rgba(50,28,14,.18))}
+.gift-frame{position:absolute;width:58px;height:39px;border:3px solid #f3dfc4;border-radius:3px;background:#8b5b3c center/cover no-repeat;box-shadow:0 4px 9px rgba(40,20,10,.22)}
+.gift-frame:nth-child(1){left:17px;bottom:94px;transform:rotate(-9deg)}
+.gift-frame:nth-child(2){left:20px;bottom:62px;transform:rotate(5deg)}
+.gift-frame:nth-child(3){left:13px;bottom:29px;transform:rotate(-7deg)}
+.gift-frame:nth-child(4){left:25px;bottom:-3px;transform:rotate(8deg)}
+.gift-spark{position:absolute;border-radius:50%;background:#d8ad70;box-shadow:0 0 12px rgba(216,173,112,.65)}
+.gift-spark.s1{width:5px;height:5px;left:17px;top:34px}
+.gift-spark.s2{width:4px;height:4px;right:18px;top:59px}
+.gift-spark.s3{width:6px;height:6px;right:8px;top:102px}
+.gift-spark.s4{width:3px;height:3px;left:5px;top:118px}
+
 .gift-close{position:absolute;top:12px;right:14px;border:0;background:none;color:var(--brown-dark);font-size:1.5rem;line-height:1;cursor:pointer;padding:6px;z-index:8}
-
-
-.gift-popup.open 
-
-
-25%{opacity:.95}100%{opacity:0;transform:translate(-50%,-50%) scale(1.35)}}
-18%{opacity:1}65%{opacity:.85}100%{opacity:0;transform:translate(-50%,-50%) scale(1.45) rotate(22deg)}}
-35%{opacity:1;transform:scale(1.12) translateY(-10px) rotate(2deg);filter:blur(0) drop-shadow(0 22px 28px rgba(55,30,16,.25))}58%{transform:scale(.97) translateY(4px) rotate(-1deg)}78%{transform:scale(1.03) translateY(-2px) rotate(.5deg)}100%{opacity:1;transform:scale(1) translateY(0) rotate(0)}}
 .gift-kicker{font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-mid);margin-bottom:7px}
 .gift-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4.5vw,2.25rem);font-weight:300;line-height:1.08;color:var(--brown-dark);margin-bottom:8px}
 .gift-title em{font-style:italic;color:var(--brown)}
@@ -127,6 +137,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 @media(max-width:600px){
   .gift-popup{padding:10px}
   .gift-card{width:min(340px,100%);padding:24px 18px 18px;margin:0}
+  .gift-visual{top:calc(50% - 210px);width:160px;height:175px}
+  .gift-camera{width:90px;height:50px}
+  .gift-camera::after{left:34px;top:13px;width:27px;height:27px;border-width:4px}
+  .gift-camera::before{left:13px;width:34px;height:15px}
+  .gift-roll{bottom:37px;transform:translateX(-50%) scale(.86);transform-origin:bottom center}
   .gift-title{font-size:1.9rem}
   .gift-copy{font-size:.72rem}
   .gift-highlight{font-size:.68rem}
@@ -541,6 +556,19 @@ img{
 
 <!-- VISITOR GIFT / LEAD POPUP -->
 <div class="gift-popup" id="giftPopup" aria-hidden="true">
+  <div class="gift-visual" id="giftVisual" aria-hidden="true">
+    <div class="gift-roll">
+      <div class="gift-frame"></div>
+      <div class="gift-frame"></div>
+      <div class="gift-frame"></div>
+      <div class="gift-frame"></div>
+    </div>
+    <div class="gift-camera"></div>
+    <span class="gift-spark s1"></span>
+    <span class="gift-spark s2"></span>
+    <span class="gift-spark s3"></span>
+    <span class="gift-spark s4"></span>
+  </div>
   <div class="gift-card" role="dialog" aria-modal="true" aria-labelledby="giftPopupTitle">
     <button class="gift-close" id="giftClose" type="button" aria-label="Close">×</button>
 
@@ -1342,6 +1370,28 @@ async function loadServiceCardCovers(){
 loadHeroSlideshow();
 loadServiceCardCovers();
 loadSitePhotos();
+
+async function loadGiftVisual(){
+  try{
+    const {data,error}=await supabaseClient
+      .from('gallery_photos')
+      .select('image_path,sort_order,created_at')
+      .eq('category','newborn')
+      .order('sort_order',{ascending:true})
+      .order('created_at',{ascending:true})
+      .limit(4);
+    if(error) throw error;
+    const frames=[...document.querySelectorAll('#giftVisual .gift-frame')];
+    (data||[]).forEach((row,i)=>{
+      if(!frames[i]||!row.image_path) return;
+      const url=supabaseClient.storage.from('gallery').getPublicUrl(row.image_path).data.publicUrl;
+      frames[i].style.backgroundImage='url("'+url+'")';
+    });
+  }catch(e){
+    console.warn('Gift visual photos could not be loaded:',e);
+  }
+}
+loadGiftVisual();
 
 // Visitor gift / lead capture
 function createEntryNumber(){
