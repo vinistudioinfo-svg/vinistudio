@@ -29,7 +29,7 @@ main{max-width:1200px;margin:auto;padding:35px 5vw 80px}.panel{background:#fff;b
 <div class="panel">
 <h1>Manage Gallery</h1><p class="muted">Upload the original files. This panel does not resize or compress your photos. The public gallery shows the stored original file.</p>
 <div class="row">
-<div class="field"><label>Category</label><select id="category"><option value="newborn">Newborn</option><option value="maternity">Maternity</option><option value="kids">Kids</option><option value="family">Family</option></select></div>
+<div class="field"><label>Category</label><select id="category"><option value="newborn">Newborn</option><option value="maternity">Maternity</option><option value="kids">Kids</option><option value="family">Family</option><option value="hero">Homepage Hero</option></select></div>
 <div class="field"><label>Photos</label><input id="files" type="file" accept="image/*" multiple></div>
 <div><button id="upload" class="btn">Upload Photos</button></div>
 </div>
@@ -94,7 +94,7 @@ const SUPABASE_KEY="sb_publishable_7fkwoAKl0lMoMuIP-FnvAQ_zOZXMX0p";
 const ADMIN_ID='d60e3dd8-b175-4a40-9933-18284e51a0a6';
 const client=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=id=>document.getElementById(id);
-const names={newborn:'Newborn',maternity:'Maternity',kids:'Kids',family:'Family'};
+const names={newborn:'Newborn',maternity:'Maternity',kids:'Kids',family:'Family',hero:'Homepage Hero'};
 let user=null;
 
 function msg(el,text){el.textContent=text;el.classList.remove('hidden')}
@@ -128,6 +128,11 @@ function itemHtml(p,i,total){
 $('upload').onclick=async()=>{
  const files=Array.from($('files').files||[]),cat=$('category').value;
  if(!files.length){msg($('uploadMsg'),'Choose one or more photos first.');return}
+ if(cat==='hero'){
+   const existing=await client.from('gallery_photos').select('id',{count:'exact',head:true}).eq('category','hero');
+   if(existing.error){msg($('uploadMsg'),'Could not check Hero photo count: '+existing.error.message);return}
+   if((existing.count||0)+files.length>10){msg($('uploadMsg'),'Homepage Hero can contain up to 10 photos. Delete or replace a photo first.');return}
+ }
  $('upload').disabled=true;let done=0;
  for(const file of files){
    try{
