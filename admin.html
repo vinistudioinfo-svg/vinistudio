@@ -51,6 +51,36 @@ main{max-width:1200px;margin:auto;padding:35px 5vw 80px}.panel{background:#fff;b
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+(function(){
+  const URL="https://qnkkrlixthefoyooizbe.supabase.co";
+  const KEY="sb_publishable_7fkwoAKl0lMoMuIP-FnvAQ_zOZXMX0p";
+  const ADMIN="d60e3dd8-b175-4a40-9933-18284e51a0a6";
+  function boot(){
+    const btn=document.getElementById("login");
+    if(!btn) return;
+    btn.onclick=async function(){
+      const email=document.getElementById("email").value.trim();
+      const password=document.getElementById("password").value;
+      const out=document.getElementById("loginMsg");
+      if(!email||!password){out.textContent="Please enter email and password.";out.classList.remove("hidden");return;}
+      btn.disabled=true;btn.textContent="Logging in…";
+      try{
+        const c=supabase.createClient(URL,KEY);
+        const r=await c.auth.signInWithPassword({email,password});
+        if(r.error) throw r.error;
+        if(!r.data.user || r.data.user.id!==ADMIN){await c.auth.signOut();throw new Error("This account is not authorized for gallery administration.");}
+        location.reload();
+      }catch(e){
+        out.textContent=e.message||"Login failed.";
+        out.classList.remove("hidden");
+        btn.disabled=false;btn.textContent="Login";
+      }
+    };
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot); else boot();
+})();
+</script>
+<script>
 const SUPABASE_URL="https://qnkkrlixthefoyooizbe.supabase.co";
 const SUPABASE_KEY="sb_publishable_7fkwoAKl0lMoMuIP-FnvAQ_zOZXMX0p";
 const ADMIN_ID='d60e3dd8-b175-4a40-9933-18284e51a0a6';
