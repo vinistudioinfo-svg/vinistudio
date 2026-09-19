@@ -538,7 +538,7 @@ img{
 <section class="about-section section-wrap" id="about">
   <div class="about-grid">
     <div class="about-img-wrap reveal-left">
-      <div class="about-img"> <img src="https://i.ibb.co/G4Xv0HnX/PROFILE.jpg" alt="Vidya More"></div>
+      <div class="about-img"> <img id="aboutSitePhoto" src="https://i.ibb.co/G4Xv0HnX/PROFILE.jpg" alt="Vidya More"></div>
       <div class="about-badge">Hi, I'm Vidya 🤍</div>
     </div>
     <div class="reveal-right">
@@ -886,7 +886,7 @@ img{
     <div class="process-visual">
       <!-- <div class="process-img-box reveal-right"><span>ViNi Studio 🤍</span></div> -->
       <div class="process-img-box reveal-right">
-      <img src="https://i.ibb.co/NdCS9Gdz/VIV-1250.jpg" alt="ViNi Studio">
+      <img id="processSitePhoto" src="https://i.ibb.co/NdCS9Gdz/VIV-1250.jpg" alt="ViNi Studio">
       </div>
       <div class="process-note reveal-right">
         <p>💛 <strong>30% advance</strong> to confirm · <strong>70%</strong> on shoot day · <strong>No refund</strong> on cancellation · Reschedule with 48 hrs notice · Please arrive on time</p>
@@ -1072,6 +1072,26 @@ const SUPABASE_URL="https://qnkkrlixthefoyooizbe.supabase.co";
 const SUPABASE_KEY="sb_publishable_7fkwoAKl0lMoMuIP-FnvAQ_zOZXMX0p";
 const supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
+async function loadSitePhotos(){
+  try{
+    const {data,error}=await supabaseClient.from('site_photos').select('section,image_path');
+    if(error) throw error;
+    const rows=data||[];
+    const about=rows.find(x=>x.section==='about');
+    const process=rows.find(x=>x.section==='process');
+    if(about&&about.image_path){
+      const u=supabaseClient.storage.from('gallery').getPublicUrl(about.image_path).data.publicUrl;
+      const el=document.getElementById('aboutSitePhoto');
+      if(el) el.src=u;
+    }
+    if(process&&process.image_path){
+      const u=supabaseClient.storage.from('gallery').getPublicUrl(process.image_path).data.publicUrl;
+      const el=document.getElementById('processSitePhoto');
+      if(el) el.src=u;
+    }
+  }catch(e){console.warn('Site photos could not be loaded:',e)}
+}
+
 async function loadServiceCardCovers(){
   try{
     const {data,error}=await supabaseClient.from('service_card_covers').select('category,image_path');
@@ -1104,6 +1124,7 @@ async function loadServiceCardCovers(){
 }
 
 loadServiceCardCovers();
+loadSitePhotos();
 
 // Loader
 window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('hide')},2400)});
