@@ -92,7 +92,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .gift-popup.open .gift-card::before{animation:giftRing .9s cubic-bezier(.18,.78,.24,1) .08s both}
 .gift-close{position:absolute;top:12px;right:14px;border:0;background:none;color:var(--brown-dark);font-size:1.5rem;line-height:1;cursor:pointer;padding:6px;z-index:8}
 .gift-visual{height:128px;display:flex;align-items:center;justify-content:center;position:relative;margin:0 0 2px}
-.gift-box-art{width:150px;height:118px;display:block;position:relative;z-index:3;filter:drop-shadow(0 18px 20px rgba(74,46,26,.18));transform-origin:50% 85%;opacity:0}
+.gift-box-art{width:180px;height:180px;object-fit:contain;display:block;position:relative;z-index:3;filter:drop-shadow(0 18px 20px rgba(74,46,26,.18));transform-origin:50% 85%;opacity:0}
 .gift-popup.open .gift-box-art{animation:giftBoxBlast .8s cubic-bezier(.17,.84,.25,1.28) both}
 .gift-blast{position:absolute;left:50%;top:48%;width:12px;height:12px;border-radius:50%;background:#C9A880;opacity:0;z-index:1;box-shadow:-62px -32px 0 0 #C9A880, -86px 5px 0 -2px #A67855, -58px 42px 0 -1px #7A4F35, -8px -60px 0 0 #D8BC9D, 44px -44px 0 -2px #A67855, 74px -5px 0 0 #C9A880, 56px 42px 0 -2px #7A4F35, 10px 58px 0 0 #A67855}
 .gift-popup.open .gift-blast{animation:giftParticles .85s cubic-bezier(.18,.78,.24,1) .08s both}
@@ -540,34 +540,7 @@ img{
     <div id="giftFormView">
       <div class="gift-visual" aria-hidden="true">
         <span class="gift-blast"></span>
-        <svg class="gift-box-art" viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="giftGlow" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#FFF7D8"/>
-              <stop offset="1" stop-color="#E5C27A"/>
-            </linearGradient>
-            <linearGradient id="giftRed" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#8C1F2E"/>
-              <stop offset="1" stop-color="#C94750"/>
-            </linearGradient>
-            <linearGradient id="giftSide" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stop-color="#7E1827"/>
-              <stop offset="1" stop-color="#B8323E"/>
-            </linearGradient>
-          </defs>
-          <path d="M95 22 L112 5 L127 22 L143 8 L155 25 L139 47 L109 40 Z" fill="url(#giftGlow)" opacity=".95"/>
-          <path d="M82 34 L43 7 L18 22 L70 61 Z" fill="#A91F2F"/>
-          <path d="M138 34 L177 7 L202 22 L150 61 Z" fill="#B62B39"/>
-          <path d="M77 47 L20 25 L20 48 L76 79 Z" fill="#6F1824"/>
-          <path d="M143 47 L200 25 L200 48 L144 79 Z" fill="#801B2A"/>
-          <path d="M53 56 L167 56 L190 70 L30 70 Z" fill="#D46B67"/>
-          <path d="M40 70 L180 70 L170 145 L50 145 Z" fill="url(#giftRed)"/>
-          <path d="M50 145 L170 145 L190 158 L32 158 Z" fill="#6F1724"/>
-          <path d="M104 56 H126 V145 H104 Z" fill="#E6D9C7"/>
-          <path d="M97 22 L104 19 L104 145 H86 V68 L97 22 Z" fill="#E8D7C5" opacity=".92"/>
-          <path d="M126 22 L116 18 L116 145 H134 V68 L126 22 Z" fill="#C9A880" opacity=".96"/>
-          <path d="M88 24 Q110 40 132 24" fill="none" stroke="#E6D9C7" stroke-width="7" stroke-linecap="round"/>
-        </svg>
+        <img class="gift-box-art" src="vini-gift-box.webp" alt="" />
       </div>
       <div class="gift-kicker">A Little ViNi Studio Surprise</div>
       <h2 class="gift-title" id="giftPopupTitle">Win a <em>Gift Photoshoot</em></h2>
