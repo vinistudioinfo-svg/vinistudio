@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ViNi Studio — Gallery Admin</title>
+<link rel="icon" type="image/png" sizes="32x32" href="fevicon-32x32.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FAF6F0;--warm:#F2EAE0;--brown:#7A4F35;--brown-mid:#A67855;--brown-light:#C9A880;--brown-dark:#4A2E1A;--text:#2C1A0E;--muted:#8B6B52;--white:#fff;--danger:#a63d2f}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--text);font-family:'DM Sans',sans-serif}header{padding:22px 5vw;background:var(--brown-dark);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:15px}.brand{font:2rem 'Cormorant Garamond',serif}.logout{border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;border-radius:25px;padding:9px 16px;cursor:pointer}
+main{max-width:1200px;margin:auto;padding:35px 5vw 80px}.panel{background:#fff;border-radius:18px;padding:24px;margin-bottom:22px;box-shadow:0 8px 30px rgba(74,46,26,.07)}h1,h2{font-family:'Cormorant Garamond',serif;color:var(--brown-dark);font-weight:400}h1{font-size:2.5rem;margin:0 0 5px}h2{font-size:1.8rem;margin:0 0 18px}.muted{color:var(--muted);font-size:.84rem;line-height:1.6}.login{max-width:430px;margin:12vh auto}.field{margin:14px 0}.field label{display:block;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}.field input,.field select{width:100%;padding:12px 13px;border:1px solid #dfd2c6;border-radius:10px;background:#fff;font:inherit;outline:none}.btn{border:0;background:var(--brown);color:#fff;padding:12px 18px;border-radius:10px;cursor:pointer;font-weight:500}.btn:hover{background:var(--brown-dark)}.btn.danger{background:var(--danger)}.btn.secondary{background:var(--warm);color:var(--brown)}.row{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.row>*{flex:1;min-width:180px}.filebox{border:1.5px dashed var(--brown-light);border-radius:14px;padding:20px}.progress{margin-top:12px;color:var(--muted);font-size:.82rem}.notice{padding:12px 14px;border-radius:10px;background:var(--warm);margin-top:14px;font-size:.82rem}.gallery-list{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.item{border:1px solid #eadfd5;border-radius:12px;overflow:hidden;background:#fff}.item img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}.item-info{padding:10px}.item-info small{display:block;color:var(--muted);margin-bottom:9px;word-break:break-all}.actions{display:flex;gap:6px;flex-wrap:wrap}.actions .btn{padding:7px 9px;font-size:.72rem}.hidden{display:none!important}.category-title{display:flex;justify-content:space-between;align-items:center;margin:26px 0 12px}.category-title h3{margin:0;color:var(--brown);font-size:1rem;font-weight:500}
+@media(max-width:850px){.gallery-list{grid-template-columns:repeat(3,1fr)}}@media(max-width:600px){header{padding:18px 5vw}.brand{font-size:1.6rem}main{padding:24px 4vw 60px}.panel{padding:18px}.gallery-list{grid-template-columns:repeat(2,1fr)}.row>*{min-width:100%}.login{margin:7vh auto}}
+</style>
+</head>
+<body>
+<header><div class="brand">ViNi Studio · Gallery Admin</div><button id="logout" class="logout hidden">Logout</button></header>
+<main>
+<section id="loginPanel" class="panel login">
+<h1>Admin Login</h1><p class="muted">Private gallery management. Visitors never see this panel.</p>
+<div class="field"><label>Email</label><input id="email" type="email" autocomplete="username" placeholder="Admin email"></div>
+<div class="field"><label>Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Password"></div>
+<button id="login" class="btn">Login</button><div id="loginMsg" class="notice hidden"></div>
+</section>
+
+<section id="app" class="hidden">
+<div class="panel">
+<h1>Manage Gallery</h1><p class="muted">Upload the original files. This panel does not resize or compress your photos. The public gallery shows the stored original file.</p>
+<div class="row">
+<div class="field"><label>Category</label><select id="category"><option value="newborn">Newborn</option><option value="maternity">Maternity</option><option value="kids">Kids</option><option value="family">Family</option></select></div>
+<div class="field"><label>Photos</label><input id="files" type="file" accept="image/*" multiple></div>
+<div><button id="upload" class="btn">Upload Photos</button></div>
+</div>
+<div id="uploadMsg" class="progress"></div>
+<div class="notice">Tip: You can select many photos at once. Photos stay in their original quality. Large DSLR files may be limited by your Supabase storage/file-size plan.</div>
+</div>
+
+<div class="panel">
+<h2>Current Photos</h2><div id="list"></div>
+</div>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://qnkkrlixthefoyooizbe.supabase.co";
+const SUPABASE_KEY="sb_publishable_7fkwoAKl0lMoMuIP-FnvAQ_zOZXMX0p";
+const ADMIN_ID='d60e3dd8-b175-4a40-9933-18284e51a0a6';
+const client=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
+const names={newborn:'Newborn',maternity:'Maternity',kids:'Kids',family:'Family'};
+let user=null;
+
+function msg(el,text){el.textContent=text;el.classList.remove('hidden')}
+async function checkSession(){
+ const {data}=await client.auth.getUser();user=data.user||null;
+ if(user&&user.id===ADMIN_ID){$('loginPanel').classList.add('hidden');$('app').classList.remove('hidden');$('logout').classList.remove('hidden');await loadAll()}
+ else if(user){await client.auth.signOut();msg($('loginMsg'),'This account is not authorized for gallery administration.')}
+}
+$('login').onclick=async()=>{
+ const email=$('email').value.trim(),password=$('password').value;
+ if(!email||!password){msg($('loginMsg'),'Please enter email and password.');return}
+ $('login').disabled=true;$('login').textContent='Logging in…';
+ const {data,error}=await client.auth.signInWithPassword({email,password});
+ $('login').disabled=false;$('login').textContent='Login';
+ if(error){msg($('loginMsg'),error.message);return}
+ user=data.user;await checkSession();
+};
+$('logout').onclick=async()=>{await client.auth.signOut();location.reload()};
+
+function url(path){return client.storage.from('gallery').getPublicUrl(path).data.publicUrl}
+async function loadAll(){
+ const {data,error}=await client.from('gallery_photos').select('*').order('category').order('sort_order',{ascending:true}).order('created_at',{ascending:true});
+ if(error){$('list').innerHTML='<div class="notice">'+error.message+'</div>';return}
+ const groups={newborn:[],maternity:[],kids:[],family:[]};
+ (data||[]).forEach(p=>(groups[p.category]||(groups[p.category]=[])).push(p));
+ $('list').innerHTML=Object.keys(groups).map(cat=>'<div class="category-title"><h3>'+names[cat]+'</h3><span class="muted">'+groups[cat].length+' photo(s)</span></div><div class="gallery-list">'+(groups[cat].length?groups[cat].map((p,i)=>itemHtml(p,i,groups[cat].length)).join(''):'<div class="notice" style="grid-column:1/-1">No photos yet.</div>')+'</div>').join('');
+}
+function itemHtml(p,i,total){
+ return '<div class="item"><img loading="lazy" src="'+url(p.image_path)+'" alt="'+names[p.category]+'"><div class="item-info"><small>'+p.image_path.split('/').slice(1).join('/')+'</small><div class="actions"><button class="btn secondary" onclick="movePhoto('+p.id+',-1)">↑</button><button class="btn secondary" onclick="movePhoto('+p.id+',1)">↓</button><button class="btn danger" onclick="deletePhoto('+p.id+')">Delete</button><label class="btn secondary" style="cursor:pointer">Replace<input hidden type="file" accept="image/*" onchange="replacePhoto('+p.id+',this.files[0])"></label></div></div></div>';
+}
+$('upload').onclick=async()=>{
+ const files=Array.from($('files').files||[]),cat=$('category').value;
+ if(!files.length){msg($('uploadMsg'),'Choose one or more photos first.');return}
+ $('upload').disabled=true;let done=0;
+ for(const file of files){
+   try{
+    const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+    const path=cat+'/'+crypto.randomUUID()+'-'+safe;
+    const up=await client.storage.from('gallery').upload(path,file,{contentType:file.type||'application/octet-stream',upsert:false});
+    if(up.error)throw up.error;
+    const max=await client.from('gallery_photos').select('sort_order').eq('category',cat).order('sort_order',{ascending:false}).limit(1);
+    const next=((max.data&&max.data[0])?Number(max.data[0].sort_order)+1:0);
+    const ins=await client.from('gallery_photos').insert({category:cat,image_path:path,sort_order:next});
+    if(ins.error){await client.storage.from('gallery').remove([path]);throw ins.error}
+    done++;msg($('uploadMsg'),'Uploaded '+done+' / '+files.length);
+   }catch(e){msg($('uploadMsg'),'Upload error: '+e.message)}
+ }
+ $('files').value='';$('upload').disabled=false;await loadAll();
+};
+async function deletePhoto(id){
+ if(!confirm('Delete this photo permanently?'))return;
+ const q=await client.from('gallery_photos').select('image_path').eq('id',id).single();if(q.error){alert(q.error.message);return}
+ const s=await client.storage.from('gallery').remove([q.data.image_path]);if(s.error){alert(s.error.message);return}
+ const d=await client.from('gallery_photos').delete().eq('id',id);if(d.error){alert(d.error.message);return}
+ await loadAll();
+}
+async function replacePhoto(id,file){
+ if(!file)return;
+ const q=await client.from('gallery_photos').select('*').eq('id',id).single();if(q.error){alert(q.error.message);return}
+ const old=q.data.image_path,parts=old.split('/'),cat=parts[0],safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_'),path=cat+'/'+crypto.randomUUID()+'-'+safe;
+ const up=await client.storage.from('gallery').upload(path,file,{contentType:file.type||'application/octet-stream',upsert:false});if(up.error){alert(up.error.message);return}
+ const u=await client.from('gallery_photos').update({image_path:path}).eq('id',id);if(u.error){await client.storage.from('gallery').remove([path]);alert(u.error.message);return}
+ await client.storage.from('gallery').remove([old]);await loadAll();
+}
+async function movePhoto(id,dir){
+ const q=await client.from('gallery_photos').select('*').eq('id',id).single();if(q.error)return alert(q.error.message);
+ const {data:list,error}=await client.from('gallery_photos').select('*').eq('category',q.data.category).order('sort_order',{ascending:true}).order('created_at',{ascending:true});
+ if(error)return alert(error.message);const i=list.findIndex(x=>x.id===id),j=i+dir;if(j<0||j>=list.length)return;
+ const a=list[i],b=list[j];
+ const ua=await client.from('gallery_photos').update({sort_order:b.sort_order}).eq('id',a.id);
+ const ub=await client.from('gallery_photos').update({sort_order:a.sort_order}).eq('id',b.id);
+ if(ua.error||ub.error)alert((ua.error||ub.error).message);else await loadAll();
+}
+checkSession();
+</script>
+</body>
+</html>
