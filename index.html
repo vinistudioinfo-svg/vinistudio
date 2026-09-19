@@ -90,25 +90,33 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .gift-card{width:min(380px,100%);background:var(--cream);border:1px solid rgba(122,79,53,.14);border-radius:18px;box-shadow:0 24px 60px rgba(50,30,18,.32);padding:28px 24px 22px;position:relative;overflow:visible;margin:0;z-index:2}
 .gift-card::before{display:none}
 
-/* Premium camera + film-roll burst above the popup.
-   Decorative only: the popup card, form and the rest of the website stay untouched. */
-.gift-visual{position:absolute;left:50%;top:calc(50% - 565px);width:320px;height:235px;transform:translateX(-50%);z-index:3;pointer-events:none}
-.gift-camera{position:absolute;left:10px;bottom:35px;width:112px;height:70px;border-radius:12px 12px 17px 17px;background:linear-gradient(145deg,#efe1cf 0%,#c9aa8b 55%,#8c654a 100%);border:2px solid rgba(74,46,26,.55);box-shadow:0 16px 28px rgba(35,19,10,.34),inset 0 1px 0 rgba(255,255,255,.7)}
-.gift-camera::before{content:'';position:absolute;left:16px;top:-13px;width:42px;height:20px;border-radius:7px 7px 2px 2px;background:linear-gradient(145deg,#f3e8da,#b98e6d);border:2px solid rgba(74,46,26,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}
-.gift-camera::after{content:'';position:absolute;left:48px;top:15px;width:42px;height:42px;border-radius:50%;border:6px solid #f7eadb;background:radial-gradient(circle at 36% 32%,#f6c985 0 7%,#7b4b30 8% 34%,#1f130b 35% 68%,#b78359 69% 100%);box-shadow:0 0 0 2px rgba(74,46,26,.45),0 0 22px rgba(216,173,112,.75)}
-.gift-roll{position:absolute;left:74px;top:62px;width:245px;height:108px;transform:rotate(-4deg);filter:drop-shadow(0 10px 12px rgba(35,19,10,.28))}
-.gift-roll::before{content:'';position:absolute;inset:0;border:7px solid #24160d;border-radius:8px;background:linear-gradient(180deg,#3a2417,#1f130b);box-shadow:0 0 0 2px rgba(243,223,196,.35),inset 0 0 0 2px rgba(216,173,112,.22)}
-.gift-roll::after{content:'';position:absolute;left:0;right:0;top:0;height:12px;background:repeating-linear-gradient(90deg,transparent 0 9px,#e8d1b7 9px 15px,transparent 15px 24px);opacity:.9;filter:drop-shadow(0 76px 0 #e8d1b7)}
-.gift-frame{position:absolute;z-index:2;width:48px;height:66px;top:20px;border:3px solid #f3dfc4;border-radius:3px;background:#8b5b3c center/cover no-repeat;box-shadow:0 4px 10px rgba(40,20,10,.28)}
-.gift-frame:nth-child(1){left:14px;transform:rotate(-5deg)}
-.gift-frame:nth-child(2){left:70px;top:16px;transform:rotate(3deg)}
-.gift-frame:nth-child(3){left:126px;top:21px;transform:rotate(-2deg)}
-.gift-frame:nth-child(4){left:182px;top:17px;transform:rotate(5deg)}
-.gift-spark{position:absolute;border-radius:50%;background:#d8ad70;box-shadow:0 0 14px rgba(216,173,112,.78)}
-.gift-spark.s1{width:7px;height:7px;left:54px;top:24px}
-.gift-spark.s2{width:5px;height:5px;left:153px;top:17px}
-.gift-spark.s3{width:8px;height:8px;right:12px;top:55px}
-.gift-spark.s4{width:4px;height:4px;left:118px;top:198px}
+/* Premium camera + newborn film-roll burst above the popup.
+   Decorative only: popup card, form and the rest of the website stay untouched. */
+.gift-visual{position:absolute;left:50%;top:calc(50% - 565px);width:430px;height:280px;transform:translateX(-50%);z-index:3;pointer-events:none}
+.gift-camera{position:absolute;left:6px;top:95px;width:150px;height:94px;border-radius:18px 18px 25px 25px;background:linear-gradient(145deg,#fff5e8 0%,#d8bea5 48%,#805b42 100%);border:2px solid rgba(70,42,24,.65);box-shadow:0 20px 34px rgba(34,18,9,.38),inset 0 2px 0 rgba(255,255,255,.8);z-index:4}
+.gift-camera::before{content:'';position:absolute;left:25px;top:-22px;width:58px;height:28px;border-radius:10px 10px 3px 3px;background:linear-gradient(145deg,#fff8ee,#b99475);border:2px solid rgba(70,42,24,.55);box-shadow:inset 0 2px 0 rgba(255,255,255,.8)}
+.gift-camera::after{content:'';position:absolute;left:61px;top:20px;width:61px;height:61px;border-radius:50%;border:8px solid #f8ead9;background:radial-gradient(circle at 36% 31%,#ffd994 0 7%,#9a5e36 8% 27%,#21130b 28% 66%,#bd8658 67% 100%);box-shadow:0 0 0 3px rgba(70,42,24,.5),0 0 34px rgba(224,166,86,.9)}
+.gift-camera-mark{position:absolute;left:18px;bottom:15px;font-family:Georgia,serif;font-size:15px;line-height:.8;letter-spacing:1px;color:#3a2417;transform:rotate(-4deg)}
+.gift-camera-mark small{font-family:Arial,sans-serif;font-size:7px;letter-spacing:2px}
+.gift-roll{position:absolute;left:124px;top:82px;width:300px;height:132px;transform:rotate(-5deg);z-index:3;filter:drop-shadow(0 12px 14px rgba(30,16,8,.34))}
+.gift-film{position:absolute;left:0;top:23px;width:100%;height:86px;border-radius:10px;background:#1d120b;border:5px solid #17100b;box-shadow:inset 0 0 0 2px rgba(243,223,196,.3),0 0 0 2px rgba(216,173,112,.2)}
+.gift-film::before,.gift-film::after{content:'';position:absolute;left:8px;right:8px;height:9px;background:repeating-linear-gradient(90deg,#f0dcc2 0 7px,transparent 7px 17px);opacity:.9}
+.gift-film::before{top:-1px}.gift-film::after{bottom:-1px}
+.gift-frame{position:absolute;z-index:5;width:49px;height:66px;top:34px;border:3px solid #f5e3cc;border-radius:3px;background:#8b5b3c center/cover no-repeat;box-shadow:0 5px 11px rgba(30,16,8,.34)}
+.gift-frame:nth-of-type(2){left:13px;transform:rotate(-3deg)}
+.gift-frame:nth-of-type(3){left:69px;top:29px;transform:rotate(3deg)}
+.gift-frame:nth-of-type(4){left:126px;top:34px;transform:rotate(-2deg)}
+.gift-frame:nth-of-type(5){left:183px;top:28px;transform:rotate(4deg)}
+.gift-frame:nth-of-type(6){left:240px;top:34px;transform:rotate(-5deg)}
+.gift-float{position:absolute;width:54px;height:68px;border:4px solid #f5e3cc;border-radius:3px;background:#8b5b3c center/cover no-repeat;box-shadow:0 8px 14px rgba(30,16,8,.25);z-index:2}
+.gift-float.f1{left:205px;top:8px;transform:rotate(-12deg)}
+.gift-float.f2{left:338px;top:18px;transform:rotate(13deg)}
+.gift-float.f3{left:255px;top:0;transform:rotate(6deg)}
+.gift-float.f4{left:155px;top:8px;transform:rotate(11deg)}
+.gift-spark{position:absolute;border-radius:50%;background:#e0b36c;box-shadow:0 0 16px rgba(224,179,108,.9);z-index:1}
+.gift-spark.s1{width:8px;height:8px;left:177px;top:58px}.gift-spark.s2{width:5px;height:5px;left:285px;top:34px}
+.gift-spark.s3{width:7px;height:7px;right:25px;top:105px}.gift-spark.s4{width:4px;height:4px;left:111px;top:24px}
+.gift-spark.s5{width:6px;height:6px;left:231px;top:226px}.gift-spark.s6{width:4px;height:4px;left:24px;top:75px}
 
 .gift-close{position:absolute;top:12px;right:14px;border:0;background:none;color:var(--brown-dark);font-size:1.5rem;line-height:1;cursor:pointer;padding:6px;z-index:8}
 .gift-kicker{font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-mid);margin-bottom:7px}
@@ -139,16 +147,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 @media(max-width:600px){
   .gift-popup{padding:10px}
   .gift-card{width:min(340px,100%);padding:24px 18px 18px;margin:0}
-  .gift-visual{top:calc(50% - 515px);width:300px;height:215px}
-  .gift-camera{left:4px;bottom:30px;width:96px;height:61px}
-  .gift-camera::after{left:40px;top:13px;width:36px;height:36px;border-width:5px}
-  .gift-camera::before{left:13px;top:-12px;width:36px;height:18px}
-  .gift-roll{left:66px;top:59px;width:225px;height:98px;transform:rotate(-4deg)}
-  .gift-frame{width:43px;height:59px;top:18px}
-  .gift-frame:nth-child(1){left:12px}
-  .gift-frame:nth-child(2){left:63px;top:14px}
-  .gift-frame:nth-child(3){left:114px;top:19px}
-  .gift-frame:nth-child(4){left:165px;top:15px}
+  .gift-visual{top:calc(50% - 500px);width:320px;height:220px}
+  .gift-camera{left:0;top:82px;width:108px;height:68px;border-radius:14px 14px 19px 19px}
+  .gift-camera::after{left:43px;top:14px;width:43px;height:43px;border-width:6px}
+  .gift-camera::before{left:18px;top:-16px;width:43px;height:21px}
+  .gift-camera-mark{left:13px;bottom:11px;font-size:11px}.gift-camera-mark small{font-size:5px}
+  .gift-roll{left:88px;top:69px;width:225px;height:105px;transform:rotate(-5deg)}
+  .gift-film{top:19px;height:70px;border-width:4px}
+  .gift-frame{width:37px;height:51px;top:28px;border-width:2px}
+  .gift-frame:nth-of-type(2){left:10px}.gift-frame:nth-of-type(3){left:52px;top:24px}
+  .gift-frame:nth-of-type(4){left:94px;top:28px}.gift-frame:nth-of-type(5){left:136px;top:23px}
+  .gift-frame:nth-of-type(6){left:178px;top:28px}
+  .gift-float{width:40px;height:51px;border-width:3px}
+  .gift-float.f1{left:154px;top:3px}.gift-float.f2{left:258px;top:14px}
+  .gift-float.f3{left:196px;top:0}.gift-float.f4{left:112px;top:8px}
   .gift-title{font-size:1.9rem}
   .gift-copy{font-size:.72rem}
   .gift-highlight{font-size:.68rem}
@@ -564,17 +576,27 @@ img{
 <!-- VISITOR GIFT / LEAD POPUP -->
 <div class="gift-popup" id="giftPopup" aria-hidden="true">
   <div class="gift-visual" id="giftVisual" aria-hidden="true">
+    <div class="gift-camera">
+      <span class="gift-camera-mark">ViNi<br><small>STUDIO</small></span>
+    </div>
     <div class="gift-roll">
+      <div class="gift-film"></div>
+      <div class="gift-frame"></div>
       <div class="gift-frame"></div>
       <div class="gift-frame"></div>
       <div class="gift-frame"></div>
       <div class="gift-frame"></div>
     </div>
-    <div class="gift-camera"></div>
+    <div class="gift-float f1"></div>
+    <div class="gift-float f2"></div>
+    <div class="gift-float f3"></div>
+    <div class="gift-float f4"></div>
     <span class="gift-spark s1"></span>
     <span class="gift-spark s2"></span>
     <span class="gift-spark s3"></span>
     <span class="gift-spark s4"></span>
+    <span class="gift-spark s5"></span>
+    <span class="gift-spark s6"></span>
   </div>
   <div class="gift-card" role="dialog" aria-modal="true" aria-labelledby="giftPopupTitle">
     <button class="gift-close" id="giftClose" type="button" aria-label="Close">×</button>
@@ -1386,13 +1408,16 @@ async function loadGiftVisual(){
       .eq('category','newborn')
       .order('sort_order',{ascending:true})
       .order('created_at',{ascending:true})
-      .limit(4);
+      .limit(10);
     if(error) throw error;
+    const rows=data||[];
     const frames=[...document.querySelectorAll('#giftVisual .gift-frame')];
-    (data||[]).forEach((row,i)=>{
-      if(!frames[i]||!row.image_path) return;
+    const floats=[...document.querySelectorAll('#giftVisual .gift-float')];
+    [...frames,...floats].forEach((el,i)=>{
+      const row=rows[i%Math.max(rows.length,1)];
+      if(!row||!row.image_path) return;
       const url=supabaseClient.storage.from('gallery').getPublicUrl(row.image_path).data.publicUrl;
-      frames[i].style.backgroundImage='url("'+url+'")';
+      el.style.backgroundImage='url("'+url+'")';
     });
   }catch(e){
     console.warn('Gift visual photos could not be loaded:',e);
