@@ -47,6 +47,14 @@ main{max-width:1200px;margin:auto;padding:35px 5vw 80px}.panel{background:#fff;b
 <div class="panel">
 <h2>Current Photos</h2><div id="list"></div>
 </div>
+
+
+<div class="panel">
+<h2>Website Photos</h2>
+<p class="muted">These photos are used in the About ViNi Studio and Our Process sections. Add, replace or delete them from here. Original quality is preserved.</p>
+<div id="sitePhotoList" class="card-cover-grid"></div>
+<div id="sitePhotoMsg" class="progress"></div>
+</div>
 </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -92,7 +100,7 @@ let user=null;
 function msg(el,text){el.textContent=text;el.classList.remove('hidden')}
 async function checkSession(){
  const {data}=await client.auth.getUser();user=data.user||null;
- if(user&&user.id===ADMIN_ID){$('loginPanel').classList.add('hidden');$('app').classList.remove('hidden');$('logout').classList.remove('hidden');await loadAll();await loadCovers()}
+ if(user&&user.id===ADMIN_ID){$('loginPanel').classList.add('hidden');$('app').classList.remove('hidden');$('logout').classList.remove('hidden');await loadAll();await loadCovers();await loadSitePhotos()}
  else if(user){await client.auth.signOut();msg($('loginMsg'),'This account is not authorized for gallery administration.')}
 }
 $('login').onclick=async()=>{
@@ -160,6 +168,68 @@ async function movePhoto(id,dir){
  const ub=await client.from('gallery_photos').update({sort_order:a.sort_order}).eq('id',b.id);
  if(ua.error||ub.error)alert((ua.error||ub.error).message);else await loadAll();
 }
+// WEBSITE PHOTOS
+const sitePhotoNames={about:'About ViNi Studio',process:'Our Process'};
+
+async function loadSitePhotos(){
+  const {data,error}=await client.from('site_photos').select('*').order('section');
+  if(error){$('sitePhotoList').innerHTML='<div class="notice">'+error.message+'</div>';return}
+  const bySection={};(data||[]).forEach(x=>bySection[x.section]=x);
+  $('sitePhotoList').innerHTML=Object.keys(sitePhotoNames).map(section=>{
+    const p=bySection[section];
+    const image=p&&p.image_path?url(p.image_path):'';
+    return '<div class="cover-item">'+
+      (image?'<img class="cover-preview" src="'+image+'" alt="'+sitePhotoNames[section]+'">':'<div class="cover-preview"></div>')+
+      '<div class="cover-info"><div class="cover-name">'+sitePhotoNames[section]+'</div>'+
+      '<div class="cover-actions">'+
+      '<label class="btn" style="cursor:pointer">Add / Replace<input hidden type="file" accept="image/*" onchange="replaceSitePhoto(\''+section+'\',this.files[0])"></label>'+
+      (p?'<button class="btn danger" onclick="deleteSitePhoto(\''+section+'\')">Delete</button>':'')+
+      '</div></div></div>';
+  }).join('');
+}
+
+async function replaceSitePhoto(section,file){
+  if(!file)return;
+  msg($('sitePhotoMsg'),'Uploading '+sitePhotoNames[section]+' photo…');
+  const existingQ=await client.from('site_photos').select('*').eq('section',section).maybeSingle();
+  if(existingQ.error){msg($('sitePhotoMsg'),existingQ.error.message);return}
+  const oldPath=existingQ.data?.image_path||null;
+  const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+  const path='site-photos/'+section+'-'+crypto.randomUUID()+'-'+safe;
+  const up=await client.storage.from('gallery').upload(path,file,{contentType:file.type||'application/octet-stream',upsert:false});
+  if(up.error){msg($('sitePhotoMsg'),'Upload error: '+up.error.message);return}
+  let dbError=null;
+  if(existingQ.data){
+    const u=await client.from('site_photos').update({image_path:path,updated_at:new Date().toISOString()}).eq('section',section);
+    dbError=u.error;
+  }else{
+    const ins=await client.from('site_photos').insert({section,image_path:path});
+    dbError=ins.error;
+  }
+  if(dbError){
+    await client.storage.from('gallery').remove([path]);
+    msg($('sitePhotoMsg'),'Could not save photo: '+dbError.message);return;
+  }
+  if(oldPath) await client.storage.from('gallery').remove([oldPath]);
+  msg($('sitePhotoMsg'),sitePhotoNames[section]+' photo updated successfully.');
+  await loadSitePhotos();
+}
+
+async function deleteSitePhoto(section){
+  if(!confirm('Delete the '+sitePhotoNames[section]+' website photo? The original website photo will return.'))return;
+  const q=await client.from('site_photos').select('*').eq('section',section).maybeSingle();
+  if(q.error){alert(q.error.message);return}
+  if(!q.data){await loadSitePhotos();return}
+  if(q.data.image_path){
+    const st=await client.storage.from('gallery').remove([q.data.image_path]);
+    if(st.error){alert(st.error.message);return}
+  }
+  const d=await client.from('site_photos').delete().eq('section',section);
+  if(d.error){alert(d.error.message);return}
+  msg($('sitePhotoMsg'),sitePhotoNames[section]+' photo deleted. Original website photo restored.');
+  await loadSitePhotos();
+}
+
 // SERVICE CARD COVERS
 const coverNames={newborn:'Newborn',maternity:'Maternity',kids:'Kids',family:'Family'};
 
