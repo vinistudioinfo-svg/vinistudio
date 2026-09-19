@@ -570,7 +570,7 @@ img{
   </div>
   
     <div class="service-card reveal" onclick="window.location.href='gallery.html?category=newborn'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='gallery.html?category=newborn'}"> 
-      <div class="service-bg" style="background:linear-gradient(160deg,#D4A88A 0%,#6B3A1F 100%);position:absolute;inset:0" src="<a href="https://ibb.co/fzsk0gW8"></a>"></div> 
+      <div class="service-bg" style="background:linear-gradient(160deg,#D4A88A 0%,#6B3A1F 100%);position:absolute;inset:0"https://ibb.co/fzsk0gW8"></a>"></div> 
       <div class="service-overlay"></div> 
       <div class="service-content"> 
         <!-- <span class="service-icon">👶</span> --> 
@@ -582,7 +582,7 @@ img{
     </div> 
   
     <div class="service-card reveal" onclick="window.location.href='gallery.html?category=maternity'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='gallery.html?category=maternity'}">
-      <div class="service-bg" style="background:linear-gradient(160deg,#C4956A 0%,#5A3020 100%);position:absolute;inset:0" src="<a href="https://ibb.co/rfqbF1qf"><img src="https://i.ibb.co/PzJTFfJz/NIK-3083-copy-2.jpg" alt="NIK-3083-copy-2" border="0"></a>"></div>
+      <div class="service-bg" style="background:linear-gradient(160deg,#C4956A 0%,#5A3020 100%);position:absolute;inset:0"https://ibb.co/rfqbF1qf"><img src="https://i.ibb.co/PzJTFfJz/NIK-3083-copy-2.jpg" alt="NIK-3083-copy-2" border="0"></a>"></div>
       <div class="service-overlay"></div>
       <div class="service-content">
         <!-- <span class="service-icon">🤰</span> -->
@@ -593,7 +593,7 @@ img{
       </div>
     </div>
     <div class="service-card reveal" onclick="window.location.href='gallery.html?category=kids'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='gallery.html?category=kids'}">
-      <div class="service-bg" style="background:linear-gradient(160deg,#B8855A 0%,#4A2510 100%);position:absolute;inset:0" src="<a href="https://ibb.co/93wmFnW3"><img src="https://i.ibb.co/bRHjS1XR/DSC00548-copy-2.jpg" alt="DSC00548-copy-2" border="0"></a>"></div>
+      <div class="service-bg" style="background:linear-gradient(160deg,#B8855A 0%,#4A2510 100%);position:absolute;inset:0"https://ibb.co/93wmFnW3"><img src="https://i.ibb.co/bRHjS1XR/DSC00548-copy-2.jpg" alt="DSC00548-copy-2" border="0"></a>"></div>
       <div class="service-overlay"></div>
       <div class="service-content">
         <!-- <span class="service-icon">🎂</span> -->
@@ -604,7 +604,7 @@ img{
       </div>
     </div>
     <div class="service-card reveal" onclick="window.location.href='gallery.html?category=family'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='gallery.html?category=family'}">
-      <div class="service-bg" style="background:linear-gradient(160deg,#E2C49A 0%,#7A5030 100%);position:absolute;inset:0" src="<a href="https://ibb.co/CSmkCVq"><img src="https://i.ibb.co/WRGb8BQ/DSC-0280-copy.jpg" alt="DSC-0280-copy" border="0"></a>"></div>
+      <div class="service-bg" style="background:linear-gradient(160deg,#E2C49A 0%,#7A5030 100%);position:absolute;inset:0"https://ibb.co/CSmkCVq"><img src="https://i.ibb.co/WRGb8BQ/DSC-0280-copy.jpg" alt="DSC-0280-copy" border="0"></a>"></div>
       <div class="service-overlay"></div>
       <div class="service-content">
         <!-- <span class="service-icon">👨‍👩‍👧</span> -->
@@ -1071,7 +1071,45 @@ img{
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+const SUPABASE_URL="https://qnkkrlixthefoyooizbe.supabase.co";
+const SUPABASE_KEY="sb_publishable_7fkwoAKl0lMoMuIP-FnvAQ_zOZXMX0p";
+const supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+async function loadServiceCardCovers(){
+  try{
+    const {data,error}=await supabaseClient.from('service_card_covers').select('category,image_path');
+    if(error) throw error;
+    const fallback={
+      newborn:'linear-gradient(160deg,#D4A88A 0%,#6B3A1F 100%)',
+      maternity:'linear-gradient(160deg,#C4956A 0%,#5A3020 100%)',
+      kids:'linear-gradient(160deg,#B8855A 0%,#4A2510 100%)',
+      family:'linear-gradient(160deg,#E2C49A 0%,#7A5030 100%)'
+    };
+    const cards=document.querySelectorAll('.service-card');
+    cards.forEach(card=>{
+      const match=Array.from(card.classList).includes('service-card')?card:null;
+      if(!match)return;
+      const link=card.getAttribute('onclick')||'';
+      const m=link.match(/category=([a-z]+)/);
+      if(!m)return;
+      const cat=m[1];
+      const row=(data||[]).find(x=>x.category===cat);
+      const bg=card.querySelector('.service-bg');
+      if(!bg)return;
+      bg.style.backgroundImage=row&&row.image_path
+        ? 'url("'+supabaseClient.storage.from('gallery').getPublicUrl(row.image_path).data.publicUrl+'"),'+fallback[cat]
+        : fallback[cat];
+      bg.style.backgroundSize='cover';
+      bg.style.backgroundPosition='center';
+      bg.style.backgroundRepeat='no-repeat';
+    });
+  }catch(e){console.warn('Service card covers could not be loaded:',e)}
+}
+
+loadServiceCardCovers();
+
 // Loader
 window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('hide')},2400)});
 
