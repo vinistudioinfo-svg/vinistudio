@@ -297,7 +297,6 @@ nav.scrolled{background:rgba(250,246,240,.97);backdrop-filter:blur(12px);padding
 .testi-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:30px 24px;text-align:left}
 .testi-stars{color:var(--brown-light);margin-bottom:14px;letter-spacing:2px;font-size:.9rem}
 .testi-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--cream);line-height:1.7;margin-bottom:18px}
-.google-reviews-note{max-width:900px;margin:22px auto 0;text-align:center;font-size:.72rem;line-height:1.6;color:var(--muted)}
 .testi-author{display:flex;align-items:center;gap:12px}
 .testi-avatar{width:38px;height:38px;border-radius:50%;background:var(--brown-mid);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--white);flex-shrink:0}
 .testi-name{font-size:.83rem;font-weight:500;color:var(--cream)}
@@ -930,14 +929,41 @@ img{
 <section class="testi-section">
   <h2 class="testi-title reveal">What <em>Families</em> Say About Us</h2>
   
-  <div class="testi-grid" id="googleReviewsGrid">
-    <div class="testi-card reveal visible">
+  <div class="testi-grid">
+    <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">Loading Google Reviews…</p>
-      <div class="testi-author"><div class="testi-avatar">G</div><div><div class="testi-name">Google Reviews</div><div class="testi-type">Loading latest reviews</div></div></div>
+      <p class="testi-text">"Very calm, warmth, comfortable environment and also they were superbly handling newborn with care and love."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Shweta Mohite</div>
+          <div class="testi-type">Google Review · a month ago</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I had a wonderful experience with my newborn Krishna-themed photoshoot. The way you handled our baby with so much patience, care, and gentleness made me feel completely comfortable and relaxed throughout the session."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">V</div>
+        <div>
+          <div class="testi-name">vishakha Ahire</div>
+          <div class="testi-type">Google Review · 2 weeks ago</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"We had a wonderful experience with Vini Photo Studio for our family photoshoot in Dhule. A special thanks to Vidya for making the shoot so comfortable and enjoyable. She was friendly, patient, and captured every moment beautifully."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">H</div>
+        <div>
+          <div class="testi-name">Harshal Girase</div>
+          <div class="testi-type">Google Review · a month ago</div>
+        </div>
+      </div>
     </div>
   </div>
-  <p class="google-reviews-note">Reviews are provided by Google Maps and shown in Google's relevance order. Each review links to its source on Google Maps.</p>
 </section>
 
 <!-- CONTACT -->
@@ -1084,64 +1110,7 @@ img{
   </div>
 </footer>
 
-<script src="google-reviews-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const GOOGLE_PLACE_ID="ChIJUzFkUMDF3jsRwVxdBpMzEGU";
-
-function reviewStars(rating){
-  const n=Math.max(0,Math.min(5,Math.round(Number(rating)||0)));
-  return '★★★★★'.slice(0,n)+'☆☆☆☆☆'.slice(0,5-n);
-}
-function escapeHtml(value){
-  return String(value||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-async function loadGoogleReviews(){
-  const grid=document.getElementById('googleReviewsGrid');
-  if(!grid) return;
-  if(!window.GOOGLE_PLACES_API_KEY || window.GOOGLE_PLACES_API_KEY.includes('PASTE_YOUR')){
-    grid.innerHTML='<div class="testi-card reveal visible"><div class="testi-stars">★★★★★</div><p class="testi-text">Google Reviews setup is almost ready.</p><div class="testi-author"><div class="testi-avatar">G</div><div><div class="testi-name">Google Reviews</div><div class="testi-type">Add your restricted API key in google-reviews-config.js</div></div></div></div>';
-    return;
-  }
-  try{
-    const endpoint='https://places.googleapis.com/v1/places/'+GOOGLE_PLACE_ID
-      +'?fields=displayName,rating,reviews,googleMapsUri'
-      +'&key='+encodeURIComponent(GOOGLE_PLACES_API_KEY);
-    const res=await fetch(endpoint,{headers:{'X-Goog-FieldMask':'displayName,rating,reviews,googleMapsUri'}});
-    if(!res.ok) throw new Error('Google Reviews request failed: '+res.status);
-    const place=await res.json();
-    const reviews=(place.reviews||[]).slice(0,3);
-    if(!reviews.length){
-      grid.innerHTML='<div class="testi-card reveal visible"><div class="testi-stars">★★★★★</div><p class="testi-text">No public Google reviews are currently available.</p><div class="testi-author"><div class="testi-avatar">G</div><div><div class="testi-name">Google Reviews</div><div class="testi-type">ViNi Studio</div></div></div></div>';
-      return;
-    }
-    grid.innerHTML=reviews.map(review=>{
-      const author=review.authorAttribution||{};
-      const name=author.displayName||'Google user';
-      const profile=author.uri||'#';
-      const text=review.text&&review.text.text?review.text.text:'';
-      const when=review.relativePublishTimeDescription||'Google review';
-      const source=review.googleMapsUri||place.googleMapsUri||'#';
-      const avatar=(author.photoUri||'').trim();
-      const avatarHtml=avatar
-        ? '<img src="'+escapeHtml(avatar)+'" alt="" style="width:44px;height:44px;border-radius:50%;object-fit:cover;display:block">'
-        : '<div class="testi-avatar">'+escapeHtml(name.charAt(0).toUpperCase())+'</div>';
-      return '<div class="testi-card reveal visible">'
-        +'<div class="testi-stars">'+reviewStars(review.rating)+'</div>'
-        +'<p class="testi-text">“'+escapeHtml(text)+'”</p>'
-        +'<div class="testi-author">'+avatarHtml
-        +'<div><div class="testi-name"><a href="'+escapeHtml(profile)+'" target="_blank" rel="noopener">'+escapeHtml(name)+'</a></div>'
-        +'<div class="testi-type"><a href="'+escapeHtml(source)+'" target="_blank" rel="noopener">Google Maps · '+escapeHtml(when)+'</a></div></div></div>'
-        +'</div>';
-    }).join('');
-  }catch(err){
-    console.warn('Google Reviews could not be loaded:',err);
-    grid.innerHTML='<div class="testi-card reveal visible"><div class="testi-stars">★★★★★</div><p class="testi-text">Google Reviews could not be loaded right now.</p><div class="testi-author"><div class="testi-avatar">G</div><div><div class="testi-name">Google Reviews</div><div class="testi-type">Please check the API key restriction</div></div></div></div>';
-  }
-}
-loadGoogleReviews();
-
-</script>
 <script>
 const SUPABASE_URL="https://qnkkrlixthefoyooizbe.supabase.co";
 const SUPABASE_KEY="sb_publishable_7fkwoAKl0lMoMuIP-FnvAQ_zOZXMX0p";
