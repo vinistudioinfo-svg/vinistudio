@@ -294,13 +294,23 @@ nav.scrolled{background:rgba(250,246,240,.97);backdrop-filter:blur(12px);padding
 .testi-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,3rem);color:var(--cream);font-weight:300;margin-bottom:56px}
 .testi-title em{font-style:italic}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1060px;margin:0 auto}
-.testi-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:30px 24px;text-align:left}
-.testi-stars{color:var(--brown-light);margin-bottom:14px;letter-spacing:2px;font-size:.9rem}
-.testi-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--cream);line-height:1.7;margin-bottom:18px}
-.testi-author{display:flex;align-items:center;gap:12px}
+.testi-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:30px 24px;text-align:left;height:420px;display:flex;flex-direction:column;min-width:0}
+.testi-stars{color:var(--brown-light);margin-bottom:14px;letter-spacing:2px;font-size:.9rem;flex-shrink:0}
+.testi-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--cream);line-height:1.7;margin:0 0 8px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden;flex:0 0 auto}
+.testi-more{display:inline-block;margin:0 0 18px;padding:0;border:0;background:none;color:var(--brown-light);font-family:inherit;font-size:.78rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.testi-author{display:flex;align-items:center;gap:12px;margin-top:auto}
 .testi-avatar{width:38px;height:38px;border-radius:50%;background:var(--brown-mid);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--white);flex-shrink:0}
 .testi-name{font-size:.83rem;font-weight:500;color:var(--cream)}
 .testi-type{font-size:.72rem;color:var(--brown-light)}
+.review-modal{position:fixed;inset:0;background:rgba(20,12,7,.72);display:none;align-items:center;justify-content:center;padding:24px;z-index:8800}
+.review-modal.open{display:flex}
+.review-modal-box{width:min(720px,100%);max-height:min(78vh,760px);overflow:auto;background:var(--cream);color:var(--brown-dark);border-radius:18px;padding:30px 28px;text-align:left;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.review-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:18px}
+.review-modal-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:500}
+.review-modal-close{border:0;background:none;color:var(--brown-dark);font-size:1.4rem;cursor:pointer;padding:4px 8px}
+.review-modal-stars{color:var(--brown);letter-spacing:2px;margin-bottom:14px}
+.review-modal-text{font-family:'Cormorant Garamond',serif;font-size:1.12rem;line-height:1.8;font-style:italic;white-space:pre-line}
+.review-modal-meta{font-size:.75rem;color:var(--brown-light);margin-top:18px}
 
 /* CONTACT */
 .contact-section{background:var(--warm)}
@@ -417,6 +427,7 @@ footer{background:var(--brown-dark);padding:60px 80px 36px}
   .addons-grid{grid-template-columns:1fr 1fr}
   .terms-grid{grid-template-columns:1fr 1fr}
   .testi-grid{grid-template-columns:1fr}
+  .testi-card{height:360px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
   .pkg-special-offer{flex-direction:column;text-align:center}
 }
@@ -930,9 +941,10 @@ img{
   <h2 class="testi-title reveal">What <em>Families</em> Say About Us</h2>
   
   <div class="testi-grid">
-    <div class="testi-card reveal">
+    <article class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-text">"Very calm, warmth, comfortable environment and also they were superbly handling newborn with care and love."</p>
+      <button class="testi-more" type="button" data-review="shweta">... More</button>
       <div class="testi-author">
         <div class="testi-avatar">S</div>
         <div>
@@ -940,11 +952,12 @@ img{
           <div class="testi-type">Google Review · a month ago</div>
         </div>
       </div>
-    </div>
+    </article>
 
-    <div class="testi-card reveal">
+    <article class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"I had a wonderful experience with my newborn Krishna-themed photoshoot. The way you handled our baby with so much patience, care, and gentleness made me feel completely comfortable and relaxed throughout the session. 👶🏻💗<br/><br/>The room environment was very clean and comfortable for the baby, which made the whole experience even better.<br/><br/>And the photography skills were amazing! 📸 You captured every tiny expression so perfectly. The Krishna theme was planned and executed beautifully, and every picture looks so magical. 💙🦚✨<br/><br/>The photos are so adorable and will always remain a beautiful memory for our family. ❤️<br/><br/>Highly recommended 👏 ViNi studio to anyone looking for a newborn photoshoot...Thank you for making our little Krishna’s first photoshoot so special and memorable.💗"</p>
+      <p class="testi-text">"I had a wonderful experience with my newborn Krishna-themed photoshoot. The way you handled our baby with so much patience, care, and gentleness made me feel completely comfortable and relaxed throughout the session. 👶🏻💗 The room environment was very clean and comfortable for the baby, which made the whole experience even better. And the photography skills were amazing! 📸 You captured every tiny expression so perfectly. The Krishna theme was planned and executed beautifully, and every picture looks so magical. 💙🦚✨ The photos are so adorable and will always remain a beautiful memory for our family. ❤️ Highly recommended 👏 ViNi studio to anyone looking for a newborn photoshoot...Thank you for making our little Krishna’s first photoshoot so special and memorable.💗"</p>
+      <button class="testi-more" type="button" data-review="vishakha">... More</button>
       <div class="testi-author">
         <div class="testi-avatar">V</div>
         <div>
@@ -952,11 +965,12 @@ img{
           <div class="testi-type">Google Review · 2 weeks ago</div>
         </div>
       </div>
-    </div>
+    </article>
 
-    <div class="testi-card reveal">
+    <article class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"We had a wonderful experience with Vini Photo Studio for our family photoshoot in Dhule. 💕📸 A special thanks to Vidya for making the shoot so comfortable and enjoyable. She was friendly, patient, and captured every moment beautifully.<br/><br/>We are really happy with the quality and creativity of the photos. Thank you, Vini Photo Studio and Vidya, for making our family memories so special. Highly recommended! ⭐⭐⭐⭐⭐"</p>
+      <p class="testi-text">"We had a wonderful experience with Vini Photo Studio for our family photoshoot in Dhule. 💕📸 A special thanks to Vidya for making the shoot so comfortable and enjoyable. She was friendly, patient, and captured every moment beautifully. We are really happy with the quality and creativity of the photos. Thank you, Vini Photo Studio and Vidya, for making our family memories so special. Highly recommended! ⭐⭐⭐⭐⭐"</p>
+      <button class="testi-more" type="button" data-review="harshal">... More</button>
       <div class="testi-author">
         <div class="testi-avatar">H</div>
         <div>
@@ -964,9 +978,23 @@ img{
           <div class="testi-type">Google Review · a month ago</div>
         </div>
       </div>
-    </div>
+    </article>
   </div>
 </section>
+
+<div class="review-modal" id="reviewModal" aria-hidden="true">
+  <div class="review-modal-box" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+    <div class="review-modal-head">
+      <div>
+        <div class="review-modal-title" id="reviewModalTitle"></div>
+        <div class="review-modal-stars">★★★★★</div>
+      </div>
+      <button class="review-modal-close" id="reviewModalClose" type="button" aria-label="Close review">×</button>
+    </div>
+    <div class="review-modal-text" id="reviewModalText"></div>
+    <div class="review-modal-meta" id="reviewModalMeta"></div>
+  </div>
+</div>
 
 <!-- CONTACT -->
 <section class="contact-section section-wrap" id="contact">
@@ -1213,6 +1241,36 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
 },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+
+const fullReviews={
+  shweta:{name:'Shweta Mohite',meta:'Google Review · a month ago',text:"Very calm, warmth, comfortable environment and also they were superbly handling newborn with care and love.\n\nPrice assessment\nReasonable price\n\nServices\nNewborn photography"},
+  vishakha:{name:'vishakha Ahire',meta:'Google Review · 2 weeks ago',text:"I had a wonderful experience with my newborn Krishna-themed photoshoot. The way you handled our baby with so much patience, care, and gentleness made me feel completely comfortable and relaxed throughout the session. 👶🏻💗\n\nThe room environment was very clean and comfortable for the baby, which made the whole experience even better.\n\nAnd the photography skills were amazing! 📸 You captured every tiny expression so perfectly. The Krishna theme was planned and executed beautifully, and every picture looks so magical. 💙🦚✨\n\nThe photos are so adorable and will always remain a beautiful memory for our family. ❤️\n\nHighly recommended 👏 ViNi studio to anyone looking for a newborn photoshoot...Thank you for making our little Krishna’s first photoshoot so special and memorable.💗"},
+  harshal:{name:'Harshal Girase',meta:'Google Review · a month ago',text:"We had a wonderful experience with Vini Photo Studio for our family photoshoot in Dhule. 💕📸 A special thanks to Vidya for making the shoot so comfortable and enjoyable. She was friendly, patient, and captured every moment beautifully.\n\nWe are really happy with the quality and creativity of the photos. Thank you, Vini Photo Studio and Vidya, for making our family memories so special. Highly recommended! ⭐⭐⭐⭐⭐"}
+};
+const reviewModal=document.getElementById('reviewModal');
+const reviewModalTitle=document.getElementById('reviewModalTitle');
+const reviewModalText=document.getElementById('reviewModalText');
+const reviewModalMeta=document.getElementById('reviewModalMeta');
+const reviewModalClose=document.getElementById('reviewModalClose');
+function openReview(key){
+  const review=fullReviews[key];
+  if(!review) return;
+  reviewModalTitle.textContent=review.name;
+  reviewModalText.textContent=review.text;
+  reviewModalMeta.textContent=review.meta;
+  reviewModal.classList.add('open');
+  reviewModal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeReview(){
+  reviewModal.classList.remove('open');
+  reviewModal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.testi-more').forEach(btn=>btn.addEventListener('click',()=>openReview(btn.dataset.review)));
+reviewModalClose.addEventListener('click',closeReview);
+reviewModal.addEventListener('click',e=>{if(e.target===reviewModal)closeReview()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeReview()});
 
 // Stagger
 document.querySelectorAll('.services-grid .service-card').forEach((c,i)=>{c.style.transitionDelay=(i*.1)+'s'});
