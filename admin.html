@@ -73,6 +73,65 @@ $('login').onclick=async()=>{
  $('login').disabled=false;$('login').textContent='Login';
  if(error){msg($('loginMsg'),error.message);return}
  user=data.user;await 
+checkSession();
+};
+};
+$('logout').onclick=async()=>{await client.auth.signOut();location.reload()};
+
+function url(path){return client.storage.from('gallery').getPublicUrl(path).data.publicUrl}
+async function loadAll(){
+ const {data,error}=await client.from('gallery_photos').select('*').order('category').order('sort_order',{ascending:true}).order('created_at',{ascending:true});
+ if(error){$('list').innerHTML='<div class="notice">'+error.message+'</div>';return}
+ const groups={newborn:[],maternity:[],kids:[],family:[]};
+ (data||[]).forEach(p=>(groups[p.category]||(groups[p.category]=[])).push(p));
+ $('list').innerHTML=Object.keys(groups).map(cat=>'<div class="category-title"><h3>'+names[cat]+'</h3><span class="muted">'+groups[cat].length+' photo(s)</span></div><div class="gallery-list">'+(groups[cat].length?groups[cat].map((p,i)=>itemHtml(p,i,groups[cat].length)).join(''):'<div class="notice" style="grid-column:1/-1">No photos yet.</div>')+'</div>').join('');
+}
+function itemHtml(p,i,total){
+ return '<div class="item"><img loading="lazy" src="'+url(p.image_path)+'" alt="'+names[p.category]+'"><div class="item-info"><small>'+p.image_path.split('/').slice(1).join('/')+'</small><div class="actions"><button class="btn secondary" onclick="movePhoto('+p.id+',-1)">↑</button><button class="btn secondary" onclick="movePhoto('+p.id+',1)">↓</button><button class="btn danger" onclick="deletePhoto('+p.id+')">Delete</button><label class="btn secondary" style="cursor:pointer">Replace<input hidden type="file" accept="image/*" onchange="replacePhoto('+p.id+',this.files[0])"></label></div></div></div>';
+}
+$('upload').onclick=async()=>{
+ const files=Array.from($('files').files||[]),cat=$('category').value;
+ if(!files.length){msg($('uploadMsg'),'Choose one or more photos first.');return}
+ $('upload').disabled=true;let done=0;
+ for(const file of files){
+   try{
+    const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+    const path=cat+'/'+crypto.randomUUID()+'-'+safe;
+    const up=await client.storage.from('gallery').upload(path,file,{contentType:file.type||'application/octet-stream',upsert:false});
+    if(up.error)throw up.error;
+    const max=await client.from('gallery_photos').select('sort_order').eq('category',cat).order('sort_order',{ascending:false}).limit(1);
+    const next=((max.data&&max.data[0])?Number(max.data[0].sort_order)+1:0);
+    const ins=await client.from('gallery_photos').insert({category:cat,image_path:path,sort_order:next});
+    if(ins.error){await client.storage.from('gallery').remove([path]);throw ins.error}
+    done++;msg($('uploadMsg'),'Uploaded '+done+' / '+files.length);
+   }catch(e){msg($('uploadMsg'),'Upload error: '+e.message)}
+ }
+ $('files').value='';$('upload').disabled=false;await loadAll();
+};
+async function deletePhoto(id){
+ if(!confirm('Delete this photo permanently?'))return;
+ const q=await client.from('gallery_photos').select('image_path').eq('id',id).single();if(q.error){alert(q.error.message);return}
+ const s=await client.storage.from('gallery').remove([q.data.image_path]);if(s.error){alert(s.error.message);return}
+ const d=await client.from('gallery_photos').delete().eq('id',id);if(d.error){alert(d.error.message);return}
+ await loadAll();
+}
+async function replacePhoto(id,file){
+ if(!file)return;
+ const q=await client.from('gallery_photos').select('*').eq('id',id).single();if(q.error){alert(q.error.message);return}
+ const old=q.data.image_path,parts=old.split('/'),cat=parts[0],safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_'),path=cat+'/'+crypto.randomUUID()+'-'+safe;
+ const up=await client.storage.from('gallery').upload(path,file,{contentType:file.type||'application/octet-stream',upsert:false});if(up.error){alert(up.error.message);return}
+ const u=await client.from('gallery_photos').update({image_path:path}).eq('id',id);if(u.error){await client.storage.from('gallery').remove([path]);alert(u.error.message);return}
+ await client.storage.from('gallery').remove([old]);await loadAll();
+}
+async function movePhoto(id,dir){
+ const q=await client.from('gallery_photos').select('*').eq('id',id).single();if(q.error)return alert(q.error.message);
+ const {data:list,error}=await client.from('gallery_photos').select('*').eq('category',q.data.category).order('sort_order',{ascending:true}).order('created_at',{ascending:true});
+ if(error)return alert(error.message);const i=list.findIndex(x=>x.id===id),j=i+dir;if(j<0||j>=list.length)return;
+ const a=list[i],b=list[j];
+ const ua=await client.from('gallery_photos').update({sort_order:b.sort_order}).eq('id',a.id);
+ const ub=await client.from('gallery_photos').update({sort_order:a.sort_order}).eq('id',b.id);
+ if(ua.error||ub.error)alert((ua.error||ub.error).message);else await loadAll();
+}
 // SERVICE CARD COVERS
 const coverNames={newborn:'Newborn',maternity:'Maternity',kids:'Kids',family:'Family'};
 
@@ -133,65 +192,6 @@ async function deleteCover(category){
   if(d.error){alert(d.error.message);return}
   msg($('coverMsg'),coverNames[category]+' cover deleted.');
   await loadCovers();
-}
-
-checkSession();
-};
-$('logout').onclick=async()=>{await client.auth.signOut();location.reload()};
-
-function url(path){return client.storage.from('gallery').getPublicUrl(path).data.publicUrl}
-async function loadAll(){
- const {data,error}=await client.from('gallery_photos').select('*').order('category').order('sort_order',{ascending:true}).order('created_at',{ascending:true});
- if(error){$('list').innerHTML='<div class="notice">'+error.message+'</div>';return}
- const groups={newborn:[],maternity:[],kids:[],family:[]};
- (data||[]).forEach(p=>(groups[p.category]||(groups[p.category]=[])).push(p));
- $('list').innerHTML=Object.keys(groups).map(cat=>'<div class="category-title"><h3>'+names[cat]+'</h3><span class="muted">'+groups[cat].length+' photo(s)</span></div><div class="gallery-list">'+(groups[cat].length?groups[cat].map((p,i)=>itemHtml(p,i,groups[cat].length)).join(''):'<div class="notice" style="grid-column:1/-1">No photos yet.</div>')+'</div>').join('');
-}
-function itemHtml(p,i,total){
- return '<div class="item"><img loading="lazy" src="'+url(p.image_path)+'" alt="'+names[p.category]+'"><div class="item-info"><small>'+p.image_path.split('/').slice(1).join('/')+'</small><div class="actions"><button class="btn secondary" onclick="movePhoto('+p.id+',-1)">↑</button><button class="btn secondary" onclick="movePhoto('+p.id+',1)">↓</button><button class="btn danger" onclick="deletePhoto('+p.id+')">Delete</button><label class="btn secondary" style="cursor:pointer">Replace<input hidden type="file" accept="image/*" onchange="replacePhoto('+p.id+',this.files[0])"></label></div></div></div>';
-}
-$('upload').onclick=async()=>{
- const files=Array.from($('files').files||[]),cat=$('category').value;
- if(!files.length){msg($('uploadMsg'),'Choose one or more photos first.');return}
- $('upload').disabled=true;let done=0;
- for(const file of files){
-   try{
-    const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
-    const path=cat+'/'+crypto.randomUUID()+'-'+safe;
-    const up=await client.storage.from('gallery').upload(path,file,{contentType:file.type||'application/octet-stream',upsert:false});
-    if(up.error)throw up.error;
-    const max=await client.from('gallery_photos').select('sort_order').eq('category',cat).order('sort_order',{ascending:false}).limit(1);
-    const next=((max.data&&max.data[0])?Number(max.data[0].sort_order)+1:0);
-    const ins=await client.from('gallery_photos').insert({category:cat,image_path:path,sort_order:next});
-    if(ins.error){await client.storage.from('gallery').remove([path]);throw ins.error}
-    done++;msg($('uploadMsg'),'Uploaded '+done+' / '+files.length);
-   }catch(e){msg($('uploadMsg'),'Upload error: '+e.message)}
- }
- $('files').value='';$('upload').disabled=false;await loadAll();
-};
-async function deletePhoto(id){
- if(!confirm('Delete this photo permanently?'))return;
- const q=await client.from('gallery_photos').select('image_path').eq('id',id).single();if(q.error){alert(q.error.message);return}
- const s=await client.storage.from('gallery').remove([q.data.image_path]);if(s.error){alert(s.error.message);return}
- const d=await client.from('gallery_photos').delete().eq('id',id);if(d.error){alert(d.error.message);return}
- await loadAll();
-}
-async function replacePhoto(id,file){
- if(!file)return;
- const q=await client.from('gallery_photos').select('*').eq('id',id).single();if(q.error){alert(q.error.message);return}
- const old=q.data.image_path,parts=old.split('/'),cat=parts[0],safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_'),path=cat+'/'+crypto.randomUUID()+'-'+safe;
- const up=await client.storage.from('gallery').upload(path,file,{contentType:file.type||'application/octet-stream',upsert:false});if(up.error){alert(up.error.message);return}
- const u=await client.from('gallery_photos').update({image_path:path}).eq('id',id);if(u.error){await client.storage.from('gallery').remove([path]);alert(u.error.message);return}
- await client.storage.from('gallery').remove([old]);await loadAll();
-}
-async function movePhoto(id,dir){
- const q=await client.from('gallery_photos').select('*').eq('id',id).single();if(q.error)return alert(q.error.message);
- const {data:list,error}=await client.from('gallery_photos').select('*').eq('category',q.data.category).order('sort_order',{ascending:true}).order('created_at',{ascending:true});
- if(error)return alert(error.message);const i=list.findIndex(x=>x.id===id),j=i+dir;if(j<0||j>=list.length)return;
- const a=list[i],b=list[j];
- const ua=await client.from('gallery_photos').update({sort_order:b.sort_order}).eq('id',a.id);
- const ub=await client.from('gallery_photos').update({sort_order:a.sort_order}).eq('id',b.id);
- if(ua.error||ub.error)alert((ua.error||ub.error).message);else await loadAll();
 }
 checkSession();
 </script>
