@@ -513,6 +513,12 @@ img{
       <div class="hero-slide"></div>
       <div class="hero-slide"></div>
       <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="floating-badge">
@@ -1102,12 +1108,16 @@ async function loadSitePhotos(){
 
 async function loadHeroSlideshow(){
   try{
-    const {data,error}=await supabaseClient.from('service_card_covers').select('category,image_path');
+    const {data,error}=await supabaseClient
+      .from('gallery_photos')
+      .select('image_path,sort_order,created_at')
+      .eq('category','hero')
+      .order('sort_order',{ascending:true})
+      .order('created_at',{ascending:true})
+      .limit(10);
     if(error) throw error;
     const slides=[...document.querySelectorAll('#heroSlideshow .hero-slide')];
-    const rows=(data||[]).filter(x=>x.image_path);
-    const order=['newborn','maternity','kids','family'];
-    const photos=order.map(cat=>rows.find(x=>x.category===cat)).filter(Boolean);
+    const photos=(data||[]).filter(x=>x.image_path).slice(0,10);
     photos.forEach((row,i)=>{
       if(!slides[i]) return;
       slides[i].style.backgroundImage='url("'+supabaseClient.storage.from('gallery').getPublicUrl(row.image_path).data.publicUrl+'")';
@@ -1119,7 +1129,7 @@ async function loadHeroSlideshow(){
         slides[current].classList.remove('active');
         current=(current+1)%photos.length;
         slides[current].classList.add('active');
-      },4000);
+      },6000);
     }
   }catch(e){console.warn('Hero slideshow could not be loaded:',e)}
 }
