@@ -17,9 +17,10 @@ header{height:72px;padding:0 4.8vw;display:flex;align-items:center;justify-conte
 .back{color:var(--brown);text-decoration:none;font-size:.75rem;letter-spacing:1px;text-transform:uppercase}
 main{padding:0 7px 50px;max-width:1500px;margin:auto;background:#111}
 .status{text-align:center;color:var(--cream);padding:80px 10px;font-size:.9rem}
-.grid{column-count:3;column-gap:10px;margin:0}
-.tile{width:100%;display:block;border:0;padding:0;margin:0 0 10px;background:none;cursor:pointer;border-radius:0;overflow:hidden;break-inside:avoid}
-.tile img{width:100%;height:auto;display:block;transition:transform .45s ease}
+.grid{display:flex;flex-direction:column;gap:10px;margin:0}
+.gallery-row{display:flex;gap:10px;width:100%;align-items:stretch}
+.tile{border:0;padding:0;margin:0;background:none;cursor:pointer;border-radius:0;overflow:hidden;flex:1 1 0;min-width:0}
+.tile img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .45s ease}
 .tile:hover img{transform:scale(1.02)}
 .empty{padding:70px 20px;text-align:center;color:var(--muted);border:1px dashed var(--brown);border-radius:18px;background:var(--cream);margin:40px 20px}
 .lightbox{display:none;position:fixed;inset:0;background:rgba(15,10,7,.96);z-index:20;align-items:center;justify-content:center;padding:24px}
@@ -29,7 +30,8 @@ main{padding:0 7px 50px;max-width:1500px;margin:auto;background:#111}
 .lbnav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:50%;width:48px;height:48px;font-size:1.4rem;cursor:pointer}
 .prev{left:18px}.next{right:18px}
 .count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#fff;font-size:.78rem;letter-spacing:1px}
-@media(max-width:900px){.grid{column-count:2}header{padding:0 5vw}}
+@media(max-width:900px){header{padding:0 5vw}.gallery-row{gap:8px}}
+@media(max-width:560px){.grid{gap:6px}.gallery-row{gap:6px}.tile img{min-height:0}}
 @media(max-width:560px){header{height:64px}.brand{font-size:1.65rem}.back{font-size:.68rem}.grid{column-gap:6px}.tile{margin-bottom:6px}.lightbox{padding:14px}.lbnav{width:42px;height:42px}.prev{left:8px}.next{right:8px}}
 </style>
 </head>
@@ -55,13 +57,55 @@ const title=names[category]||'Gallery';
 document.title='ViNi Studio — '+title+' Gallery';
 let photos=[],index=0;
 function publicUrl(path){return client.storage.from('gallery').getPublicUrl(path).data.publicUrl}
-function render(){
+async function render(){
  const grid=document.getElementById('grid'),status=document.getElementById('status'),empty=document.getElementById('empty');
  status.style.display='none';
  if(!photos.length){empty.style.display='block';grid.style.display='none';return}
- empty.style.display='none';grid.style.display='grid';
- grid.innerHTML=photos.map((p,i)=>'<button class="tile" data-i="'+i+'"><img loading="lazy" src="'+publicUrl(p.image_path)+'" alt="'+title+' photography by ViNi Studio"></button>').join('');
- grid.querySelectorAll('.tile').forEach(b=>b.addEventListener('click',()=>openBox(+b.dataset.i)));
+ empty.style.display='none';
+ grid.style.display='flex';
+ grid.innerHTML='';
+ const gap=10;
+ const targetRowHeight=300;
+ const maxRowItems=4;
+ let rowItems=[],rowRatioSum=0;
+ const rows=[];
+ const ratioCache=await Promise.all(photos.map(p=>new Promise(resolve=>{
+   const img=new Image();
+   img.onload=()=>resolve(img.naturalWidth&&img.naturalHeight?img.naturalWidth/img.naturalHeight:1);
+   img.onerror=()=>resolve(1);
+   img.src=publicUrl(p.image_path);
+ })));
+ function flush(){if(!rowItems.length)return;rows.push({items:rowItems.slice(),sum:rowRatioSum});rowItems=[];rowRatioSum=0;}
+ photos.forEach((p,i)=>{
+   const r=ratioCache[i];
+   rowItems.push({p,i,r});
+   rowRatioSum+=r;
+   const estimated=(rowRatioSum*targetRowHeight)+((rowItems.length-1)*gap);
+   if(estimated>=1180 || rowItems.length>=maxRowItems) flush();
+ });
+ flush();
+ rows.forEach((row,rowIndex)=>{
+   const el=document.createElement('div');
+   el.className='gallery-row';
+   const totalAvailable=Math.max(300,Math.min(grid.clientWidth||1200,1500));
+   const totalGaps=gap*(row.items.length-1);
+   const rowHeight=Math.max(170,Math.min(330,(totalAvailable-totalGaps)/row.sum));
+   row.items.forEach(item=>{
+     const b=document.createElement('button');
+     b.className='tile';
+     b.dataset.i=item.i;
+     const img=document.createElement('img');
+     img.loading=rowIndex<2?'eager':'lazy';
+     img.src=publicUrl(item.p.image_path);
+     img.alt=title+' photography by ViNi Studio';
+     b.appendChild(img);
+     b.style.flex=item.r+' 1 0';
+     b.style.height=rowHeight+'px';
+     el.appendChild(b);
+     b.addEventListener('click',()=>openBox(item.i));
+   });
+   grid.appendChild(el);
+ });
 }
 async function load(){
  const {data,error}=await client.from('gallery_photos').select('id,image_path,sort_order,created_at').eq('category',category).order('sort_order',{ascending:true}).order('created_at',{ascending:true});
