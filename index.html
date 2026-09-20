@@ -92,7 +92,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
 /* Premium camera + newborn film-roll burst above the popup.
    Decorative only: popup card, form and the rest of the website stay untouched. */
-.gift-visual{position:absolute;left:50%;top:calc(50% - 285px);width:420px;height:165px;transform:translateX(-50%);z-index:3;pointer-events:none}
+.gift-visual{position:absolute;left:50%;top:0;width:420px;height:165px;transform:translateX(-50%);z-index:3;pointer-events:none}
 .gift-camera,.gift-roll{display:none!important}
 .gift-float{position:absolute;width:58px;height:74px;border:3px solid #f5e3cc;border-radius:5px;background:#8b5b3c center/cover no-repeat;box-shadow:0 7px 15px rgba(30,16,8,.25);z-index:2}
 .gift-float.f1{left:72px;top:58px;transform:rotate(-10deg)}
@@ -153,7 +153,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 @media(max-width:600px){
   .gift-popup{padding:10px}
   .gift-card{width:min(340px,100%);padding:24px 18px 18px;margin:0}
-  .gift-visual{top:calc(50% - 242px);width:330px;height:145px}
+  .gift-visual{top:0;width:330px;height:145px}
   .gift-float{width:52px;height:67px;border-width:3px}
   .gift-float.f1{left:28px;top:51px;transform:rotate(-10deg)}
   .gift-float.f2{left:104px;top:34px;transform:rotate(4deg)}
@@ -659,6 +659,7 @@ img{
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
+    requestAnimationFrame(positionGiftVisual);
   }
   setTimeout(forceOpenGiftPopup,2200);
 })();
@@ -1426,6 +1427,9 @@ async function loadGiftVisual(){
   }
 }
 loadGiftVisual();
+window.addEventListener('resize',()=>{
+  if(document.getElementById('giftPopup')?.classList.contains('open')) positionGiftVisual();
+});
 
 // Visitor gift / lead capture
 function createEntryNumber(){
@@ -1434,12 +1438,22 @@ function createEntryNumber(){
   const year=String(d.getFullYear()).slice(-2);
   return 'VNS-'+month+year+'-'+Math.floor(1000+Math.random()*9000);
 }
+function positionGiftVisual(){
+  const modal=document.getElementById('giftPopup');
+  const card=document.querySelector('#giftPopup .gift-card');
+  const visual=document.getElementById('giftVisual');
+  if(!modal||!card||!visual) return;
+  const cardRect=card.getBoundingClientRect();
+  const visualHeight=visual.getBoundingClientRect().height;
+  visual.style.top=(cardRect.top-visualHeight+6)+'px';
+}
 function openGiftPopup(){
   const modal=document.getElementById('giftPopup');
   if(!modal) return;
   modal.classList.add('open');
   modal.setAttribute('aria-hidden','false');
   document.body.style.overflow='hidden';
+  requestAnimationFrame(positionGiftVisual);
 }
 function closeGiftPopup(){
   const modal=document.getElementById('giftPopup');
