@@ -119,6 +119,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .gift-spark.s5{width:6px;height:6px;left:231px;top:226px}.gift-spark.s6{width:4px;height:4px;left:24px;top:75px}
 
 /* Reference-style burst: film visibly shoots out of the lens, then flows. Popup-only. */
+/* Popup visual: keep only the floating newborn photo cards. */
+.gift-camera,.gift-roll,.gift-visual::before{display:none!important}
 .gift-visual::before{
   content:'';
   position:absolute;
