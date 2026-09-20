@@ -92,17 +92,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
 /* Premium camera + newborn film-roll burst above the popup.
    Decorative only: popup card, form and the rest of the website stay untouched. */
-.gift-visual{position:fixed;left:50%;top:0;width:min(420px,calc(100vw - 24px));height:165px;transform:translateX(-50%);z-index:9101;pointer-events:none}
+.gift-visual{position:absolute;left:50%;top:0;width:min(380px,calc(100vw - 28px));height:165px;transform:translateX(-50%);z-index:9101;pointer-events:none}
 .gift-camera,.gift-roll{display:none!important}
 .gift-float{position:absolute;width:58px;height:74px;border:3px solid #f5e3cc;border-radius:5px;background:#8b5b3c center/cover no-repeat;box-shadow:0 7px 15px rgba(30,16,8,.25);z-index:2}
-.gift-float.f1{left:72px;top:58px;transform:rotate(-10deg)}
-.gift-float.f2{left:166px;top:39px;transform:rotate(4deg)}
-.gift-float.f3{left:260px;top:41px;transform:rotate(7deg)}
-.gift-float.f4{left:354px;top:60px;transform:rotate(10deg)}
+.gift-float.f1{left:18px;top:58px;transform:rotate(-10deg)}
+.gift-float.f2{left:112px;top:39px;transform:rotate(4deg)}
+.gift-float.f3{left:206px;top:41px;transform:rotate(7deg)}
+.gift-float.f4{left:300px;top:60px;transform:rotate(10deg)}
 .gift-spark{position:absolute;border-radius:50%;background:#f1c87e;box-shadow:0 0 13px rgba(241,200,126,.85);z-index:1}
-.gift-spark.s1{width:6px;height:6px;left:48px;top:82px}.gift-spark.s2{width:4px;height:4px;left:142px;top:24px}
-.gift-spark.s3{width:6px;height:6px;right:36px;top:88px}.gift-spark.s4{width:4px;height:4px;left:222px;top:12px}
-.gift-spark.s5{width:5px;height:5px;left:304px;top:17px}.gift-spark.s6{width:4px;height:4px;left:390px;top:92px}
+.gift-spark.s1{width:6px;height:6px;left:6px;top:82px}.gift-spark.s2{width:4px;height:4px;left:100px;top:24px}
+.gift-spark.s3{width:6px;height:6px;right:6px;top:88px}.gift-spark.s4{width:4px;height:4px;left:180px;top:12px}
+.gift-spark.s5{width:5px;height:5px;left:262px;top:17px}.gift-spark.s6{width:4px;height:4px;left:368px;top:92px}
 .gift-visual::after{content:'♡  ·  ✦  ♡';position:absolute;left:50%;top:13px;transform:translateX(-50%);font-size:16px;letter-spacing:7px;color:#f4d28f;text-shadow:0 0 9px rgba(241,200,126,.8);white-space:nowrap;z-index:4}
 .gift-popup.open .gift-visual{animation:giftBlastIn .9s cubic-bezier(.18,.78,.2,1) both}
 .gift-popup.open .gift-float.f1{animation:floatPhoto1 3.6s ease-in-out .2s infinite}
@@ -153,15 +153,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 @media(max-width:600px){
   .gift-popup{width:100vw;height:100dvh;padding:0;overflow:hidden}
   .gift-card{width:min(340px,calc(100vw - 20px));max-height:calc(100dvh - 20px);padding:24px 18px 18px;margin:0}
-  .gift-visual{top:0;width:min(330px,calc(100vw - 24px));height:145px}
+  .gift-visual{top:0;width:min(340px,calc(100vw - 20px));height:145px}
   .gift-float{width:52px;height:67px;border-width:3px}
-  .gift-float.f1{left:28px;top:51px;transform:rotate(-10deg)}
-  .gift-float.f2{left:104px;top:34px;transform:rotate(4deg)}
-  .gift-float.f3{left:180px;top:36px;transform:rotate(7deg)}
-  .gift-float.f4{left:256px;top:53px;transform:rotate(10deg)}
-  .gift-spark.s1{left:10px;top:79px}.gift-spark.s2{left:73px;top:19px}
-  .gift-spark.s3{right:8px;top:82px}.gift-spark.s4{left:151px;top:8px}
-  .gift-spark.s5{left:216px;top:12px}.gift-spark.s6{left:314px;top:82px}
+  .gift-float.f1{left:12px;top:51px;transform:rotate(-10deg)}
+  .gift-float.f2{left:87px;top:34px;transform:rotate(4deg)}
+  .gift-float.f3{left:162px;top:36px;transform:rotate(7deg)}
+  .gift-float.f4{left:237px;top:53px;transform:rotate(10deg)}
+  .gift-spark.s1{left:2px;top:79px}.gift-spark.s2{left:68px;top:19px}
+  .gift-spark.s3{right:2px;top:82px}.gift-spark.s4{left:145px;top:8px}
+  .gift-spark.s5{left:210px;top:12px}.gift-spark.s6{left:332px;top:82px}
   .gift-visual::after{top:0;font-size:15px;letter-spacing:5px}
   .gift-float.f5,.gift-float.f6{display:none}
   .gift-title{font-size:1.9rem}
@@ -1439,20 +1439,12 @@ function createEntryNumber(){
   return 'VNS-'+month+year+'-'+Math.floor(1000+Math.random()*9000);
 }
 function positionGiftVisual(){
-  const modal=document.getElementById('giftPopup');
   const card=document.querySelector('#giftPopup .gift-card');
   const visual=document.getElementById('giftVisual');
-  if(!modal||!card||!visual) return;
+  if(!card||!visual) return;
   const cardRect=card.getBoundingClientRect();
   const visualHeight=visual.getBoundingClientRect().height;
-  const visualWidth=visual.getBoundingClientRect().width;
-  const centerX=cardRect.left+(cardRect.width/2);
-  const minLeft=visualWidth/2+8;
-  const maxLeft=window.innerWidth-(visualWidth/2)-8;
-  const safeCenterX=Math.min(Math.max(centerX,minLeft),maxLeft);
-  const top=Math.max(8,cardRect.top-visualHeight+6);
-  visual.style.left=safeCenterX+'px';
-  visual.style.top=top+'px';
+  visual.style.top=Math.max(8,cardRect.top-visualHeight+6)+'px';
 }
 function openGiftPopup(){
   const modal=document.getElementById('giftPopup');
