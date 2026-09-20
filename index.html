@@ -92,7 +92,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
 /* Premium camera + newborn film-roll burst above the popup.
    Decorative only: popup card, form and the rest of the website stay untouched. */
-.gift-visual{position:absolute;left:50%;top:0;width:420px;height:165px;transform:translateX(-50%);z-index:3;pointer-events:none}
+.gift-visual{position:fixed;left:50%;top:0;width:min(420px,calc(100vw - 24px));height:165px;transform:translateX(-50%);z-index:9101;pointer-events:none}
 .gift-camera,.gift-roll{display:none!important}
 .gift-float{position:absolute;width:58px;height:74px;border:3px solid #f5e3cc;border-radius:5px;background:#8b5b3c center/cover no-repeat;box-shadow:0 7px 15px rgba(30,16,8,.25);z-index:2}
 .gift-float.f1{left:72px;top:58px;transform:rotate(-10deg)}
@@ -153,7 +153,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 @media(max-width:600px){
   .gift-popup{width:100vw;height:100dvh;padding:0;overflow:hidden}
   .gift-card{width:min(340px,calc(100vw - 20px));max-height:calc(100dvh - 20px);padding:24px 18px 18px;margin:0}
-  .gift-visual{top:0;width:330px;height:145px}
+  .gift-visual{top:0;width:min(330px,calc(100vw - 24px));height:145px}
   .gift-float{width:52px;height:67px;border-width:3px}
   .gift-float.f1{left:28px;top:51px;transform:rotate(-10deg)}
   .gift-float.f2{left:104px;top:34px;transform:rotate(4deg)}
@@ -1445,8 +1445,13 @@ function positionGiftVisual(){
   if(!modal||!card||!visual) return;
   const cardRect=card.getBoundingClientRect();
   const visualHeight=visual.getBoundingClientRect().height;
+  const visualWidth=visual.getBoundingClientRect().width;
+  const centerX=cardRect.left+(cardRect.width/2);
+  const minLeft=visualWidth/2+8;
+  const maxLeft=window.innerWidth-(visualWidth/2)-8;
+  const safeCenterX=Math.min(Math.max(centerX,minLeft),maxLeft);
   const top=Math.max(8,cardRect.top-visualHeight+6);
-  visual.style.left='50%';
+  visual.style.left=safeCenterX+'px';
   visual.style.top=top+'px';
 }
 function openGiftPopup(){
