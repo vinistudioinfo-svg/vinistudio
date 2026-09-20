@@ -93,41 +93,86 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 /* Premium camera + newborn film-roll burst above the popup.
    Decorative only: popup card, form and the rest of the website stay untouched. */
 .gift-visual{position:absolute;left:50%;top:calc(50% - 390px);width:430px;height:280px;transform:translateX(-50%);z-index:3;pointer-events:none}
-.gift-float{position:absolute;width:72px;height:88px;border:4px solid #f7ead9;border-radius:5px;background:#8b5b3c center/cover no-repeat;box-shadow:0 10px 18px rgba(30,16,8,.28);z-index:3;will-change:transform,opacity}
-.gift-float.f1{left:74px;top:92px;transform:rotate(-15deg)}
-.gift-float.f2{left:166px;top:30px;transform:rotate(8deg)}
-.gift-float.f3{left:270px;top:76px;transform:rotate(15deg)}
-.gift-float.f4{left:188px;top:132px;transform:rotate(-7deg)}
-.gift-float.f5{left:12px;top:42px;width:50px;height:64px;transform:rotate(18deg);opacity:.72;filter:blur(1px)}
-.gift-float.f6{left:350px;top:28px;width:50px;height:64px;transform:rotate(-12deg);opacity:.72;filter:blur(1px)}
-.gift-spark{position:absolute;border-radius:50%;background:#f1c87e;box-shadow:0 0 16px rgba(224,179,108,.9);z-index:2}
-.gift-spark.s1{width:8px;height:8px;left:145px;top:82px}.gift-spark.s2{width:5px;height:5px;left:235px;top:24px}
-.gift-spark.s3{width:7px;height:7px;right:46px;top:112px}.gift-spark.s4{width:4px;height:4px;left:104px;top:22px}
-.gift-spark.s5{width:6px;height:6px;left:255px;top:220px}.gift-spark.s6{width:4px;height:4px;left:38px;top:132px}
+.gift-camera{position:absolute;left:6px;top:95px;width:150px;height:94px;border-radius:18px 18px 25px 25px;background:linear-gradient(145deg,#fff5e8 0%,#d8bea5 48%,#805b42 100%);border:2px solid rgba(70,42,24,.65);box-shadow:0 20px 34px rgba(34,18,9,.38),inset 0 2px 0 rgba(255,255,255,.8);z-index:4}
+.gift-camera::before{content:'';position:absolute;left:25px;top:-22px;width:58px;height:28px;border-radius:10px 10px 3px 3px;background:linear-gradient(145deg,#fff8ee,#b99475);border:2px solid rgba(70,42,24,.55);box-shadow:inset 0 2px 0 rgba(255,255,255,.8)}
+.gift-camera::after{content:'';position:absolute;left:61px;top:20px;width:61px;height:61px;border-radius:50%;border:8px solid #f8ead9;background:radial-gradient(circle at 36% 31%,#ffd994 0 7%,#9a5e36 8% 27%,#21130b 28% 66%,#bd8658 67% 100%);box-shadow:0 0 0 3px rgba(70,42,24,.5),0 0 34px rgba(224,166,86,.9)}
+.gift-camera-mark{position:absolute;left:18px;bottom:15px;font-family:Georgia,serif;font-size:15px;line-height:.8;letter-spacing:1px;color:#3a2417;transform:rotate(-4deg)}
+.gift-camera-mark small{font-family:Arial,sans-serif;font-size:7px;letter-spacing:2px}
+.gift-roll{position:absolute;left:124px;top:82px;width:300px;height:132px;transform:rotate(-5deg);z-index:3;filter:drop-shadow(0 12px 14px rgba(30,16,8,.34))}
+.gift-film{position:absolute;left:0;top:23px;width:100%;height:86px;border-radius:10px;background:#1d120b;border:5px solid #17100b;box-shadow:inset 0 0 0 2px rgba(243,223,196,.3),0 0 0 2px rgba(216,173,112,.2)}
+.gift-film::before,.gift-film::after{content:'';position:absolute;left:8px;right:8px;height:9px;background:repeating-linear-gradient(90deg,#f0dcc2 0 7px,transparent 7px 17px);opacity:.9}
+.gift-film::before{top:-1px}.gift-film::after{bottom:-1px}
+.gift-frame{position:absolute;z-index:5;width:49px;height:66px;top:34px;border:3px solid #f5e3cc;border-radius:3px;background:#8b5b3c center/cover no-repeat;box-shadow:0 5px 11px rgba(30,16,8,.34)}
+.gift-frame:nth-of-type(2){left:13px;transform:rotate(-3deg)}
+.gift-frame:nth-of-type(3){left:69px;top:29px;transform:rotate(3deg)}
+.gift-frame:nth-of-type(4){left:126px;top:34px;transform:rotate(-2deg)}
+.gift-frame:nth-of-type(5){left:183px;top:28px;transform:rotate(4deg)}
+.gift-frame:nth-of-type(6){left:240px;top:34px;transform:rotate(-5deg)}
+.gift-float{position:absolute;width:54px;height:68px;border:4px solid #f5e3cc;border-radius:3px;background:#8b5b3c center/cover no-repeat;box-shadow:0 8px 14px rgba(30,16,8,.25);z-index:2}
+.gift-float.f1{left:205px;top:8px;transform:rotate(-12deg)}
+.gift-float.f2{left:338px;top:18px;transform:rotate(13deg)}
+.gift-float.f3{left:255px;top:0;transform:rotate(6deg)}
+.gift-float.f4{left:155px;top:8px;transform:rotate(11deg)}
+.gift-spark{position:absolute;border-radius:50%;background:#e0b36c;box-shadow:0 0 16px rgba(224,179,108,.9);z-index:1}
+.gift-spark.s1{width:8px;height:8px;left:177px;top:58px}.gift-spark.s2{width:5px;height:5px;left:285px;top:34px}
+.gift-spark.s3{width:7px;height:7px;right:25px;top:105px}.gift-spark.s4{width:4px;height:4px;left:111px;top:24px}
+.gift-spark.s5{width:6px;height:6px;left:231px;top:226px}.gift-spark.s6{width:4px;height:4px;left:24px;top:75px}
 
-/* Floating newborn photo cards only — popup visual. */
-.gift-popup.open .gift-visual{animation:photoBurstIn .85s cubic-bezier(.18,.78,.2,1) both}
-.gift-popup.open .gift-float.f1{animation:photoFloat1 3.8s ease-in-out .1s infinite}
-.gift-popup.open .gift-float.f2{animation:photoFloat2 4.2s ease-in-out .3s infinite}
-.gift-popup.open .gift-float.f3{animation:photoFloat3 3.6s ease-in-out .5s infinite}
-.gift-popup.open .gift-float.f4{animation:photoFloat4 4s ease-in-out .2s infinite}
-.gift-popup.open .gift-float.f5{animation:photoFloat5 4.4s ease-in-out .4s infinite}
-.gift-popup.open .gift-float.f6{animation:photoFloat6 3.9s ease-in-out .6s infinite}
-.gift-popup.open .gift-spark{animation:sparkPulse 1.5s ease-in-out infinite}
-@keyframes photoBurstIn{
-  0%{opacity:0;transform:translateX(-50%) translateY(22px) scale(.9)}
-  65%{opacity:1;transform:translateX(-50%) translateY(-5px) scale(1.02)}
+/* Reference-style burst: film visibly shoots out of the lens, then flows. Popup-only. */
+.gift-visual::before{
+  content:'';
+  position:absolute;
+  left:72px;
+  top:92px;
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,220,157,.95) 0%,rgba(236,169,82,.55) 13%,rgba(236,169,82,.18) 34%,transparent 68%);
+  filter:blur(2px);
+  opacity:0;
+  z-index:2;
+  pointer-events:none;
+}
+.gift-popup.open .gift-visual{animation:giftBlastIn .9s cubic-bezier(.18,.78,.2,1) both}
+.gift-popup.open .gift-visual::before{animation:lensBlast 2.9s ease-out .15s infinite}
+.gift-popup.open .gift-roll{animation:filmBlastFlow 4.8s cubic-bezier(.2,.7,.25,1) .35s infinite}
+.gift-popup.open .gift-camera{animation:cameraPulse 2.8s ease-in-out .6s infinite}
+.gift-popup.open .gift-float.f1{animation:floatPhoto1 3.6s ease-in-out .2s infinite}
+.gift-popup.open .gift-float.f2{animation:floatPhoto2 4s ease-in-out .4s infinite}
+.gift-popup.open .gift-float.f3{animation:floatPhoto3 3.4s ease-in-out .7s infinite}
+.gift-popup.open .gift-float.f4{animation:floatPhoto4 3.8s ease-in-out .5s infinite}
+.gift-popup.open .gift-spark{animation:sparkPulse 1.7s ease-in-out infinite}
+@keyframes giftBlastIn{
+  0%{opacity:0;transform:translateX(-50%) translateY(35px) scale(.78)}
+  55%{opacity:1;transform:translateX(-50%) translateY(-8px) scale(1.04)}
   100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
 }
-@keyframes photoFloat1{50%{transform:translate(7px,-13px) rotate(-11deg)}}
-@keyframes photoFloat2{50%{transform:translate(-5px,-10px) rotate(13deg)}}
-@keyframes photoFloat3{50%{transform:translate(8px,8px) rotate(19deg)}}
-@keyframes photoFloat4{50%{transform:translate(-8px,-7px) rotate(-13deg)}}
-@keyframes photoFloat5{50%{transform:translate(-6px,-9px) rotate(23deg);opacity:.9}}
-@keyframes photoFloat6{50%{transform:translate(7px,10px) rotate(-19deg);opacity:.9}}
-@keyframes sparkPulse{0%,100%{opacity:.35;transform:scale(.7)}50%{opacity:1;transform:scale(1.45)}}
+@keyframes lensBlast{
+  0%,100%{opacity:0;transform:scale(.45)}
+  12%{opacity:1;transform:scale(1.15)}
+  24%{opacity:.35;transform:scale(1.7)}
+  38%{opacity:0;transform:scale(2.1)}
+}
+@keyframes filmBlastFlow{
+  0%{transform:rotate(-5deg) translate3d(-38px,4px,0) scaleX(.62);filter:drop-shadow(0 8px 10px rgba(30,16,8,.22))}
+  14%{transform:rotate(-4deg) translate3d(0,0,0) scaleX(1);filter:drop-shadow(0 14px 18px rgba(30,16,8,.38))}
+  30%{transform:rotate(-1deg) translate3d(10px,-7px,0) scaleX(1.02)}
+  52%{transform:rotate(-7deg) translate3d(20px,5px,0) scaleX(1.01)}
+  74%{transform:rotate(-3deg) translate3d(7px,-5px,0) scaleX(1)}
+  100%{transform:rotate(-5deg) translate3d(-38px,4px,0) scaleX(.62)}
+}
+@keyframes cameraPulse{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-4px) scale(1.015)}
+}
+@keyframes floatPhoto1{50%{transform:translate(8px,-12px) rotate(-17deg)}}
+@keyframes floatPhoto2{50%{transform:translate(10px,9px) rotate(18deg)}}
+@keyframes floatPhoto3{50%{transform:translate(-7px,-9px) rotate(10deg)}}
+@keyframes floatPhoto4{50%{transform:translate(-10px,8px) rotate(16deg)}}
+@keyframes sparkPulse{0%,100%{opacity:.45;transform:scale(.75)}50%{opacity:1;transform:scale(1.35)}}
 @media(prefers-reduced-motion:reduce){
-  .gift-popup.open .gift-visual,.gift-popup.open .gift-float,.gift-popup.open .gift-spark{animation:none!important}
+  .gift-popup.open .gift-visual,.gift-popup.open .gift-roll,.gift-popup.open .gift-camera,
+  .gift-popup.open .gift-float,.gift-popup.open .gift-spark{animation:none!important}
 }
 
 .gift-close{position:absolute;top:12px;right:14px;border:0;background:none;color:var(--brown-dark);font-size:1.5rem;line-height:1;cursor:pointer;padding:6px;z-index:8}
@@ -159,12 +204,1442 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 @media(max-width:600px){
   .gift-popup{padding:10px}
   .gift-card{width:min(340px,100%);padding:24px 18px 18px;margin:0}
-  .gift-visual{top:calc(50% - 345px);width:320px;height:210px}
-  .gift-float{width:52px;height:64px;border-width:3px}
-  .gift-float.f1{left:45px;top:76px}.gift-float.f2{left:124px;top:25px}
-  .gift-float.f3{left:213px;top:66px}.gift-float.f4{left:139px;top:120px}
-  .gift-float.f5{left:7px;top:37px;width:39px;height:50px}.gift-float.f6{left:272px;top:23px;width:39px;height:50px}
-  .gift-spark.s1{left:102px;top:68px}.gift-spark.s2{left:174px;top:18px}
-  .gift-spark.s3{right:29px;top:93px}.gift-spark.s4{left:73px;top:18px}
-  .gift-spark.s5{left:191px;top:166px}.gift-spark.s6{left:28px;top:110px}
+  .gift-visual{top:calc(50% - 390px);width:320px;height:220px}
+  .gift-camera{left:0;top:82px;width:108px;height:68px;border-radius:14px 14px 19px 19px}
+  .gift-camera::after{left:43px;top:14px;width:43px;height:43px;border-width:6px}
+  .gift-camera::before{left:18px;top:-16px;width:43px;height:21px}
+  .gift-camera-mark{left:13px;bottom:11px;font-size:11px}.gift-camera-mark small{font-size:5px}
+  .gift-roll{left:88px;top:69px;width:225px;height:105px;transform:rotate(-5deg)}
+  .gift-film{top:19px;height:70px;border-width:4px}
+  .gift-frame{width:37px;height:51px;top:28px;border-width:2px}
+  .gift-frame:nth-of-type(2){left:10px}.gift-frame:nth-of-type(3){left:52px;top:24px}
+  .gift-frame:nth-of-type(4){left:94px;top:28px}.gift-frame:nth-of-type(5){left:136px;top:23px}
+  .gift-frame:nth-of-type(6){left:178px;top:28px}
+  .gift-float{width:40px;height:51px;border-width:3px}
+  .gift-float.f1{left:154px;top:3px}.gift-float.f2{left:258px;top:14px}
+  .gift-float.f3{left:196px;top:0}.gift-float.f4{left:112px;top:8px}
+  .gift-title{font-size:1.9rem}
+  .gift-copy{font-size:.72rem}
+  .gift-highlight{font-size:.68rem}
+}
 
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
+nav.scrolled{background:rgba(250,246,240,.97);backdrop-filter:blur(12px);padding:14px 60px;box-shadow:0 2px 20px rgba(122,79,53,.1)}
+.nav-brand{display:flex;flex-direction:column;text-decoration:none}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brown-dark);letter-spacing:2px}
+.nav-venture{font-size:.65rem;color:var(--brown-mid);letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown);text-decoration:none;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--brown-dark)}
+.nav-book{background:var(--brown)!important;color:var(--white)!important;padding:10px 22px;border-radius:40px}
+.nav-book:hover{background:var(--brown-dark)!important}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:52% 48%;position:relative;overflow:hidden;background:#E8D7C5}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:130px 50px 80px 80px;z-index:2}
+.hero-eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--brown-mid);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--brown-mid);flex-shrink:0}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,4.5vw,5rem);line-height:1.1;font-weight:300;color:var(--brown-dark);margin-bottom:14px}
+.hero-title em{font-style:italic;color:var(--brown)}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--brown-mid);margin-bottom:10px;font-weight:300}
+.hero-venture{font-size:.78rem;color:var(--muted);letter-spacing:2px;margin-bottom:24px}
+.hero-desc{font-size:.9rem;line-height:1.85;color:var(--muted);max-width:400px;margin-bottom:36px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{background:var(--brown);color:var(--white);padding:14px 32px;border-radius:50px;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .3s;border:none;cursor:pointer;display:inline-block;white-space:nowrap}
+.btn-primary:hover{background:var(--brown-dark);transform:translateY(-2px);box-shadow:0 10px 30px rgba(122,79,53,.3)}
+.btn-outline{border:1.5px solid var(--brown);color:var(--brown);padding:13px 30px;border-radius:50px;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .3s;display:inline-block;white-space:nowrap}
+.btn-outline:hover{background:var(--brown);color:var(--white)}
+.hero-stats{display:flex;gap:36px;padding-top:32px;border-top:1px solid rgba(122,79,53,.15)}
+.stat strong{display:block;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--brown-dark);line-height:1}
+.stat span{font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);display:block;margin-top:4px}
+.hero-right{position:static;overflow:visible}
+.hero-img-wrap{position:absolute;inset:0;width:auto;background:linear-gradient(135deg,#C9A880 0%,#A67855 40%,#7A4F35 100%);overflow:hidden}
+.hero-slide{position:absolute;inset:-3%;opacity:0;background-position:center center;background-size:cover;background-repeat:no-repeat;transform:scale(1.04);transition:opacity 1.2s ease;animation:heroKenBurns 6s ease-in-out infinite}
+.hero-slide.active{opacity:1}
+@keyframes heroKenBurns{0%{transform:scale(1.04) translate3d(0,0,0)}50%{transform:scale(1.10) translate3d(-1%,0,0)}100%{transform:scale(1.04) translate3d(0,0,0)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,#E8D7C5 0%,#E8D7C5 20%,rgba(232,215,197,.94) 29%,rgba(232,215,197,.68) 37%,rgba(232,215,197,.30) 44%,rgba(232,215,197,.08) 50%,transparent 57%)}
+.floating-badge{position:absolute;bottom:60px;left:56%;background:var(--white);border-radius:18px;padding:18px 22px;box-shadow:0 16px 50px rgba(74,46,26,.2);z-index:3;animation:float 6s ease-in-out infinite;max-width:220px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.badge-text{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--brown-dark);font-style:italic;line-height:1.4}
+.badge-sub{font-size:.72rem;color:var(--muted);margin-top:4px;letter-spacing:1px}
+
+/* MARQUEE */
+.marquee-wrap{position:fixed !important;left:0 !important;right:0 !important;bottom:0 !important;width:100vw !important;background:var(--brown-dark);padding:10px 0;overflow:hidden;z-index:8999 !important;pointer-events:none;display:block}
+.marquee-track{display:flex;gap:50px;white-space:nowrap;animation:marquee 22s linear infinite;width:max-content}
+.marquee-item{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--brown-light);font-style:italic;display:inline-flex;align-items:center;gap:18px;flex-shrink:0}
+.marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--brown-mid);flex-shrink:0;display:inline-block}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SHARED */
+.section-wrap{padding:90px 80px}
+.section-label{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--brown-mid);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-label::before{content:'';width:18px;height:1px;background:var(--brown-mid);flex-shrink:0}
+.section-label.center{justify-content:center}
+.section-label.center::before{display:none}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.4rem);font-weight:300;color:var(--brown-dark);line-height:1.15;margin-bottom:18px}
+.section-title em{font-style:italic;color:var(--brown)}
+.section-sub{font-size:.9rem;line-height:1.85;color:var(--muted)}
+.heart-divider{text-align:center;color:var(--brown-light);font-size:1rem;margin:8px 0;letter-spacing:4px}
+
+/* ABOUT */
+.about-section{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+<!-- .about-img-wrap{position:relative;padding-bottom:30px;padding-right:30px} -->
+.about-img-wrap::after{content:'';position:absolute;bottom:0;right:0;width:85%;height:85%;border:1.5px solid var(--brown-light);border-radius:8px;z-index:0}
+<!-- .about-img{width:100%;border-radius:8px;position:relative;z-index:1;display:block;min-height:400px;background:linear-gradient(160deg,#E8D5C0 0%,#C9A880 50%,#A67855 100%)} -->
+
+.about-img-wrap{
+    position:relative;
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    padding-bottom:30px;
+    padding-right:30px;
+}
+
+.about-img{
+    width:100%;
+    aspect-ratio:4/5;
+    height:auto;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+.about-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+.about-badge{position:absolute;bottom:10px;right:10px;z-index:2;background:var(--brown);color:var(--white);padding:14px 20px;border-radius:12px;font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic}
+.venture-tag{display:inline-block;background:var(--warm);border:1px solid var(--brown-light);color:var(--brown);font-size:.75rem;padding:6px 16px;border-radius:20px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
+.about-features{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.about-feat{display:flex;align-items:flex-start;gap:12px;font-size:.87rem;color:var(--text);line-height:1.5}
+.feat-dot{width:7px;height:7px;border-radius:50%;background:var(--brown-light);flex-shrink:0;margin-top:5px}
+.about-promise{background:var(--warm);border-radius:14px;padding:20px 24px;margin-top:24px;border-left:3px solid var(--brown-light)}
+.about-promise p{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--brown);line-height:1.7}
+
+/* SERVICES */
+.services-section{background:var(--cream)}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+.service-card{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;cursor:pointer}
+.service-bg{position:absolute;inset:0;transition:transform .6s ease}
+.service-card:hover .service-bg{transform:scale(1.06)}
+.service-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(74,46,26,.9) 0%,transparent 55%)}
+.service-content{position:absolute;bottom:0;left:0;right:0;padding:28px 24px}
+.service-icon{font-size:1.5rem;margin-bottom:8px;display:block}
+.service-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);font-weight:400;margin-bottom:6px;display:block}
+.service-detail{font-size:.75rem;color:rgba(255,255,255,.75);margin-bottom:8px;display:block}
+.service-desc{font-size:.78rem;color:rgba(255,255,255,.8);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .4s ease}
+.service-card:hover .service-desc{max-height:120px}
+.service-tag{display:inline-block;background:rgba(255,255,255,.18);color:var(--white);font-size:.68rem;padding:4px 12px;border-radius:20px;margin-top:8px;letter-spacing:1px;text-transform:uppercase;backdrop-filter:blur(4px)}
+
+/* PACKAGES TABS */
+.packages-section{background:var(--warm)}
+.pkg-tabs{display:flex;gap:12px;justify-content:center;margin:32px 0;flex-wrap:wrap}
+.pkg-tab{padding:10px 24px;border-radius:30px;border:1.5px solid var(--brown-light);background:var(--white);color:var(--brown);font-size:.8rem;font-weight:500;cursor:pointer;transition:all .3s;letter-spacing:.5px;font-family:'DM Sans',sans-serif}
+.pkg-tab.active,.pkg-tab:hover{background:var(--brown);color:var(--white);border-color:var(--brown)}
+.pkg-content{display:none}
+.pkg-content.active{display:block}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1060px;margin:0 auto}
+.pkg-card{background:var(--white);border-radius:22px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.pkg-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(122,79,53,.14)}
+.pkg-card.featured{border:2px solid var(--brown-light);position:relative}
+.pkg-badge{position:absolute;top:18px;right:18px;background:var(--brown);color:var(--white);font-size:.65rem;padding:4px 12px;border-radius:20px;letter-spacing:1px;text-transform:uppercase}
+.pkg-header{padding:28px 24px 20px;border-bottom:1px solid var(--warm)}
+.pkg-icon{font-size:2rem;display:block;text-align:center;margin-bottom:10px}
+.pkg-tier{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--brown-mid);text-align:center;margin-bottom:8px}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--brown-dark);text-align:center;line-height:1}
+.pkg-session{font-size:.78rem;color:var(--muted);text-align:center;margin-top:8px}
+.pkg-body{padding:20px 24px 28px}
+.pkg-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+.pkg-features li{display:flex;align-items:flex-start;gap:10px;font-size:.83rem;color:var(--text);line-height:1.4}
+.pkg-features li::before{content:'✓';color:var(--brown-mid);font-weight:700;flex-shrink:0;font-size:.8rem}
+.pkg-comp{background:var(--warm);border-radius:10px;padding:12px 14px;margin-bottom:18px}
+.pkg-comp-title{font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.pkg-comp-item{font-size:.82rem;color:var(--brown);display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.pkg-comp-item::before{content:'▸';color:var(--brown-light)}
+.pkg-note{font-size:.72rem;color:var(--muted);font-style:italic;text-align:center;margin-bottom:16px}
+.pkg-btn{display:block;text-align:center;padding:12px;border-radius:10px;font-size:.8rem;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .3s}
+.pkg-btn-primary{background:var(--brown);color:var(--white)}
+.pkg-btn-primary:hover{background:var(--brown-dark)}
+.pkg-btn-outline{border:1.5px solid var(--brown);color:var(--brown)}
+.pkg-btn-outline:hover{background:var(--brown);color:var(--white)}
+.pkg-special-offer{max-width:1060px;margin:24px auto 0;background:var(--brown-dark);border-radius:16px;padding:20px 28px;display:flex;align-items:center;gap:20px}
+.offer-icon{font-size:2rem;flex-shrink:0}
+.offer-text{color:var(--cream);font-size:.9rem;line-height:1.6}
+.offer-text strong{color:var(--brown-light)}
+.addons-box{max-width:1060px;margin:24px auto 0;background:var(--white);border-radius:18px;padding:28px 32px}
+.addons-title{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.addons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.addon-item{font-size:.83rem;color:var(--text);padding:10px 0;border-bottom:1px solid var(--warm)}
+.addon-item strong{color:var(--brown)}
+.terms-box{max-width:1060px;margin:20px auto 0;background:var(--warm);border-radius:14px;padding:20px 28px}
+.terms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:14px}
+.term-item{text-align:center;font-size:.78rem;color:var(--text)}
+.term-icon{font-size:1.3rem;display:block;margin-bottom:6px}
+.term-item strong{display:block;font-size:.75rem;color:var(--brown);margin-bottom:2px}
+
+/* PROCESS */
+.process-section{background:var(--white)}
+.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+.process-steps{display:flex;flex-direction:column}
+.step{display:flex;gap:22px;padding:22px 0;border-bottom:1px solid rgba(122,79,53,.1)}
+.step:last-child{border-bottom:none}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--brown-light);font-weight:300;flex-shrink:0;width:36px;line-height:1.2}
+.step-title{font-size:.95rem;font-weight:500;color:var(--brown-dark);margin-bottom:5px}
+.step-desc{font-size:.84rem;line-height:1.7;color:var(--muted)}
+.process-visual{position:sticky;top:100px}
+.process-img-box{
+    width:100%;
+    height:clamp(360px,38vw,600px);
+    border-radius:20px;
+    overflow:hidden;
+}
+.process-img-box img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center;
+}
+
+.process-note{
+    background:var(--warm);
+    border-radius:14px;
+    padding:20px;
+    margin-top:20px;
+}
+
+.process-note p{
+    font-size:.9rem;
+    line-height:1.8;
+    word-break:break-word;
+}
+
+/* FAQ */
+.faq-section{background:var(--cream);padding:90px 80px}
+.faq-inner{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(122,79,53,.15)}
+.faq-q{width:100%;background:none;border:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;font-size:.88rem;font-weight:500;color:var(--text);cursor:pointer;text-align:left;gap:16px;font-family:'DM Sans',sans-serif}
+.faq-icon{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--brown-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;font-size:.85rem;color:var(--brown)}
+.faq-item.open .faq-icon{background:var(--brown);color:var(--white);border-color:var(--brown);transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{font-size:.87rem;line-height:1.8;color:var(--muted);padding-bottom:18px}
+
+/* TESTIMONIALS */
+.testi-section{background:var(--brown-dark);padding:90px 80px;text-align:center}
+.testi-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,3rem);color:var(--cream);font-weight:300;margin-bottom:56px}
+.testi-title em{font-style:italic}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1060px;margin:0 auto}
+.testi-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:30px 24px;text-align:left;height:420px;display:flex;flex-direction:column;min-width:0}
+.testi-stars{color:var(--brown-light);margin-bottom:14px;letter-spacing:2px;font-size:.9rem;flex-shrink:0}
+.testi-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--cream);line-height:1.7;margin:0 0 8px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden;flex:0 0 auto}
+.testi-more{display:inline-block;margin:0 0 18px;padding:0;border:0;background:none;color:var(--brown-light);font-family:inherit;font-size:.78rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.testi-author{display:flex;align-items:center;gap:12px;margin-top:auto}
+.testi-avatar{width:38px;height:38px;border-radius:50%;background:var(--brown-mid);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--white);flex-shrink:0}
+.testi-name{font-size:.83rem;font-weight:500;color:var(--cream)}
+.testi-type{font-size:.72rem;color:var(--brown-light)}
+.review-modal{position:fixed;inset:0;background:rgba(20,12,7,.72);display:none;align-items:center;justify-content:center;padding:24px;z-index:8800}
+.review-modal.open{display:flex}
+.review-modal-box{width:min(720px,100%);max-height:min(78vh,760px);overflow:auto;background:var(--cream);color:var(--brown-dark);border-radius:18px;padding:30px 28px;text-align:left;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.review-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:18px}
+.review-modal-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:500}
+.review-modal-close{border:0;background:none;color:var(--brown-dark);font-size:1.4rem;cursor:pointer;padding:4px 8px}
+.review-modal-stars{color:var(--brown);letter-spacing:2px;margin-bottom:14px}
+.review-modal-text{font-family:'Cormorant Garamond',serif;font-size:1.12rem;line-height:1.8;font-style:italic;white-space:pre-line}
+.review-modal-meta{font-size:.75rem;color:var(--brown-light);margin-top:18px}
+
+/* CONTACT */
+.contact-section{background:var(--warm)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;max-width:1060px;margin:0 auto}
+.contact-info-cards{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.contact-card{background:var(--white);border-radius:14px;padding:18px;display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--text);transition:all .3s}
+.contact-card:hover{transform:translateX(6px);box-shadow:0 8px 30px rgba(122,79,53,.1)}
+.contact-icon{width:44px;height:44px;border-radius:10px;background:var(--warm);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.contact-card-title{font-size:.83rem;font-weight:500;color:var(--text);display:block}
+.contact-card-val{font-size:.78rem;color:var(--muted);display:block;margin-top:2px}
+.studio-address{background:var(--white);border-radius:14px;padding:20px;margin-top:4px;border-left:3px solid var(--brown-light)}
+.studio-address h4{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--brown-mid);margin-bottom:8px}
+.studio-address p{font-size:.82rem;color:var(--text);line-height:1.7}
+.contact-form-box{background:var(--white);border-radius:22px;padding:36px}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--brown-dark);margin-bottom:24px}
+.form-group{margin-bottom:16px}
+.form-label{display:block;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.form-input,.form-select,.form-textarea{width:100%;padding:13px 16px;border:1.5px solid rgba(122,79,53,.2);border-radius:10px;font-size:.87rem;color:var(--text);background:var(--cream);font-family:'DM Sans',sans-serif;transition:border-color .3s;outline:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--brown)}
+
+.form-input[type="date"]{
+    cursor:pointer;
+    appearance:auto;
+    -webkit-appearance:auto;
+}
+.form-textarea{min-height:90px;resize:vertical}
+.form-btn{width:100%;background:var(--brown);color:var(--white);border:none;padding:15px;border-radius:10px;font-size:.85rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif}
+.form-btn:hover{background:var(--brown-dark)}
+
+/* FOOTER */
+footer{background:var(--brown-dark);padding:60px 80px 36px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:50px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand-logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;letter-spacing:2px;color:var(--cream);margin-bottom:4px}
+.footer-brand-venture{font-size:.68rem;color:var(--brown-light);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.footer-brand-tag{font-size:.82rem;color:var(--brown-light);font-style:italic;margin-bottom:18px}
+.footer-brand-info{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.9}
+.footer-col-title{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--brown-light);margin-bottom:18px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:.82rem;color:rgba(255,255,255,.6);text-decoration:none;transition:color .3s}
+.footer-links a:hover{color:var(--cream)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.4)}
+.social-links{display:flex;gap:12px}
+.social-link{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);text-decoration:none;font-size:.75rem;font-weight:500;transition:all .3s}
+.social-link:hover{border-color:var(--brown-light);color:var(--brown-light)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-36px);transition:opacity .75s ease,transform .75s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(36px);transition:opacity .75s ease,transform .75s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* RESPONSIVE */
+@media (max-width:768px){
+
+.process-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+}
+
+.process-visual{
+    position:static;
+}
+
+.process-img-box{
+    height:auto;
+    aspect-ratio:4/3;
+}
+.process-img-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+}
+
+.process-note{
+    margin-top:15px;
+}
+
+}
+  
+@media (max-width:900px){
+
+.about-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+}
+
+.about-img-wrap{
+    max-width:360px;
+    margin:0 auto;
+}
+
+.about-img{
+    aspect-ratio:4/5;
+}
+
+}
+
+@media(max-width:900px){
+  nav{padding:14px 24px}
+  nav.scrolled{padding:12px 24px}
+  .nav-links{gap:14px}
+  .nav-links a{font-size:.7rem}
+  .hero{grid-template-columns:1fr}
+  .hero-left{padding:110px 24px 60px}
+  .hero-right{display:none}
+  .section-wrap,.faq-section,.testi-section,.contact-section{padding:70px 24px}
+  .about-grid,.process-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .services-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .pkg-grid{grid-template-columns:1fr}
+  .addons-grid{grid-template-columns:1fr 1fr}
+  .terms-grid{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .testi-card{height:360px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .pkg-special-offer{flex-direction:column;text-align:center}
+}
+@media(max-width:500px){
+  .nav-links{display:none}
+  .services-grid{grid-template-columns:1fr}
+  .addons-grid{grid-template-columns:1fr}
+  .terms-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+html,
+body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+}
+
+*{
+    box-sizing:border-box;
+    max-width:100%;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+
+/* Google Map */
+.map-section{
+    width:100%;
+    margin-top:40px;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
+
+.map-section iframe{
+    width:100%;
+    height:400px;
+    border:0;
+    display:block;
+}
+
+@media (max-width:768px){
+    .map-section iframe{
+        height:300px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">ViNi Studio</div>
+  <div class="loader-sub">A Venture by Nikhil Creation</div>
+  <div class="loader-tag">Pillu Kicks To Forever Clicks</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- VISITOR GIFT / LEAD POPUP -->
+<div class="gift-popup" id="giftPopup" aria-hidden="true">
+  <div class="gift-visual" id="giftVisual" aria-hidden="true">
+    <div class="gift-camera">
+      <span class="gift-camera-mark">ViNi<br><small>STUDIO</small></span>
+    </div>
+    <div class="gift-roll">
+      <div class="gift-film"></div>
+      <div class="gift-frame"></div>
+      <div class="gift-frame"></div>
+      <div class="gift-frame"></div>
+      <div class="gift-frame"></div>
+      <div class="gift-frame"></div>
+    </div>
+    <div class="gift-float f1"></div>
+    <div class="gift-float f2"></div>
+    <div class="gift-float f3"></div>
+    <div class="gift-float f4"></div>
+    <span class="gift-spark s1"></span>
+    <span class="gift-spark s2"></span>
+    <span class="gift-spark s3"></span>
+    <span class="gift-spark s4"></span>
+    <span class="gift-spark s5"></span>
+    <span class="gift-spark s6"></span>
+  </div>
+  <div class="gift-card" role="dialog" aria-modal="true" aria-labelledby="giftPopupTitle">
+    <button class="gift-close" id="giftClose" type="button" aria-label="Close">×</button>
+
+    <div id="giftFormView">
+      <div class="gift-kicker">A Little ViNi Studio Surprise</div>
+      <h2 class="gift-title" id="giftPopupTitle">Win a <em>Gift Photoshoot</em></h2>
+      <p class="gift-copy">
+        Every month, one lucky person gets a free ViNi Studio photoshoot.
+        Enter your details to join.
+      </p>
+
+      <div class="gift-highlight">
+        One entry per person each month. Your entry number appears after you submit.
+      </div>
+
+      <form class="gift-form" id="giftForm">
+        <input class="gift-input" id="giftName" type="text" placeholder="Your Name" autocomplete="name" required />
+        <input class="gift-input" id="giftPhone" type="tel" placeholder="WhatsApp Number" autocomplete="tel" required />
+
+        <select class="gift-select" id="giftPurpose" required>
+          <option value="">Choose a photoshoot</option>
+          <option value="Newborn Photoshoot">Newborn Photoshoot</option>
+          <option value="Maternity Photoshoot">Maternity Photoshoot</option>
+          <option value="Kids Photoshoot">Kids Photoshoot</option>
+          <option value="Family Photoshoot">Family Photoshoot</option>
+          <option value="Just exploring ViNi Studio">Just exploring ViNi Studio</option>
+        </select>
+
+        <label class="gift-consent">
+          <input id="giftWhatsappOptIn" type="checkbox" />
+          <span>I agree to receive ViNi Studio updates and offers on WhatsApp.</span>
+        </label>
+
+        <div class="gift-status" id="giftStatus" aria-live="polite"></div>
+
+        <button class="gift-submit" id="giftSubmit" type="submit">Get My Entry Number</button>
+      </form>
+    </div>
+
+    <div class="gift-success" id="giftSuccess">
+      <div class="gift-kicker">Entry Confirmed</div>
+      <h2 class="gift-title">Your <em>Lucky Entry</em></h2>
+      <div class="gift-entry" id="giftEntryNo"></div>
+      <p class="gift-small">
+        Keep this entry number safe. One entry is considered for each person in the monthly giveaway.
+      </p>
+      <a href="#home" class="gift-continue" id="giftContinue">Continue to Website</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function forceOpenGiftPopup(){
+    const modal=document.getElementById('giftPopup');
+    if(!modal) return;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  setTimeout(forceOpenGiftPopup,2200);
+})();
+</script>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-brand">
+    <span class="nav-logo">ViNi Studio</span>
+    <span class="nav-venture">A Venture by Nikhil Creation</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-book">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow reveal">Dhule · Est. 2026</div>
+    <h1 class="hero-title reveal">Every tiny<br/><em>moment</em><br/>deserves to<br/>last <em>forever</em></h1>
+    <p class="hero-tagline reveal">Pillu Kicks To Forever Clicks</p>
+    <p class="hero-venture reveal">A Venture by <strong>Nikhil Creation</strong> · Created by Vidya &amp; Nikhil More</p>
+    <p class="hero-desc reveal">Specializing in Newborn, Maternity, Family &amp; Kids photography — capturing real emotions and precious milestones of your growing family, at our Dhule Studio or your home.</p>
+    <div class="hero-btns reveal">
+      <a href="#packages" class="btn-primary">View Packages</a>
+      <a href="#contact" class="btn-outline">Book a Session</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="stat"><strong>5–25</strong><span>Days Newborn</span></div>
+      <div class="stat"><strong>100%</strong><span>Safe Posing</span></div>
+      <div class="stat"><strong>8–10</strong><span>Days Delivery</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap" id="heroSlideshow">
+      <div class="hero-slide active"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section section-wrap" id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap reveal-left">
+      <div class="about-img"> <img id="aboutSitePhoto" src="https://i.ibb.co/G4Xv0HnX/PROFILE.jpg" alt="Vidya More"></div>
+      <div class="about-badge">Hi, I'm Vidya 🤍</div>
+    </div>
+    <div class="reveal-right">
+      <div class="venture-tag">A Venture by Nikhil Creation</div>
+      <div class="section-label">About ViNi Studio</div>
+      <h2 class="section-title">ViNi Studio &amp;<br/><em>Nikhil Creation</em></h2>
+      <p class="section-sub">At <strong>ViNi Studio</strong>, we believe every stage of life deserves to be remembered with elegance, emotion, and authenticity. From the tiny details of a newborn to the joy of childhood, the beauty of motherhood, and the warmth of family, we create timeless memories that tell your unique story.</p>
+      <br/>
+      <p class="section-sub">Founded by <strong>Vidya &amp; Nikhil More</strong>, ViNi Studio combines creativity, patience, and specialized photography techniques to provide a calm, safe, and personalized experience for every family. Backed by <strong>Nikhil Creation's</strong> professional photography experience, our goal is to create meaningful memories you and your family will cherish forever.</p>
+      <div class="about-features">
+        <div class="about-feat"><div class="feat-dot"></div>Specialized in Newborn, Maternity, Family &amp; Kids Photography</div>
+        <div class="about-feat"><div class="feat-dot"></div>Safe, certified newborn posing techniques</div>
+        <div class="about-feat"><div class="feat-dot"></div>Dhule Studio — premium quality setup</div>
+        <div class="about-feat"><div class="feat-dot"></div>Home Sessions available</div>
+        <div class="about-feat"><div class="feat-dot"></div>Every session carefully planned with heartfelt care</div>
+      </div>
+      <div class="about-promise">
+        <p>"Creating timeless memories with love, creativity, safety, and premium artistry — one beautiful story at a time."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section section-wrap" id="services">
+  <div class="reveal" style="text-align:center;margin-bottom:0">
+    <div class="section-label center">We Specialize In</div>
+    <h2 class="section-title" style="margin-bottom:0">Our Photography<br/><em>Services</em></h2>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal" onclick="window.location.href='gallery.html?category=newborn'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='gallery.html?category=newborn'}">
+      <div class="service-bg" style="background:linear-gradient(160deg,#D4A88A 0%,#6B3A1F 100%)"></div>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <span class="service-name">Newborn</span>
+        <span class="service-detail">5–25 Days Old &amp; Infant 1–11 Months</span>
+        <div class="service-desc">Safe posing, premium wraps, props &amp; outfits provided. The golden window captured forever.</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" onclick="window.location.href='gallery.html?category=maternity'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='gallery.html?category=maternity'}">
+      <div class="service-bg" style="background:linear-gradient(160deg,#C4956A 0%,#5A3020 100%)"></div>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <span class="service-name">Maternity</span>
+        <span class="service-detail">28–34 Weeks · In Studio &amp; Outdoor</span>
+        <div class="service-desc">Celebrating your glow, strength and the beautiful journey of becoming a mother.</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" onclick="window.location.href='gallery.html?category=kids'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='gallery.html?category=kids'}">
+      <div class="service-bg" style="background:linear-gradient(160deg,#B8855A 0%,#4A2510 100%)"></div>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <span class="service-name">Kids</span>
+        <span class="service-detail">1 Year to 5 Years · Cake Smash &amp; Toddler</span>
+        <div class="service-desc">Cake smash, milestones, toddler sessions — every giggle immortalized beautifully.</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal" onclick="window.location.href='gallery.html?category=family'" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='gallery.html?category=family'}">
+      <div class="service-bg" style="background:linear-gradient(160deg,#E2C49A 0%,#7A5030 100%)"></div>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <span class="service-name">Family</span>
+        <span class="service-detail">All Ages · Studio &amp; Outdoor</span>
+        <div class="service-desc">Real moments, real emotions — capturing the warmth and joy of your growing family.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages-section section-wrap" id="packages">
+  <div class="reveal" style="text-align:center">
+    <div class="section-label center">Pricing</div>
+    <h2 class="section-title" style="margin-bottom:8px">Choose Your <em>Perfect Package</em></h2>
+    <p style="font-size:.85rem;color:var(--muted)">Dhule · Home Session Available · Created by Vidya &amp; Nikhil More</p>
+  </div>
+  <div class="pkg-tabs reveal">
+    <button class="pkg-tab active" onclick="showPkg('newborn',this)">Newborn &amp; Infant</button>
+    <button class="pkg-tab" onclick="showPkg('maternity',this)">Maternity</button>
+    <button class="pkg-tab" onclick="showPkg('kids',this)">Kids &amp; Cake Smash</button>
+  </div>
+
+  <!-- NEWBORN -->
+  <div class="pkg-content active" id="pkg-newborn">
+    <p style="text-align:center;font-size:.8rem;color:var(--muted);margin-bottom:24px">Newborn (5–25 Days Old) &amp; Infant Packages (01–11 Months Old)</p>
+    <div class="pkg-grid">
+      <div class="pkg-card reveal">
+        <div class="pkg-header">
+          <span class="pkg-icon">⭐</span>
+          <div class="pkg-tier">Silver</div>
+          <div class="pkg-price">₹6,000</div>
+          <div class="pkg-session">In Studio Session · 1–1.30 Hrs</div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>2 Setup For Baby</li>
+            <li>Only Baby Session</li>
+            <li>10 Baby Photos Edited</li>
+          </ul>
+          <div class="pkg-comp">
+            <span class="pkg-comp-title">Complementary</span>
+            <div class="pkg-comp-item">1 Baby Frame / Print</div>
+          </div>
+          <a href="https://wa.me/919022181879?text=Hi!%20I%20want%20to%20book%20Newborn%20Silver%20Package." target="_blank" rel="noopener" class="pkg-btn pkg-btn-outline">Book Silver →</a>
+        </div>
+      </div>
+      <div class="pkg-card featured reveal">
+        <!-- <div class="pkg-badge">Most Popular</div> -->
+        <div class="pkg-header">
+          <span class="pkg-icon">🥇</span>
+          <div class="pkg-tier">Gold</div>
+          <div class="pkg-price">₹8,000</div>
+          <div class="pkg-session">In Studio or Outdoor · 2–3 Hrs</div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>3 Setup For Baby</li>
+            <li>Baby + Mom + Dad + Sibling</li>
+            <li>15 Baby + 5 Family Photos Edited</li>
+          </ul>
+          <div class="pkg-comp">
+            <span class="pkg-comp-title">Complementary</span>
+            <div class="pkg-comp-item">Print in Folio Box</div>
+          </div>
+          <a href="https://wa.me/919022181879?text=Hi!%20I%20want%20to%20book%20Newborn%20Gold%20Package." target="_blank" rel="noopener" class="pkg-btn pkg-btn-primary">Book Gold →</a>
+        </div>
+      </div>
+      <div class="pkg-card reveal">
+        <div class="pkg-badge">Best Value</div>
+        <div class="pkg-header">
+          <span class="pkg-icon">👑</span>
+          <div class="pkg-tier">Platinum</div>
+          <div class="pkg-price">₹11,000</div>
+          <div class="pkg-session">In Studio &amp; Outdoor · 3–4 Hrs</div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>4 Setup For Baby</li>
+            <li>1 Setup For Family</li>
+            <li>20 Baby + 10 Family Photos Edited</li>
+          </ul>
+          <div class="pkg-comp">
+            <span class="pkg-comp-title">Complementary</span>
+            <div class="pkg-comp-item">Premium Album</div>
+          </div>
+          <a href="https://wa.me/919022181879?text=Hi!%20I%20want%20to%20book%20Newborn%20Platinum%20Package." target="_blank" rel="noopener" class="pkg-btn pkg-btn-outline">Book Platinum →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATERNITY -->
+  <div class="pkg-content" id="pkg-maternity">
+    <p style="text-align:center;font-size:.8rem;color:var(--muted);margin-bottom:24px">Ideal time: 28–34 weeks of pregnancy · Dhule · Home Session Available</p>
+    <div class="pkg-grid">
+      <div class="pkg-card reveal">
+        <div class="pkg-header">
+          <span class="pkg-icon">⭐</span>
+          <div class="pkg-tier">Silver</div>
+          <div class="pkg-price">₹6,000</div>
+          <div class="pkg-session">In Studio Session Only · 1–1.5 Hrs</div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>2 Outfit Setups</li>
+            <li>Solo Maternity Only</li>
+            <li>10 Edited Photos</li>
+          </ul>
+          <div class="pkg-comp">
+            <span class="pkg-comp-title">Complementary</span>
+            <div class="pkg-comp-item">1 Frame / Print</div>
+          </div>
+          <a href="https://wa.me/919022181879?text=Hi!%20I%20want%20to%20book%20Maternity%20Silver%20Package." target="_blank" rel="noopener" class="pkg-btn pkg-btn-outline">Book Silver →</a>
+        </div>
+      </div>
+      <div class="pkg-card featured reveal">
+        <!-- <div class="pkg-badge">Most Popular</div> -->
+        <div class="pkg-header">
+          <span class="pkg-icon">🥇</span>
+          <div class="pkg-tier">Gold</div>
+          <div class="pkg-price">₹8,000</div>
+          <div class="pkg-session">In Studio or Outdoor · 2–3 Hrs</div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>3 Outfit Setups</li>
+            <li>Solo + Couple + Siblings</li>
+            <li>Premium Solo Photos</li>
+            <li>15 Edited Photos</li>
+            <li>1 Maternity Gown Provided</li>
+          </ul>
+          <div class="pkg-comp">
+            <span class="pkg-comp-title">Complementary</span>
+            <div class="pkg-comp-item">Album</div>
+            <div class="pkg-comp-item">1 Reel</div>
+          </div>
+          <a href="https://wa.me/919022181879?text=Hi!%20I%20want%20to%20book%20Maternity%20Gold%20Package." target="_blank" rel="noopener" class="pkg-btn pkg-btn-primary">Book Gold →</a>
+        </div>
+      </div>
+      <div class="pkg-card reveal">
+        <div class="pkg-badge">Best Value</div>
+        <div class="pkg-header">
+          <span class="pkg-icon">👑</span>
+          <div class="pkg-tier">Platinum</div>
+          <div class="pkg-price">₹11,000</div>
+          <div class="pkg-session">In Studio &amp; Outdoor · 3–4 Hrs</div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>4 Outfit Setups</li>
+            <li>Solo + Couple + Siblings</li>
+            <li>Premium Solo Photos</li>
+            <li>20 Edited Photos</li>
+            <li>2 Maternity Gowns Provided</li>
+          </ul>
+          <div class="pkg-comp">
+            <span class="pkg-comp-title">Complementary</span>
+            <div class="pkg-comp-item">Premium Album</div>
+            <div class="pkg-comp-item">2 Reels</div>
+          </div>
+          <a href="https://wa.me/919022181879?text=Hi!%20I%20want%20to%20book%20Maternity%20Platinum%20Package." target="_blank" rel="noopener" class="pkg-btn pkg-btn-outline">Book Platinum →</a>
+        </div>
+      </div>
+    </div>
+    <div class="pkg-special-offer reveal">
+      <span class="offer-icon">🎁</span>
+      <div class="offer-text">Book a <strong>Platinum Maternity Package</strong> and get <strong>20% OFF</strong> on your Newborn Session! (Gold and Platinum packages)</div>
+    </div>
+  </div>
+
+  <!-- KIDS -->
+  <div class="pkg-content" id="pkg-kids">
+    <p style="text-align:center;font-size:.8rem;color:var(--muted);margin-bottom:24px">1 Year to 5 Years (Toddlers) · Pre Birthday Cake Smash · Dhule</p>
+    <div class="pkg-grid">
+      <div class="pkg-card reveal">
+        <div class="pkg-header">
+          <span class="pkg-icon">⭐</span>
+          <div class="pkg-tier">Silver</div>
+          <div class="pkg-price">₹7,000</div>
+          <div class="pkg-session">In Studio or Outdoor</div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>Pre Birthday Cake Smash</li>
+            <li>Only Baby Session</li>
+            <li>10 Photos Edited</li>
+          </ul>
+          <div class="pkg-comp">
+            <span class="pkg-comp-title">Complementary</span>
+            <div class="pkg-comp-item">Frame</div>
+          </div>
+          <p class="pkg-note">* Cake not included. Client to arrange the cake.</p>
+          <a href="https://wa.me/919022181879?text=Hi!%20I%20want%20to%20book%20Kids%20Silver%20Package." target="_blank" rel="noopener" class="pkg-btn pkg-btn-outline">Book Silver →</a>
+        </div>
+      </div>
+      <div class="pkg-card featured reveal">
+        <!-- <div class="pkg-badge">Most Popular</div> -->
+        <div class="pkg-header">
+          <span class="pkg-icon">🥇</span>
+          <div class="pkg-tier">Gold</div>
+          <div class="pkg-price">₹9,000</div>
+          <div class="pkg-session">In Studio or Outdoor</div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>Pre Birthday Cake Smash</li>
+            <li>Baby + Mom + Dad + Siblings</li>
+            <li>15 Photos Edited</li>
+          </ul>
+          <div class="pkg-comp">
+            <span class="pkg-comp-title">Complementary</span>
+            <div class="pkg-comp-item">Print in Folio Box</div>
+          </div>
+          <p class="pkg-note">* Cake not included. Client to arrange the cake.</p>
+          <a href="https://wa.me/919022181879?text=Hi!%20I%20want%20to%20book%20Kids%20Gold%20Package." target="_blank" rel="noopener" class="pkg-btn pkg-btn-primary">Book Gold →</a>
+        </div>
+      </div>
+      <div class="pkg-card reveal">
+        <div class="pkg-badge">Best Value</div>
+        <div class="pkg-header">
+          <span class="pkg-icon">👑</span>
+          <div class="pkg-tier">Platinum</div>
+          <div class="pkg-price">₹14,000</div>
+          <div class="pkg-session">In Studio or Outdoor</div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>Pre Birthday Cake Smash</li>
+            <li>Cinematic Lifestyle Video</li>
+            <li>Baby + Mom + Dad + Siblings</li>
+            <li>20 Photos Edited</li>
+          </ul>
+          <div class="pkg-comp">
+            <span class="pkg-comp-title">Complementary</span>
+            <div class="pkg-comp-item">Premium Album</div>
+          </div>
+          <p class="pkg-note">* Cake not included. Client to arrange the cake.</p>
+          <a href="https://wa.me/919022181879?text=Hi!%20I%20want%20to%20book%20Kids%20Platinum%20Package." target="_blank" rel="noopener" class="pkg-btn pkg-btn-outline">Book Platinum →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD ONS + TERMS -->
+  <div class="addons-box reveal">
+    <div class="addons-title">Add-Ons Available</div>
+    <div class="addons-grid">
+      <div class="addon-item">📷 Raw Soft Copies — <strong>20% of Package Price</strong></div>
+      <div class="addon-item">📸 Extra Edited Photos — <strong>₹500 / photo</strong></div>
+      <div class="addon-item">🎨 Customise Setup — <strong>Charges as per Setup</strong></div>
+      <div class="addon-item">🏠 Home Session — <strong>₹2,000 extra</strong></div>
+      <div class="addon-item">🚗 Travel Charges — <strong>As per Location</strong></div>
+      <div class="addon-item">👨‍👩‍👧 Family Included — <strong>₹1,000 (3 Edited Photos)</strong></div>
+    </div>
+  </div>
+  <div class="terms-box reveal">
+    <div class="addons-title">Terms &amp; Conditions</div>
+    <div class="terms-grid">
+      <div class="term-item"><span class="term-icon">⏰</span><strong>Delivery Time</strong>8 to 10 Working Days</div>
+      <div class="term-item"><span class="term-icon">💳</span><strong>30% Advance</strong>Required to Confirm Booking</div>
+      <div class="term-item"><span class="term-icon">💰</span><strong>70% Remaining</strong>On Shoot Day</div>
+      <div class="term-item"><span class="term-icon">❌</span><strong>Cancellation</strong>Booking Amount Non-Refundable</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section section-wrap" id="process">
+  <div class="process-grid">
+    <div>
+      <div class="section-label reveal">How It Works</div>
+      <h2 class="section-title reveal">Our <em>Process</em>,<br/>Start to Finish</h2>
+      <div class="process-steps">
+        <div class="step reveal"><div class="step-num">01</div><div><div class="step-title">Inquiry &amp; Consultation</div><div class="step-desc">DM us on Instagram or WhatsApp. We understand your vision and answer every question patiently.</div></div></div>
+        <div class="step reveal"><div class="step-num">02</div><div><div class="step-title">Booking &amp; Advance Payment</div><div class="step-desc">Select your package. 30% advance confirms your slot. Slot secured only after advance payment received.</div></div></div>
+        <div class="step reveal"><div class="step-num">03</div><div><div class="step-title">Pre-Shoot Planning</div><div class="step-desc">We finalize theme, props, colors and session date. You receive our detailed preparation guide.</div></div></div>
+        <div class="step reveal"><div class="step-num">04</div><div><div class="step-title">The Shoot Day</div><div class="step-desc">We work at baby's pace — no rushing ever. Feeding breaks always welcome. Safety is always first.</div></div></div>
+        <div class="step reveal"><div class="step-num">05</div><div><div class="step-title">Editing &amp; Delivery</div><div class="step-desc">Every photo hand-edited with care. 70% balance before delivery. Photos via Google Drive in 8–10 days.</div></div></div>
+      </div>
+    </div>
+    <div class="process-visual">
+      <!-- <div class="process-img-box reveal-right"><span>ViNi Studio 🤍</span></div> -->
+      <div class="process-img-box reveal-right">
+      <img id="processSitePhoto" src="https://i.ibb.co/NdCS9Gdz/VIV-1250.jpg" alt="ViNi Studio">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ TABS -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:36px">
+      <div class="section-label center">Got Questions?</div>
+      <h2 class="section-title" style="margin-bottom:16px">Frequently <em>Asked</em></h2>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="pkg-tab active" onclick="showFaq('newborn',this)">Newborn</button>
+        <button class="pkg-tab" onclick="showFaq('maternity',this)">Maternity</button>
+      </div>
+    </div>
+
+    <div id="faq-newborn">
+      <div class="faq-item reveal"><button class="faq-q">What is the best age for a newborn photoshoot?<span class="faq-icon">+</span></button><div class="faq-a"><p>The ideal age is 5–21 days after birth, when babies sleep more deeply and can be safely posed. Sessions also available for infants 1–11 months old.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">When should I book my newborn session?<span class="faq-icon">+</span></button><div class="faq-a"><p>We recommend booking during your pregnancy to reserve your preferred date. The final session date is confirmed after your baby's birth.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Is newborn photography safe?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes. Your baby's safety and comfort are our highest priorities. Every pose is done gently with proper care and patience. We are specially trained in safe newborn posing techniques.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Can parents and siblings join the session?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes! Family and sibling photos are included according to your selected package. Gold and Platinum packages include family photos.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Do you provide wraps, props and outfits?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes. We provide premium wraps, outfits, headbands, bonnets, baskets and carefully selected props for your baby's session.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">What should we bring for the session?<span class="faq-icon">+</span></button><div class="faq-a"><p>Please bring extra diapers, wipes, milk or feeding essentials, a pacifier (if your baby uses one), an extra pair of clothes, and any medicines if required. Please remove kajal, black thread, bracelets, anklets — we do not remove these during editing.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">When will we receive our photos?<span class="faq-icon">+</span></button><div class="faq-a"><p>Your final edited photos will be delivered within 8–10 working days via Google Drive in high resolution. 70% remaining payment is required before delivery.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Do you offer home sessions?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes! Home sessions are available at an additional charge of ₹2,000. Travel charges apply based on location outside Dhule.</p></div></div>
+    </div>
+
+    <div id="faq-maternity" style="display:none">
+      <div class="faq-item reveal"><button class="faq-q">When is the best time for a maternity photoshoot?<span class="faq-icon">+</span></button><div class="faq-a"><p>The ideal time is between 28–34 weeks of pregnancy when your baby bump is beautifully visible and you are generally more comfortable.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">When should I book my session?<span class="faq-icon">+</span></button><div class="faq-a"><p>We recommend booking your session 3–4 weeks in advance to secure your preferred date.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Do you provide maternity gowns?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes! Gold Package includes 1 maternity gown, and Platinum Package includes 2 maternity gowns. You are also welcome to bring your own outfits.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Can my husband and child join the session?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes! Your partner and children are welcome to be a part of the session. Gold and Platinum packages include couple and sibling poses.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Is outdoor photography available?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes. Outdoor sessions are available with Gold and Platinum packages.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">How long does the session take?<span class="faq-icon">+</span></button><div class="faq-a"><p>Session duration ranges from 1–4 hours depending on your selected package.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">When will I receive my photos?<span class="faq-icon">+</span></button><div class="faq-a"><p>Your final edited images will be delivered within 8–10 working days via Google Drive.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Do you offer home sessions?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes. Home sessions are available at an additional charge. Travel charges apply based on location.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <h2 class="testi-title reveal">What <em>Families</em> Say About Us</h2>
+  
+  <div class="testi-grid">
+    <article class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Very calm, warmth, comfortable environment and also they were superbly handling newborn with care and love."</p>
+      <button class="testi-more" type="button" data-review="shweta">... More</button>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Shweta Mohite</div>
+          <div class="testi-type">Google Review · a month ago</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I had a wonderful experience with my newborn Krishna-themed photoshoot. The way you handled our baby with so much patience, care, and gentleness made me feel completely comfortable and relaxed throughout the session. 👶🏻💗 The room environment was very clean and comfortable for the baby, which made the whole experience even better. And the photography skills were amazing! 📸 You captured every tiny expression so perfectly. The Krishna theme was planned and executed beautifully, and every picture looks so magical. 💙🦚✨ The photos are so adorable and will always remain a beautiful memory for our family. ❤️ Highly recommended 👏 ViNi studio to anyone looking for a newborn photoshoot...Thank you for making our little Krishna’s first photoshoot so special and memorable.💗"</p>
+      <button class="testi-more" type="button" data-review="vishakha">... More</button>
+      <div class="testi-author">
+        <div class="testi-avatar">V</div>
+        <div>
+          <div class="testi-name">vishakha Ahire</div>
+          <div class="testi-type">Google Review · 2 weeks ago</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"We had a wonderful experience with Vini Photo Studio for our family photoshoot in Dhule. 💕📸 A special thanks to Vidya for making the shoot so comfortable and enjoyable. She was friendly, patient, and captured every moment beautifully. We are really happy with the quality and creativity of the photos. Thank you, Vini Photo Studio and Vidya, for making our family memories so special. Highly recommended! ⭐⭐⭐⭐⭐"</p>
+      <button class="testi-more" type="button" data-review="harshal">... More</button>
+      <div class="testi-author">
+        <div class="testi-avatar">H</div>
+        <div>
+          <div class="testi-name">Harshal Girase</div>
+          <div class="testi-type">Google Review · a month ago</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="review-modal" id="reviewModal" aria-hidden="true">
+  <div class="review-modal-box" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+    <div class="review-modal-head">
+      <div>
+        <div class="review-modal-title" id="reviewModalTitle"></div>
+        <div class="review-modal-stars">★★★★★</div>
+      </div>
+      <button class="review-modal-close" id="reviewModalClose" type="button" aria-label="Close review">×</button>
+    </div>
+    <div class="review-modal-text" id="reviewModalText"></div>
+    <div class="review-modal-meta" id="reviewModalMeta"></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section section-wrap" id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="section-label reveal">Get In Touch</div>
+      <h2 class="section-title reveal">Let's Capture<br/>Your <em>Forever</em></h2>
+      <p class="section-sub reveal">Ready to book? Reach out on Instagram, WhatsApp, or fill the form — we'd love to capture your family's story.</p>
+      <div class="contact-info-cards">
+        <a href="https://instagram.com/vini.studio__" target="_blank" rel="noopener" class="contact-card reveal"><div class="contact-icon">📸</div><div><span class="contact-card-title">Instagram</span><span class="contact-card-val">@vini.studio__</span></div></a>
+        <a href="https://wa.me/919022181879" target="_blank" rel="noopener" class="contact-card reveal"><div class="contact-icon">💬</div><div><span class="contact-card-title">WhatsApp</span><span class="contact-card-val">+91 90221 81879</span></div></a>
+        <a href="https://wa.me/919011515648" target="_blank" rel="noopener" class="contact-card reveal"><div class="contact-icon">📱</div><div><span class="contact-card-title">WhatsApp (Alt)</span><span class="contact-card-val">+91 90115 15648</span></div></a>
+        <a href="mailto:vinistudioinfo@gmail.com" class="contact-card reveal"><div class="contact-icon">✉️</div><div><span class="contact-card-title">Email</span><span class="contact-card-val">vinistudioinfo@gmail.com</span></div></a>
+        <a href="https://www.vinistudio.in" target="_blank" rel="noopener" class="contact-card reveal"><div class="contact-icon">🌐</div><div><span class="contact-card-title">Website</span><span class="contact-card-val">www.vinistudio.in</span></div></a>
+        <a href="https://www.nikhilcreation.com" target="_blank" rel="noopener" class="contact-card reveal"><div class="contact-icon">📷</div><div><span class="contact-card-title">Nikhil Creation</span><span class="contact-card-val">www.nikhilcreation.com</span></div></a>
+      </div>
+      <div class="studio-address reveal" style="margin-top:16px">
+        <h4>📍 Dhule Studio</h4>
+        <p>Flat No. 1, Saiprasad Apartment,<br/>Near Shanimandir, Gondur Road,<br/>Deopur, Dhule — 424005, Maharashtra</p>
+      </div>
+      <div class="studio-address reveal" style="margin-top:10px">
+        <h4>🏠 Dhule</h4>
+        <p>Home Sessions Available · Contact us to book</p>
+      </div>
+    </div>
+    <div class="contact-form-box reveal-right">
+      <div class="form-title">Book a Session</div>
+      <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" placeholder="e.g. Priya Sharma"/></div>
+      <div class="form-group"><label class="form-label">WhatsApp Number</label><input class="form-input" type="tel" placeholder="+91 XXXXX XXXXX"/></div>
+      <div class="form-group"><label class="form-label">Session Type</label>
+        <select class="form-select">
+          <option>Newborn Photography (5–25 Days)</option>
+          <option>Infant Photography (1–11 Months)</option>
+          <option>Maternity Photography</option>
+          <option>Kids / Cake Smash (1–5 Years)</option>
+          <option>Family Photography</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Preferred Location</label>
+        <select class="form-select">
+          <option>Dhule Studio</option>
+          <option>Home Session – Dhule</option>
+        </select>
+      </div>
+      
+     <div class="form-group"><label class="form-label">Baby's Due / Birth Date</label><input class="form-input" type="date" id="birthDate" name="birthDate"></div>
+      
+      <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell us about your vision, theme ideas, or any questions..."></textarea></div>
+      <button class="form-btn" onclick="handleSubmit(this)">Send Enquiry ✨</button>
+      <br>
+    <div class="section-label center">Visit Our Studio</div>
+      <h3 style="text-align:center;margin-bottom:20px;">
+        Find <em>ViNi Studio</em> on Google Maps
+      </h3>
+      <!-- Google Map -->
+    <div class="map-section reveal" style="margin-top:40px;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d329.3958147109107!2d74.77248324339665!3d20.92485938641635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdec5c050643153%3A0x65103393065d5cc1!2sViNi%20Studio!5e0!3m2!1sen!2sin!4v1785815867387!5m2!1sen!2sin"
+        width="100%"
+        height="400"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin">
+      </iframe>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Newborn Photography<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Maternity Sessions<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Kids &amp; Cake Smash<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Family Portraits<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Dhule Studio<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Home Sessions<span class="marquee-dot"></span></span>
+    <span class="marquee-item">A Venture by Nikhil Creation<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Newborn Photography<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Maternity Sessions<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Kids &amp; Cake Smash<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Family Portraits<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Dhule Studio<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Home Sessions<span class="marquee-dot"></span></span>
+    <span class="marquee-item">A Venture by Nikhil Creation<span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-logo">ViNi Studio</div>
+      <div class="footer-brand-venture">A Venture by Nikhil Creation</div>
+      <div class="footer-brand-tag">Pillu Kicks To Forever Clicks</div>
+      <div class="footer-brand-info">
+        Created by Vidya &amp; Nikhil More<br/>
+        +91 90221 81879 · +91 90115 15648<br/>
+        vinistudioinfo@gmail.com<br/>
+        www.vinistudio.in · www.nikhilcreation.com
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Newborn Photography</a></li>
+        <li><a href="#services">Maternity Photography</a></li>
+        <li><a href="#services">Kids &amp; Cake Smash</a></li>
+        <li><a href="#services">Family Photography</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Book Now</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Locations</div>
+      <div class="footer-brand-info">
+        <strong style="color:var(--brown-light)">Dhule Studio</strong><br/>
+        Flat No. 1, Saiprasad Apt,<br/>
+        Near Shanimandir, Gondur Road,<br/>
+        Deopur, Dhule – 424005<br/><br/>
+        <strong style="color:var(--brown-light)">Dhule</strong><br/>
+        Home Sessions Available
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 ViNi Studio · A Venture by Nikhil Creation · All rights reserved.</span>
+    <div class="social-links">
+      <a href="https://instagram.com/vini.studio__" target="_blank" rel="noopener" class="social-link">IG</a>
+      <a href="https://wa.me/919022181879" target="_blank" rel="noopener" class="social-link">WA</a>
+      <a href="https://www.nikhilcreation.com" target="_blank" rel="noopener" class="social-link">NC</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://qnkkrlixthefoyooizbe.supabase.co";
+const SUPABASE_KEY="sb_publishable_7fkwoAKl0lMoMuIP-FnvAQ_zOZXMX0p";
+const supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+async function loadSitePhotos(){
+  try{
+    const {data,error}=await supabaseClient.from('site_photos').select('section,image_path');
+    if(error) throw error;
+    const rows=data||[];
+    const about=rows.find(x=>x.section==='about');
+    const process=rows.find(x=>x.section==='process');
+    if(about&&about.image_path){
+      const u=supabaseClient.storage.from('gallery').getPublicUrl(about.image_path).data.publicUrl;
+      const el=document.getElementById('aboutSitePhoto');
+      if(el) el.src=u;
+    }
+    if(process&&process.image_path){
+      const u=supabaseClient.storage.from('gallery').getPublicUrl(process.image_path).data.publicUrl;
+      const el=document.getElementById('processSitePhoto');
+      if(el) el.src=u;
+    }
+  }catch(e){console.warn('Site photos could not be loaded:',e)}
+}
+
+async function loadHeroSlideshow(){
+  try{
+    const {data,error}=await supabaseClient
+      .from('gallery_photos')
+      .select('image_path,sort_order,created_at')
+      .eq('category','hero')
+      .order('sort_order',{ascending:true})
+      .order('created_at',{ascending:true})
+      .limit(10);
+    if(error) throw error;
+    const slides=[...document.querySelectorAll('#heroSlideshow .hero-slide')];
+    const photos=(data||[]).filter(x=>x.image_path).slice(0,10);
+    photos.forEach((row,i)=>{
+      if(!slides[i]) return;
+      slides[i].style.backgroundImage='url("'+supabaseClient.storage.from('gallery').getPublicUrl(row.image_path).data.publicUrl+'")';
+    });
+    slides.slice(photos.length).forEach(el=>el.style.display='none');
+    if(photos.length>1){
+      let current=0;
+      setInterval(()=>{
+        slides[current].classList.remove('active');
+        current=(current+1)%photos.length;
+        slides[current].classList.add('active');
+      },6000);
+    }
+  }catch(e){console.warn('Hero slideshow could not be loaded:',e)}
+}
+
+async function loadServiceCardCovers(){
+  try{
+    const {data,error}=await supabaseClient.from('service_card_covers').select('category,image_path');
+    if(error) throw error;
+    const fallback={
+      newborn:'linear-gradient(160deg,#D4A88A 0%,#6B3A1F 100%)',
+      maternity:'linear-gradient(160deg,#C4956A 0%,#5A3020 100%)',
+      kids:'linear-gradient(160deg,#B8855A 0%,#4A2510 100%)',
+      family:'linear-gradient(160deg,#E2C49A 0%,#7A5030 100%)'
+    };
+    const cards=document.querySelectorAll('.service-card');
+    cards.forEach(card=>{
+      const match=Array.from(card.classList).includes('service-card')?card:null;
+      if(!match)return;
+      const link=card.getAttribute('onclick')||'';
+      const m=link.match(/category=([a-z]+)/);
+      if(!m)return;
+      const cat=m[1];
+      const row=(data||[]).find(x=>x.category===cat);
+      const bg=card.querySelector('.service-bg');
+      if(!bg)return;
+      bg.style.backgroundImage=row&&row.image_path
+        ? 'url("'+supabaseClient.storage.from('gallery').getPublicUrl(row.image_path).data.publicUrl+'"),'+fallback[cat]
+        : fallback[cat];
+      bg.style.backgroundSize='cover';
+      bg.style.backgroundPosition='center';
+      bg.style.backgroundRepeat='no-repeat';
+    });
+  }catch(e){console.warn('Service card covers could not be loaded:',e)}
+}
+
+loadHeroSlideshow();
+loadServiceCardCovers();
+loadSitePhotos();
+
+async function loadGiftVisual(){
+  try{
+    const {data,error}=await supabaseClient
+      .from('gallery_photos')
+      .select('image_path,sort_order,created_at')
+      .eq('category','newborn')
+      .order('sort_order',{ascending:true})
+      .order('created_at',{ascending:true})
+      .limit(10);
+    if(error) throw error;
+    const rows=data||[];
+    const frames=[...document.querySelectorAll('#giftVisual .gift-frame')];
+    const floats=[...document.querySelectorAll('#giftVisual .gift-float')];
+    [...frames,...floats].forEach((el,i)=>{
+      const row=rows[i%Math.max(rows.length,1)];
+      if(!row||!row.image_path) return;
+      const url=supabaseClient.storage.from('gallery').getPublicUrl(row.image_path).data.publicUrl;
+      el.style.backgroundImage='url("'+url+'")';
+    });
+  }catch(e){
+    console.warn('Gift visual photos could not be loaded:',e);
+  }
+}
+loadGiftVisual();
+
+// Visitor gift / lead capture
+function createEntryNumber(){
+  const d=new Date();
+  const month=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'][d.getMonth()];
+  const year=String(d.getFullYear()).slice(-2);
+  return 'VNS-'+month+year+'-'+Math.floor(1000+Math.random()*9000);
+}
+function openGiftPopup(){
+  const modal=document.getElementById('giftPopup');
+  if(!modal) return;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeGiftPopup(){
+  const modal=document.getElementById('giftPopup');
+  if(!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+async function saveVisitorLead(){
+  const name=document.getElementById('giftName').value.trim();
+  const phone=document.getElementById('giftPhone').value.trim();
+  const purpose=document.getElementById('giftPurpose').value;
+  const whatsappOptIn=document.getElementById('giftWhatsappOptIn').checked;
+  const status=document.getElementById('giftStatus');
+  if(!name||!phone||!purpose){status.textContent='Please complete all required fields.';return null}
+  if(!/^[0-9+()\-\s]{10,18}$/.test(phone)){status.textContent='Please enter a valid WhatsApp number.';return null}
+  const entryNo=createEntryNumber();
+  const now=new Date();
+  const campaignMonth=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  const {error}=await supabaseClient.from('visitor_leads').insert({
+    entry_no:entryNo,
+    name,
+    phone,
+    purpose,
+    whatsapp_opt_in:whatsappOptIn,
+    campaign_month:campaignMonth,
+    source_page:location.pathname||'/',
+    consent_at:whatsappOptIn ? new Date().toISOString() : null
+  });
+  if(error){status.textContent='We could not save your entry right now. Please try again.';console.error(error);return null}
+  return entryNo;
+}
+document.getElementById('giftClose')?.addEventListener('click',closeGiftPopup);
+document.getElementById('giftPopup')?.addEventListener('click',e=>{if(e.target.id==='giftPopup')closeGiftPopup()});
+document.getElementById('giftForm')?.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=document.getElementById('giftSubmit');
+  const status=document.getElementById('giftStatus');
+  btn.disabled=true;btn.textContent='Submitting…';status.textContent='';
+  const entryNo=await saveVisitorLead();
+  if(entryNo){
+    document.getElementById('giftEntryNo').textContent=entryNo;
+    document.getElementById('giftFormView').style.display='none';
+    document.getElementById('giftSuccess').classList.add('open');
+  }
+  btn.disabled=false;btn.textContent='Get My Lucky Entry Number';
+});
+document.getElementById('giftContinue')?.addEventListener('click',closeGiftPopup);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGiftPopup()});
+
+// Loader
+window.addEventListener('load',()=>{
+  setTimeout(()=>{document.getElementById('loader').classList.add('hide')},1800);
+});
+
+// Nav scroll
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+
+const fullReviews={
+  shweta:{name:'Shweta Mohite',meta:'Google Review · a month ago',text:"Very calm, warmth, comfortable environment and also they were superbly handling newborn with care and love.\n\nPrice assessment\nReasonable price\n\nServices\nNewborn photography"},
+  vishakha:{name:'vishakha Ahire',meta:'Google Review · 2 weeks ago',text:"I had a wonderful experience with my newborn Krishna-themed photoshoot. The way you handled our baby with so much patience, care, and gentleness made me feel completely comfortable and relaxed throughout the session. 👶🏻💗\n\nThe room environment was very clean and comfortable for the baby, which made the whole experience even better.\n\nAnd the photography skills were amazing! 📸 You captured every tiny expression so perfectly. The Krishna theme was planned and executed beautifully, and every picture looks so magical. 💙🦚✨\n\nThe photos are so adorable and will always remain a beautiful memory for our family. ❤️\n\nHighly recommended 👏 ViNi studio to anyone looking for a newborn photoshoot...Thank you for making our little Krishna’s first photoshoot so special and memorable.💗"},
+  harshal:{name:'Harshal Girase',meta:'Google Review · a month ago',text:"We had a wonderful experience with Vini Photo Studio for our family photoshoot in Dhule. 💕📸 A special thanks to Vidya for making the shoot so comfortable and enjoyable. She was friendly, patient, and captured every moment beautifully.\n\nWe are really happy with the quality and creativity of the photos. Thank you, Vini Photo Studio and Vidya, for making our family memories so special. Highly recommended! ⭐⭐⭐⭐⭐"}
+};
+const reviewModal=document.getElementById('reviewModal');
+const reviewModalTitle=document.getElementById('reviewModalTitle');
+const reviewModalText=document.getElementById('reviewModalText');
+const reviewModalMeta=document.getElementById('reviewModalMeta');
+const reviewModalClose=document.getElementById('reviewModalClose');
+function openReview(key){
+  const review=fullReviews[key];
+  if(!review) return;
+  reviewModalTitle.textContent=review.name;
+  reviewModalText.textContent=review.text;
+  reviewModalMeta.textContent=review.meta;
+  reviewModal.classList.add('open');
+  reviewModal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeReview(){
+  reviewModal.classList.remove('open');
+  reviewModal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.testi-more').forEach(btn=>btn.addEventListener('click',()=>openReview(btn.dataset.review)));
+reviewModalClose.addEventListener('click',closeReview);
+reviewModal.addEventListener('click',e=>{if(e.target===reviewModal)closeReview()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeReview()});
+
+// Stagger
+document.querySelectorAll('.services-grid .service-card').forEach((c,i)=>{c.style.transitionDelay=(i*.1)+'s'});
+document.querySelectorAll('.pkg-card').forEach((c,i)=>{c.style.transitionDelay=(i*.1)+'s'});
+document.querySelectorAll('.testi-card').forEach((c,i)=>{c.style.transitionDelay=(i*.1)+'s'});
+document.querySelectorAll('.contact-info-cards .contact-card').forEach((c,i)=>{c.style.transitionDelay=(i*.06)+'s'});
+
+// Package tabs
+function showPkg(id, btn) {
+  document.querySelectorAll('.pkg-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.pkg-tabs .pkg-tab').forEach(el=>el.classList.remove('active'));
+  document.getElementById('pkg-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// FAQ tabs
+function showFaq(id, btn) {
+  document.getElementById('faq-newborn').style.display='none';
+  document.getElementById('faq-maternity').style.display='none';
+  document.getElementById('faq-'+id).style.display='block';
+  document.querySelectorAll('#faq .pkg-tab').forEach(el=>el.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// FAQ accordion
+document.addEventListener('click', function(e) {
+  if(e.target.classList.contains('faq-q') || e.target.closest('.faq-q')) {
+    const btn = e.target.classList.contains('faq-q') ? e.target : e.target.closest('.faq-q');
+    const item = btn.parentElement;
+    const ans = item.querySelector('.faq-a');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight='0'});
+    if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
+  }
+});
+
+// Form submit → WhatsApp
+function handleSubmit(btn) {
+  const inputs = document.querySelectorAll('.form-input');
+  const name = inputs[0].value.trim();
+  const phone = inputs[1].value.trim();
+  const type = document.querySelector('.form-select').value;
+  const location = document.querySelectorAll('.form-select')[1].value;
+  const date = inputs[2].value.trim();
+  const msg = document.querySelector('.form-textarea').value.trim();
+  if(!name||!phone){btn.textContent='⚠️ Please fill Name & WhatsApp Number';setTimeout(()=>{btn.textContent='Send Enquiry ✨'},3000);return;}
+  const waText = encodeURIComponent(`Hi ViNi Studio! 🌸\n\nName: ${name}\nPhone: ${phone}\nSession: ${type}\nLocation: ${location}\n${date?'Date: '+date:''}${msg?'\nMessage: '+msg:''}`);
+  window.open(`https://wa.me/919022181879?text=${waText}`,'_blank');
+  btn.textContent='✅ Opening WhatsApp...';
+  setTimeout(()=>{btn.textContent='Send Enquiry ✨'},4000);
+}
+</script>
+</body>
+</html>
