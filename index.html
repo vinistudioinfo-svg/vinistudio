@@ -206,20 +206,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 @media(max-width:600px){
   .gift-popup{padding:10px}
   .gift-card{width:min(340px,100%);padding:24px 18px 18px;margin:0}
-  .gift-visual{top:calc(50% - 250px);width:320px;height:220px}
-  .gift-camera{left:0;top:82px;width:108px;height:68px;border-radius:14px 14px 19px 19px}
-  .gift-camera::after{left:43px;top:14px;width:43px;height:43px;border-width:6px}
-  .gift-camera::before{left:18px;top:-16px;width:43px;height:21px}
-  .gift-camera-mark{left:13px;bottom:11px;font-size:11px}.gift-camera-mark small{font-size:5px}
-  .gift-roll{left:88px;top:69px;width:225px;height:105px;transform:rotate(-5deg)}
-  .gift-film{top:19px;height:70px;border-width:4px}
-  .gift-frame{width:37px;height:51px;top:28px;border-width:2px}
-  .gift-frame:nth-of-type(2){left:10px}.gift-frame:nth-of-type(3){left:52px;top:24px}
-  .gift-frame:nth-of-type(4){left:94px;top:28px}.gift-frame:nth-of-type(5){left:136px;top:23px}
-  .gift-frame:nth-of-type(6){left:178px;top:28px}
-  .gift-float{width:40px;height:51px;border-width:3px}
-  .gift-float.f1{left:154px;top:3px}.gift-float.f2{left:258px;top:14px}
-  .gift-float.f3{left:196px;top:0}.gift-float.f4{left:112px;top:8px}
+  .gift-visual{top:calc(50% - 250px);width:320px;height:180px}
+  .gift-float{width:55px;height:70px;border-width:3px}
+  .gift-float.f1{left:20px;top:52px;transform:rotate(-14deg)}
+  .gift-float.f2{left:92px;top:18px;transform:rotate(7deg)}
+  .gift-float.f3{left:166px;top:20px;transform:rotate(11deg)}
+  .gift-float.f4{left:238px;top:55px;transform:rotate(14deg)}
+  .gift-float.f5,.gift-float.f6{display:none}
+  .gift-visual::after{content:'♡  ·  ✦  ♡';position:absolute;left:50%;top:2px;transform:translateX(-50%);font-size:18px;letter-spacing:9px;color:#f1c87e;text-shadow:0 0 10px rgba(241,200,126,.8);white-space:nowrap;z-index:2}
   .gift-title{font-size:1.9rem}
   .gift-copy{font-size:.72rem}
   .gift-highlight{font-size:.68rem}
