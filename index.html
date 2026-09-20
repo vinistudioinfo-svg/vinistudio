@@ -92,53 +92,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
 /* Premium camera + newborn film-roll burst above the popup.
    Decorative only: popup card, form and the rest of the website stay untouched. */
-.gift-visual{position:absolute;left:50%;top:calc(50% - 390px);width:430px;height:280px;transform:translateX(-50%);z-index:3;pointer-events:none}
-.gift-camera{position:absolute;left:6px;top:95px;width:150px;height:94px;border-radius:18px 18px 25px 25px;background:linear-gradient(145deg,#fff5e8 0%,#d8bea5 48%,#805b42 100%);border:2px solid rgba(70,42,24,.65);box-shadow:0 20px 34px rgba(34,18,9,.38),inset 0 2px 0 rgba(255,255,255,.8);z-index:4}
-.gift-camera::before{content:'';position:absolute;left:25px;top:-22px;width:58px;height:28px;border-radius:10px 10px 3px 3px;background:linear-gradient(145deg,#fff8ee,#b99475);border:2px solid rgba(70,42,24,.55);box-shadow:inset 0 2px 0 rgba(255,255,255,.8)}
-.gift-camera::after{content:'';position:absolute;left:61px;top:20px;width:61px;height:61px;border-radius:50%;border:8px solid #f8ead9;background:radial-gradient(circle at 36% 31%,#ffd994 0 7%,#9a5e36 8% 27%,#21130b 28% 66%,#bd8658 67% 100%);box-shadow:0 0 0 3px rgba(70,42,24,.5),0 0 34px rgba(224,166,86,.9)}
-.gift-camera-mark{position:absolute;left:18px;bottom:15px;font-family:Georgia,serif;font-size:15px;line-height:.8;letter-spacing:1px;color:#3a2417;transform:rotate(-4deg)}
-.gift-camera-mark small{font-family:Arial,sans-serif;font-size:7px;letter-spacing:2px}
-.gift-roll{position:absolute;left:124px;top:82px;width:300px;height:132px;transform:rotate(-5deg);z-index:3;filter:drop-shadow(0 12px 14px rgba(30,16,8,.34))}
-.gift-film{position:absolute;left:0;top:23px;width:100%;height:86px;border-radius:10px;background:#1d120b;border:5px solid #17100b;box-shadow:inset 0 0 0 2px rgba(243,223,196,.3),0 0 0 2px rgba(216,173,112,.2)}
-.gift-film::before,.gift-film::after{content:'';position:absolute;left:8px;right:8px;height:9px;background:repeating-linear-gradient(90deg,#f0dcc2 0 7px,transparent 7px 17px);opacity:.9}
-.gift-film::before{top:-1px}.gift-film::after{bottom:-1px}
-.gift-frame{position:absolute;z-index:5;width:49px;height:66px;top:34px;border:3px solid #f5e3cc;border-radius:3px;background:#8b5b3c center/cover no-repeat;box-shadow:0 5px 11px rgba(30,16,8,.34)}
-.gift-frame:nth-of-type(2){left:13px;transform:rotate(-3deg)}
-.gift-frame:nth-of-type(3){left:69px;top:29px;transform:rotate(3deg)}
-.gift-frame:nth-of-type(4){left:126px;top:34px;transform:rotate(-2deg)}
-.gift-frame:nth-of-type(5){left:183px;top:28px;transform:rotate(4deg)}
-.gift-frame:nth-of-type(6){left:240px;top:34px;transform:rotate(-5deg)}
-.gift-float{position:absolute;width:54px;height:68px;border:4px solid #f5e3cc;border-radius:3px;background:#8b5b3c center/cover no-repeat;box-shadow:0 8px 14px rgba(30,16,8,.25);z-index:2}
-.gift-float.f1{left:205px;top:8px;transform:rotate(-12deg)}
-.gift-float.f2{left:338px;top:18px;transform:rotate(13deg)}
-.gift-float.f3{left:255px;top:0;transform:rotate(6deg)}
-.gift-float.f4{left:155px;top:8px;transform:rotate(11deg)}
-.gift-spark{position:absolute;border-radius:50%;background:#e0b36c;box-shadow:0 0 16px rgba(224,179,108,.9);z-index:1}
-.gift-spark.s1{width:8px;height:8px;left:177px;top:58px}.gift-spark.s2{width:5px;height:5px;left:285px;top:34px}
-.gift-spark.s3{width:7px;height:7px;right:25px;top:105px}.gift-spark.s4{width:4px;height:4px;left:111px;top:24px}
-.gift-spark.s5{width:6px;height:6px;left:231px;top:226px}.gift-spark.s6{width:4px;height:4px;left:24px;top:75px}
-
-/* Reference-style burst: film visibly shoots out of the lens, then flows. Popup-only. */
-/* Popup visual: keep only the floating newborn photo cards. */
-.gift-camera,.gift-roll,.gift-visual::before{display:none!important}
-.gift-visual::before{
-  content:'';
-  position:absolute;
-  left:72px;
-  top:92px;
-  width:105px;
-  height:105px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(255,220,157,.95) 0%,rgba(236,169,82,.55) 13%,rgba(236,169,82,.18) 34%,transparent 68%);
-  filter:blur(2px);
-  opacity:0;
-  z-index:2;
-  pointer-events:none;
-}
+.gift-visual{position:absolute;left:50%;top:calc(50% - 310px);width:500px;height:230px;transform:translateX(-50%);z-index:3;pointer-events:none}
+.gift-camera,.gift-roll{display:none!important}
+.gift-float{position:absolute;width:78px;height:98px;border:4px solid #f5e3cc;border-radius:5px;background:#8b5b3c center/cover no-repeat;box-shadow:0 9px 18px rgba(30,16,8,.28);z-index:2}
+.gift-float.f1{left:70px;top:75px;transform:rotate(-12deg)}
+.gift-float.f2{left:174px;top:48px;transform:rotate(5deg)}
+.gift-float.f3{left:278px;top:51px;transform:rotate(9deg)}
+.gift-float.f4{left:382px;top:76px;transform:rotate(13deg)}
+.gift-spark{position:absolute;border-radius:50%;background:#f1c87e;box-shadow:0 0 16px rgba(241,200,126,.9);z-index:1}
+.gift-spark.s1{width:7px;height:7px;left:38px;top:98px}.gift-spark.s2{width:5px;height:5px;left:148px;top:34px}
+.gift-spark.s3{width:8px;height:8px;right:36px;top:105px}.gift-spark.s4{width:4px;height:4px;left:238px;top:18px}
+.gift-spark.s5{width:6px;height:6px;left:330px;top:24px}.gift-spark.s6{width:5px;height:5px;left:458px;top:122px}
+.gift-visual::after{content:'♡  ·  ✦  ♡  ·  ✦  ♡';position:absolute;left:50%;top:20px;transform:translateX(-50%);font-size:19px;letter-spacing:8px;color:#f4d28f;text-shadow:0 0 10px rgba(241,200,126,.85);white-space:nowrap;z-index:4}
 .gift-popup.open .gift-visual{animation:giftBlastIn .9s cubic-bezier(.18,.78,.2,1) both}
-.gift-popup.open .gift-visual::before{animation:lensBlast 2.9s ease-out .15s infinite}
-.gift-popup.open .gift-roll{animation:filmBlastFlow 4.8s cubic-bezier(.2,.7,.25,1) .35s infinite}
-.gift-popup.open .gift-camera{animation:cameraPulse 2.8s ease-in-out .6s infinite}
 .gift-popup.open .gift-float.f1{animation:floatPhoto1 3.6s ease-in-out .2s infinite}
 .gift-popup.open .gift-float.f2{animation:floatPhoto2 4s ease-in-out .4s infinite}
 .gift-popup.open .gift-float.f3{animation:floatPhoto3 3.4s ease-in-out .7s infinite}
@@ -149,32 +115,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   55%{opacity:1;transform:translateX(-50%) translateY(-8px) scale(1.04)}
   100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
 }
-@keyframes lensBlast{
-  0%,100%{opacity:0;transform:scale(.45)}
-  12%{opacity:1;transform:scale(1.15)}
-  24%{opacity:.35;transform:scale(1.7)}
-  38%{opacity:0;transform:scale(2.1)}
-}
-@keyframes filmBlastFlow{
-  0%{transform:rotate(-5deg) translate3d(-38px,4px,0) scaleX(.62);filter:drop-shadow(0 8px 10px rgba(30,16,8,.22))}
-  14%{transform:rotate(-4deg) translate3d(0,0,0) scaleX(1);filter:drop-shadow(0 14px 18px rgba(30,16,8,.38))}
-  30%{transform:rotate(-1deg) translate3d(10px,-7px,0) scaleX(1.02)}
-  52%{transform:rotate(-7deg) translate3d(20px,5px,0) scaleX(1.01)}
-  74%{transform:rotate(-3deg) translate3d(7px,-5px,0) scaleX(1)}
-  100%{transform:rotate(-5deg) translate3d(-38px,4px,0) scaleX(.62)}
-}
-@keyframes cameraPulse{
-  0%,100%{transform:translateY(0) scale(1)}
-  50%{transform:translateY(-4px) scale(1.015)}
-}
 @keyframes floatPhoto1{50%{transform:translate(8px,-12px) rotate(-17deg)}}
-@keyframes floatPhoto2{50%{transform:translate(10px,9px) rotate(18deg)}}
-@keyframes floatPhoto3{50%{transform:translate(-7px,-9px) rotate(10deg)}}
-@keyframes floatPhoto4{50%{transform:translate(-10px,8px) rotate(16deg)}}
+@keyframes floatPhoto2{50%{transform:translate(10px,9px) rotate(10deg)}}
+@keyframes floatPhoto3{50%{transform:translate(-7px,-9px) rotate(14deg)}}
+@keyframes floatPhoto4{50%{transform:translate(-10px,8px) rotate(17deg)}}
 @keyframes sparkPulse{0%,100%{opacity:.45;transform:scale(.75)}50%{opacity:1;transform:scale(1.35)}}
 @media(prefers-reduced-motion:reduce){
-  .gift-popup.open .gift-visual,.gift-popup.open .gift-roll,.gift-popup.open .gift-camera,
-  .gift-popup.open .gift-float,.gift-popup.open .gift-spark{animation:none!important}
+  .gift-popup.open .gift-visual,.gift-popup.open .gift-float,.gift-popup.open .gift-spark{animation:none!important}
 }
 
 .gift-close{position:absolute;top:12px;right:14px;border:0;background:none;color:var(--brown-dark);font-size:1.5rem;line-height:1;cursor:pointer;padding:6px;z-index:8}
@@ -206,19 +153,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 @media(max-width:600px){
   .gift-popup{padding:10px}
   .gift-card{width:min(340px,100%);padding:24px 18px 18px;margin:0}
-  .gift-visual{top:calc(50% - 250px);width:320px;height:180px}
-  .gift-float{width:55px;height:70px;border-width:3px}
-  .gift-float.f1{left:20px;top:52px;transform:rotate(-14deg)}
-  .gift-float.f2{left:92px;top:18px;transform:rotate(7deg)}
-  .gift-float.f3{left:166px;top:20px;transform:rotate(11deg)}
-  .gift-float.f4{left:238px;top:55px;transform:rotate(14deg)}
+  .gift-visual{top:calc(50% - 250px);width:340px;height:190px}
+  .gift-float{width:68px;height:86px;border-width:3px}
+  .gift-float.f1{left:18px;top:61px;transform:rotate(-13deg)}
+  .gift-float.f2{left:101px;top:30px;transform:rotate(5deg)}
+  .gift-float.f3{left:185px;top:33px;transform:rotate(9deg)}
+  .gift-float.f4{left:268px;top:62px;transform:rotate(14deg)}
+  .gift-spark.s1{left:8px;top:111px}.gift-spark.s2{left:78px;top:22px}
+  .gift-spark.s3{right:9px;top:115px}.gift-spark.s4{left:158px;top:8px}
+  .gift-spark.s5{left:230px;top:12px}.gift-spark.s6{left:322px;top:105px}
+  .gift-visual::after{top:0;font-size:17px;letter-spacing:6px}
   .gift-float.f5,.gift-float.f6{display:none}
-  .gift-visual::after{content:'♡  ·  ✦  ♡';position:absolute;left:50%;top:2px;transform:translateX(-50%);font-size:18px;letter-spacing:9px;color:#f1c87e;text-shadow:0 0 10px rgba(241,200,126,.8);white-space:nowrap;z-index:2}
   .gift-title{font-size:1.9rem}
   .gift-copy{font-size:.72rem}
   .gift-highlight{font-size:.68rem}
 }
-
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
 nav.scrolled{background:rgba(250,246,240,.97);backdrop-filter:blur(12px);padding:14px 60px;box-shadow:0 2px 20px rgba(122,79,53,.1)}
